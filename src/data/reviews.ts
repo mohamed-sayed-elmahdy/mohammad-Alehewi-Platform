@@ -911,4 +911,26 @@ title: "Rols Chocolate | رولز شوكلت",
   ],
   href: "/reviews/patchi-jeddah",
 },
+{
+  id: "aseirati-eshq",
+  title: "عصيراتي عشق",
+  excerpt:
+    "تجربة جديدة وموفقة المكان مرتب ونظيف جدا الزيارة كانت ناجحة وانصح به",
+  reviewText:
+    "تجربة جديدة وموفقة المكان مرتب ونظيف جدا يقدم تشكيلة متنوعة من العصيرات الطازجة والكوكتيلات بالاضافة الى بوكسات مخصصة للنزهات البحرية والكوكيز جربنا عصير الرمان وكان ممتاز وكذلك الافوكادو بالمنجا الكوكتيل والليمون بالنعناع التحضير والطعم والتقديم كانوا في غاية الامتياز الخدمة لطيفة الاسعار في النطاق العام اجمالا الزيارة كانت ناجحة وانصح به",
+  rating: 5,
+  categoryId: "juices",
+  categoryLabel: "عصائر ومشروبات",
+  city: "جدة",
+  country: "السعودية",
+  locationLabel: "جدة · السعودية",
+  dateLabel: "٢ نوفمبر ٢٠٢٦",
+  dateISO: "2026-11-02",
+  googleMapsUrl: "https://maps.app.goo.gl/FDop8DsZrHRgPGGEA?g_st=iw",
+images: [
+  "/reviews/aseirati-eshq/cover.jpg",
+  "/reviews/aseirati-eshq/1.jpg",
+],
+  href: "/reviews/aseirati-eshq",
+},
 ];
