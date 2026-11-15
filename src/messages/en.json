@@ -1,0 +1,770 @@
+{
+  "Common": {
+    "all": "All",
+    "close": "Close",
+    "home": "Home",
+    "loading": "Loading...",
+    "requiredFields": "Fields marked are required",
+    "submit": "Submit",
+    "tryAgain": "Please try again."
+  },
+  "Navigation": {
+    "about": "About",
+    "articles": "Articles",
+    "closeMenu": "Close menu",
+    "journeys": "Journeys",
+    "home": "Home",
+    "language": "Change language",
+    "logoHomeLabel": "Go to the home page",
+    "logoName": "Mohammad Alehewi",
+    "logoRole": "Media professional",
+    "menu": "Menu",
+    "menuLabel": "Navigation menu",
+    "mission": "Our mission",
+    "openMenu": "Open menu",
+    "primaryNavigation": "Primary navigation",
+    "requestVisit": "Request a visit",
+    "reviews": "Reviews",
+    "services": "Services",
+    "switchToLightMode": "Switch to light mode",
+    "switchToArabic": "Switch to Arabic",
+    "switchToEnglish": "Switch to English",
+    "stories": "Stories"
+  },
+  "Home": {
+    "metaTitle": "Home",
+    "metaDescription": "Discover authentic experiences, reviews, and journeys across Saudi Arabia and beyond with Saudi media professional and Local Guide Mohammad Alehewi.",
+    "metaImageAlt": "Mohammad Alehewi's media platform",
+    "hero": {
+      "titleFirstLine": "Authentic Experiences",
+      "titleSecondLine": "Continuous Improvement",
+      "description": "The first digital platform by a Saudi media professional and Google Maps Local Guide, documenting and reviewing experiences and journeys across Saudi Arabia and beyond",
+      "imageAlt": "Media professional Mohammad Alehewi",
+      "exploreExperiences": "Explore experiences",
+      "requestVisit": "Request a visit",
+      "exploreExperiencesLabel": "Explore experiences",
+      "previousExperience": "Previous experience",
+      "nextExperience": "Next experience",
+      "exploreCategory": "Explore the {category} category",
+      "badge": "Media with a mission",
+      "countriesTitle": "My Journeys",
+      "localJourneysTitle": "My Saudi Journeys",
+      "globalJourneysTitle": "My International Journeys",
+      "upcomingDestinations": "And many more destinations to come...",
+      "featureTitles": {
+        "guidance": "Expert Guidance",
+        "trust": "Lasting Trust",
+        "impact": "Immediate Impact",
+        "investment": "Strategic Investment",
+        "digitalPriority": "Digital First"
+      },
+      "stats": {
+        "contributions": "contributions",
+        "views": "views"
+      },
+      "countries": {
+        "sa": "Saudi Arabia",
+        "eg": "Egypt",
+        "tr": "Türkiye",
+        "ge": "Georgia"
+      },
+      "timeline": {
+        "saudi": {
+          "title": "Saudi Arabia",
+          "subtitle": "Riyadh · Jeddah · Qassim",
+          "description": "More than 20 cities"
+        },
+        "world": {
+          "title": "Global journeys"
+        },
+        "egypt": {
+          "title": "Egypt"
+        },
+        "turkey": {
+          "title": "Türkiye"
+        },
+        "georgia": {
+          "title": "Georgia"
+        },
+        "upcoming": {
+          "title": "More destinations to come..."
+        }
+      }
+    },
+    "categories": {
+      "exploreCategory": "Explore {category}",
+      "exploreExperiences": "Explore experiences"
+    },
+    "featuredCategories": {
+      "title": "Explore Experiences",
+      "titleByCategory": "by Category",
+      "description": "Every experience tells a different story, and every category offers a new way to explore the world through Mohammad Alehewi's perspective. Choose what interests you and begin a new journey.",
+      "exploreExperiences": "Explore experiences",
+      "browseAll": "Browse all categories",
+      "closingPrompt": "Choose your favorite category and begin your next journey"
+    },
+    "featuredReviews": {
+      "title": "Featured Experiences",
+      "description": "A selection of experiences recommended for their quality, value, and lasting impression.",
+      "browseAll": "Browse all experiences",
+      "readExperience": "Read the experience",
+      "readExperienceFor": "Read the experience at {title}",
+      "badge": "Featured experience"
+    },
+    "testimonials": {
+      "title": "Visitor Testimonials",
+      "shareFeedback": "Share your feedback",
+      "visitorLabel": "Visitor review"
+    },
+    "destinations": {
+      "exploreDestination": "Explore destination",
+      "exploreCountry": "Explore country"
+    },
+    "featuredStories": {
+      "eyebrow": "Behind every experience",
+      "title": "Every Experience and Visit Has a Story",
+      "description": "Not every experience can be summed up in a review. Some hold moments, impressions, and details worth sharing.",
+      "viewAll": "Browse all stories",
+      "readStory": "Read story",
+      "previousStory": "Previous story",
+      "nextStory": "Next story"
+    },
+    "journeyMap": {
+      "eyebrow": "The journey",
+      "title": "A Story Map of Mohammad Alehewi's Experiences",
+      "description": "A narrative map tracing the stages of the journey and the countries that have shaped it from the beginning to today.",
+      "narrativeApproach": "A narrative approach",
+      "travelDetails": "Travel is more than a place; it is the details that unfold over time",
+      "journeyDescription": "This section traces a gradual journey between Saudi Arabia and the wider world, with meaningful stops and culturally rich experiences.",
+      "highlightedStops": "Notable stops",
+      "stopsDescription": "Explore the stories within each journey through its places, years, and routes.",
+      "viewMap": "View map"
+    },
+    "latestArticles": {
+      "eyebrow": "A journalistic perspective",
+      "title": "The Latest Articles, Thoughtfully Written",
+      "description": "Concise, connected articles offering a window into experiences, culture, and hospitality through Mohammad Alehewi's perspective.",
+      "viewAll": "View all articles",
+      "readArticle": "Read article"
+    },
+    "cta": {
+      "eyebrow": "Begin your journey",
+      "title": "Experience a Visit Through Mohammad Alehewi's Lens",
+      "description": "An invitation for brands to host a distinctive experience shaped by a compelling story and visual identity.",
+      "requestVisit": "Request a visit"
+    }
+  },
+  "About": {
+    "metaTitle": "About Mohammad Alehewi",
+    "metaDescription": "Learn about media professional Mohammad Alehewi and his work documenting experiences, journeys, and destinations in Saudi Arabia and around the world",
+    "hero": {
+      "alt": "Media professional Mohammad Alehewi",
+      "eyebrow": "Who is",
+      "title": "Media Professional Mohammad Alehewi",
+      "description": "A media professional who documents experiences, shares what he sees, and works to improve them",
+      "visit": "We visit",
+      "experience": "We experience",
+      "review": "We review",
+      "improve": "We improve"
+    },
+    "sectionTitle": "About",
+    "intro": {
+      "title": "Who is Mohammad?",
+      "degree": "Bachelor's degree",
+      "university": "King Abdulaziz University",
+      "license": "Media license",
+      "authority": "General Authority for Media Regulation",
+      "residence": "Based in",
+      "location": "Jeddah, Saudi Arabia",
+      "biographyFirst": "I am Mohammad bin Ibrahim Alehewi. I was born in Riyadh, have roots in Unaizah in Al-Qassim, and live in Jeddah",
+      "biographySecond": "I come from an education-focused family and hold a bachelor's degree from King Abdulaziz University",
+      "biographyThird": "I am a Saudi journalist and content manager, licensed by the General Authority for Media Regulation"
+    },
+    "experienceImpact": {
+      "title": "The Impact of My Work",
+      "business": "For businesses",
+      "businessDescription": "Constructive feedback that helps improve service quality, increase customer satisfaction, and build a more trusted digital reputation.",
+      "visitor": "For visitors",
+      "visitorDescription": "Reliable, comprehensive information that helps visitors make informed decisions and enjoy a safer, clearer experience."
+    },
+    "timeline": {
+      "title": "My Journey in Media and Experiences",
+      "events": {
+        "mediaCareer": {
+          "title": "The beginning of my media career",
+          "description": "I started as an editor at Noon Online Newspaper"
+        },
+        "newspaper": {
+          "title": "Ownership of Noon Online Newspaper",
+          "description": "In late 2015, I continued covering official media events"
+        },
+        "localGuide": {
+          "title": "Became a Google Maps Local Guide",
+          "description": "I created a Local Guide account to share impressions from my journeys"
+        },
+        "publicRelations": {
+          "title": "Work at the Makkah Region Emirate in Jeddah Governorate",
+          "description": "I worked in protocol and public relations"
+        },
+        "levelNine": {
+          "title": "Level 9 (Elite level)",
+          "description": "I reached Level 9 on Google Maps with more than 75,000 points"
+        }
+      }
+    },
+    "googleMaps": {
+      "title": "About his Google Maps profile and its value for visitors and businesses",
+      "level": "Level 9",
+      "localGuide": "Local Guide",
+      "moreThan": "More than",
+      "points": "points",
+      "pointsDescription": "Earned through trusted reviews and real experiences over the years",
+      "description": "The profile of Saudi media professional and journalist Mohammad Alehewi is one of the most prominent trusted review accounts on Google Maps",
+      "features": {
+        "methodology": {
+          "title": "Review expertise and methodology",
+          "description": "We visit, experience, review, and improve. Practical recommendations help businesses improve their services and customer experience"
+        },
+        "reviewTone": {
+          "title": "Review style",
+          "description": "A professional, precise journalistic approach that clearly explains the place and service, with actionable suggestions for improvement"
+        },
+        "digitalReach": {
+          "title": "Digital integration and reach",
+          "description": "Drawing on his journalistic background, he publishes structured reviews and shares experiences across social platforms to reach a wider audience"
+        }
+      }
+    },
+    "digitalPresence": "A complete media presence",
+    "globalJourneys": "Journeys across multiple destinations",
+    "flagAlt": "Flag of {country}"
+  },
+  "Mission": {
+    "metaTitle": "Our Mission",
+    "metaDescription": "Learn about Mohammad Alehewi's mission to share authentic experiences, serve visitors, and help improve services.",
+    "title": "Our Mission",
+    "pillars": {
+      "honesty": "Sharing experiences honestly",
+      "visitorExperience": "Enriching the visitor experience",
+      "continuousImprovement": "Continuously improving businesses and services",
+      "guideTraining": "Training aspiring Local Guides"
+    }
+  },
+  "Reviews": {
+    "title": "Reviews",
+    "description": "Explore real opinions and documented experiences at restaurants, cafés, hotels, and destinations.",
+    "filters": {
+      "country": "Country",
+      "city": "City",
+      "category": "Category",
+      "byCountry": "Filter reviews by country",
+      "byCity": "Filter reviews by city",
+      "byCategory": "Filter reviews by category",
+      "dragCountries": "Drag to see all countries",
+      "dragCities": "Drag to see all cities",
+      "dragCategories": "Drag to see all categories"
+    },
+    "sorting": {
+      "title": "Sort:",
+      "label": "Sort reviews",
+      "newest": "Newest",
+      "oldest": "Oldest",
+      "highestRated": "Highest rated",
+      "lowestRated": "Lowest rated"
+    },
+    "empty": {
+      "title": "No reviews match the current filters",
+      "description": "Try another category or view all reviews.",
+      "reset": "View all reviews"
+    },
+    "detail": {
+      "notFoundTitle": "Review not found",
+      "breadcrumb": "Breadcrumb",
+      "ratingLabel": "Rated {rating} out of 5",
+      "outOfFive": "out of 5",
+      "viewOnGoogleMaps": "View review on Google Maps",
+      "backToReviews": "Back to reviews",
+      "experienceDetails": "Experience details",
+      "experienceSummary": "Experience summary",
+      "detailsLabel": "Review details",
+      "category": "Category",
+      "location": "Location",
+      "reviewDate": "Review date",
+      "rating": "Rating",
+      "discoverMore": "Discover more",
+      "relatedReviews": "Reviews you may like",
+      "allReviews": "All reviews"
+    },
+    "gallery": {
+      "label": "Photos from {title}",
+      "slide": "Image {current} of {total}",
+      "previousImage": "Previous image",
+      "nextImage": "Next image",
+      "chooseImage": "Choose an image from the gallery",
+      "viewImage": "View image {number}",
+      "imageAlt": "Image {number} from {title}"
+    },
+    "card": {
+      "viewReview": "View review for {title}",
+      "imageAlt": "Image from the review for {title}"
+    }
+  },
+  "Journeys": {
+    "title": "Journeys",
+    "description": "Discover documented journeys through Saudi cities and destinations around the world.",
+    "filters": {
+      "scope": "Journey type",
+      "scopeOptions": {
+        "saudi": "Within Saudi Arabia",
+        "international": "International"
+      },
+      "byCity": "Filter journeys by city",
+      "byCountry": "Filter journeys by country",
+      "dragCities": "Drag to see more cities"
+    },
+    "featured": "Featured journey",
+    "placesCount": "{count, plural, zero {No places} one {One place} other {# places}}",
+    "empty": {
+      "title": "No matching journeys",
+      "description": "Try choosing another city or country."
+    },
+    "latestFirst": "Newest first",
+    "results": "{count} journeys{location}",
+    "inLocation": " in {location}",
+    "inSaudi": " in Saudi Arabia",
+    "worldwide": " worldwide",
+    "card": {
+      "viewJourney": "View journey: {title}",
+      "imageAlt": "Image from the journey: {title}"
+    },
+    "detailTitle": "Journey details",
+    "routeLabel": "Journey route",
+    "placesLabel": "Places",
+    "backToJourneys": "Back to journeys"
+  },
+  "Stories": {
+    "title": "Stories",
+    "description": "Stories and experiences by Mohammad Alehewi."
+  },
+  "Articles": {
+    "title": "Articles",
+    "description": "Articles by Mohammad Alehewi."
+  },
+  "Services": {
+    "title": "Digital Services for Businesses",
+    "metaDescription": "Business services include Google Business Profile management, business photography, logo design, and website design",
+    "hero": {
+      "eyebrow": "Digital services tailored for business owners",
+      "heading": "A strong Google presence starts with a complete, accurate profile",
+      "description": "From setting up and completing your Business Profile to managing its content and photographing your business, practical services help you provide customers with more accurate information",
+      "viewServices": "Browse services",
+      "contactUs": "Contact us",
+      "pricingNote": "Service details and pricing are determined after we understand your business needs",
+      "imageAlt": "Promotional design for Google Business Profile services, shown beside a café"
+    },
+    "catalog": {
+      "sectionTitle": "Business services",
+      "heading": "Everything your Google Maps business profile needs in one place",
+      "description": "From setup and verification to management and photography, choose one service or add several to your request.",
+      "countLabel": "Specialized services",
+      "addGroup": "Add the group of services",
+      "removeService": "Remove service",
+      "addService": "Add to request",
+      "removeServiceLabel": "Remove {service} from the request",
+      "addServiceLabel": "Add {service} to the request",
+      "selectedServices": "Selected services",
+      "selectedCount": "{count, plural, zero {No services selected} one {# service selected} other {# services selected}}",
+      "service": "service",
+      "services": "services",
+      "clearSelection": "Clear selection",
+      "continueRequest": "Continue to request",
+      "listSeparator": ", "
+    },
+    "trust": {
+      "eyebrow": "Transparency first",
+      "title": "A service that respects your ownership",
+      "noPasswords": "We never ask for your password or verification codes",
+      "officialVerification": "Official verification steps are completed with the business owner",
+      "noRankingGuarantee": "We do not guarantee a specific search ranking",
+      "clearScope": "The scope and cost are agreed upon before work begins"
+    },
+    "closingCta": {
+      "title": "Ready to improve your business profile?",
+      "description": "Share your business details, and we'll contact you to discuss the right service",
+      "emailUs": "Email us",
+      "emailSubject": "Business services inquiry"
+    },
+    "faq": {
+      "eyebrow": "Frequently Asked Questions",
+      "heading": "Before You Request a Service",
+      "canRequestOne": {
+        "question": "Can I request just one service?",
+        "answer": "Yes. You can request a single service or combine several. The scope of work is determined after reviewing your business needs"
+      },
+      "ranking": {
+        "question": "Do your services guarantee that my business will rank first?",
+        "answer": "No specific ranking in Google Search or Google Maps can be guaranteed. Rankings depend on many factors and Google's policies"
+      },
+      "password": {
+        "question": "Do I need to share my password?",
+        "answer": "Never share your password or verification codes. Your business retains ownership of its profile, and any required access is arranged securely"
+      }
+    },
+    "request": {
+      "title": "Request Business Services",
+      "description": "Share your details so we can contact you and review the scope and cost before work begins",
+      "loading": "Loading the request form...",
+      "selectedServices": "Selected services",
+      "noServiceSelected": "No services selected yet.",
+      "backToServices": "Go back and choose services",
+      "removeService": "Remove {service} from the request",
+      "success": "Your request was received. We will contact you to discuss the details.",
+      "name": "Name",
+      "namePlaceholder": "Enter your name",
+      "email": "Email",
+      "emailPlaceholder": "Enter your email address",
+      "phone": "Mobile number",
+      "phonePlaceholder": "Enter your mobile number",
+      "businessName": "Business name",
+      "businessNamePlaceholder": "Enter your business name",
+      "businessType": "Business type",
+      "businessTypePlaceholder": "For example: restaurant, clinic, or store",
+      "city": "City",
+      "cityPlaceholder": "Enter the city",
+      "googleBusinessUrl": "Google Business Profile URL (optional)",
+      "googleBusinessUrlPlaceholder": "Enter the Google Business Profile URL here",
+      "additionalDetails": "Additional details",
+      "detailsPlaceholder": "Share any details that will help us understand your needs",
+      "submitting": "Submitting your request...",
+      "submitted": "Request sent",
+      "submit": "Submit service request",
+      "backToServiceSelection": "Back to service selection",
+      "selectAtLeastOne": "Go back and choose at least one service.",
+      "unavailable": "The service request form is currently unavailable. Please contact us by email.",
+      "submitError": "We couldn't send your request. Please try again."
+    }
+  },
+  "Feedback": {
+    "page": {
+      "eyebrow": "Your voice matters",
+      "title": "Share your feedback",
+      "description": "Tell us about your experience with the platform, or share a suggestion, comment, or question to help us improve.",
+      "metaImageAlt": "Share your feedback about the Mohammad Alehewi platform"
+    },
+    "form": {
+      "title": "Feedback form",
+      "requiredFields": "Fields marked with an asterisk are required",
+      "category": "Feedback type",
+      "chooseCategory": "Choose a feedback type",
+      "name": "Name",
+      "namePlaceholder": "Enter your name",
+      "email": "Email",
+      "emailPlaceholder": "example@email.com",
+      "message": "Your feedback or message",
+      "messagePlaceholder": "Write your feedback, suggestion, or question",
+      "submitting": "Sending...",
+      "submit": "Send feedback",
+      "backHome": "Back to home",
+      "success": "Thank you for your feedback. It was sent successfully.",
+      "readError": "We couldn't read the form details. Please try again.",
+      "categoryRequired": "Please choose a feedback type.",
+      "unavailable": "The feedback form is currently unavailable. Please try again later.",
+      "submitError": "We couldn't send your feedback. Please try again.",
+      "categories": {
+        "experience": "Experience feedback",
+        "platform": "Platform feedback",
+        "suggestion": "Suggestion for improvement",
+        "correction": "Information correction",
+        "question": "Question"
+      }
+    }
+  },
+  "VisitRequest": {
+    "metaTitle": "Request a Visit",
+    "metaDescription": "Invite media professional and Local Guide Mohammad Alehewi to visit your business and review the experience.",
+    "eyebrow": "Request a visit",
+    "title": "Invite Mohammad Alehewi to experience your business",
+    "description": "Complete the form with your business details and invitation. We will review your request and get back to you as soon as possible.",
+    "benefits": {
+      "authenticReview": "A professional review based on a real experience",
+      "improvement": "Practical feedback to help improve your service",
+      "quickResponse": "A prompt response after we receive your request"
+    },
+    "form": {
+      "title": "Visit request form",
+      "requiredFields": "All fields are required",
+      "name": "Name",
+      "namePlaceholder": "Full name / contact person",
+      "phone": "Mobile number",
+      "phoneCode": "Code",
+      "email": "Email",
+      "emailPlaceholder": "example@email.com",
+      "country": "Country",
+      "chooseCountry": "Choose a country",
+      "city": "City",
+      "cityPlaceholder": "For example: Riyadh",
+      "details": "Visit details",
+      "detailsPlaceholder": "Describe your business, its type, and the purpose of the invitation...",
+      "termsTitle": "Visit terms and conditions",
+      "terms": {
+        "independent": "This is an independent, voluntary initiative by media professional Mohammad Alehewi, a Level 9 Local Guide. It is not officially affiliated with Google or Google Maps.",
+        "consultation": "The initiative offers professional advice and reviews to help improve your business and its services.",
+        "freeVisit": "The visit is entirely free. It documents an honest, first-hand experience and does not promise predetermined or fabricated reviews."
+      },
+      "acceptTerms": "I have read and agree to the visit terms and conditions",
+      "submitting": "Sending...",
+      "submit": "Submit request",
+      "successTitle": "Request received",
+      "successMessage": "Your request has been received. We will be in touch soon.",
+      "successClose": "OK"
+    },
+    "validation": {
+      "nameRequired": "Name is required",
+      "phoneCodeRequired": "Country calling code is required",
+      "phoneRequired": "Mobile number is required",
+      "phoneInvalid": "Enter a valid mobile number",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Enter a valid email address",
+      "countryRequired": "Country is required",
+      "cityRequired": "City is required",
+      "detailsRequired": "Visit details are required",
+      "detailsTooShort": "Please provide more details about the visit",
+      "termsRequired": "You must agree to the visit terms and conditions"
+    },
+    "submission": {
+      "unavailable": "The visit request form is currently unavailable. Please contact us by email.",
+      "error": "We couldn't send your request. Please try again or contact us by email."
+    }
+  },
+  "Footer": {
+    "contact": "Contact",
+    "invitation": "Have an experience worth sharing and documenting?",
+    "location": "Jeddah, Saudi Arabia",
+    "requestVisit": "Request a visit",
+    "homeLabel": "Home page",
+    "brandRole": "Media professional",
+    "brandName": "Mohammad Alehewi",
+    "description": "A media platform that documents and shares experiences with integrity, supporting better services and inspiring people to discover remarkable destinations.",
+    "follow": "Follow me",
+    "usefulLinks": "Useful links",
+    "featuredCategories": "Featured categories",
+    "explore": "Explore",
+    "officialAccreditations": "Official accreditations",
+    "socialLinksLabel": "Social media links",
+    "mediaMinistry": "Ministry of Media",
+    "cultureMinistry": "Ministry of Culture",
+    "tourismAuthority": "Saudi Tourism Authority",
+    "entertainmentAuthority": "General Entertainment Authority",
+    "visitSaudiPlatform": "Visit Saudi platform",
+    "mediaRegulator": "General Authority for Media Regulation",
+    "saudiVision": "Saudi Vision 2030",
+    "professionalRegistration": "Professional registration number:",
+    "freelanceDocument": "Freelance work document:"
+  },
+  "Pages": {
+    "articles": {
+      "title": "Articles"
+    },
+    "stories": {
+      "title": "Stories"
+    },
+    "shareFeedback": {
+      "title": "Share your feedback"
+    }
+  },
+  "Countries": {
+    "AF": "Afghanistan",
+    "AL": "Albania",
+    "DE": "Germany",
+    "AD": "Andorra",
+    "AO": "Angola",
+    "AG": "Antigua & Barbuda",
+    "AR": "Argentina",
+    "AM": "Armenia",
+    "AU": "Australia",
+    "AT": "Austria",
+    "AZ": "Azerbaijan",
+    "BS": "Bahamas",
+    "BH": "Bahrain",
+    "BD": "Bangladesh",
+    "BB": "Barbados",
+    "BY": "Belarus",
+    "BE": "Belgium",
+    "BZ": "Belize",
+    "BJ": "Benin",
+    "BT": "Bhutan",
+    "BO": "Bolivia",
+    "BA": "Bosnia & Herzegovina",
+    "BW": "Botswana",
+    "BR": "Brazil",
+    "BN": "Brunei",
+    "BG": "Bulgaria",
+    "BF": "Burkina Faso",
+    "BI": "Burundi",
+    "KH": "Cambodia",
+    "CM": "Cameroon",
+    "CA": "Canada",
+    "CV": "Cape Verde",
+    "CF": "Central African Republic",
+    "TD": "Chad",
+    "CL": "Chile",
+    "CN": "China",
+    "CO": "Colombia",
+    "KM": "Comoros",
+    "CG": "Congo - Brazzaville",
+    "CD": "Congo - Kinshasa",
+    "CR": "Costa Rica",
+    "CI": "Côte d’Ivoire",
+    "HR": "Croatia",
+    "CU": "Cuba",
+    "CY": "Cyprus",
+    "CZ": "Czechia",
+    "DK": "Denmark",
+    "DJ": "Djibouti",
+    "DM": "Dominica",
+    "DO": "Dominican Republic",
+    "EC": "Ecuador",
+    "EG": "Egypt",
+    "SV": "El Salvador",
+    "GQ": "Equatorial Guinea",
+    "ER": "Eritrea",
+    "EE": "Estonia",
+    "SZ": "Eswatini",
+    "ET": "Ethiopia",
+    "FJ": "Fiji",
+    "FI": "Finland",
+    "FR": "France",
+    "GA": "Gabon",
+    "GM": "Gambia",
+    "GE": "Georgia",
+    "GH": "Ghana",
+    "GR": "Greece",
+    "GD": "Grenada",
+    "GT": "Guatemala",
+    "GN": "Guinea",
+    "GW": "Guinea-Bissau",
+    "GY": "Guyana",
+    "HT": "Haiti",
+    "HN": "Honduras",
+    "HU": "Hungary",
+    "IS": "Iceland",
+    "IN": "India",
+    "ID": "Indonesia",
+    "IR": "Iran",
+    "IQ": "Iraq",
+    "IE": "Ireland",
+    "IT": "Italy",
+    "JM": "Jamaica",
+    "JP": "Japan",
+    "JO": "Jordan",
+    "KZ": "Kazakhstan",
+    "KE": "Kenya",
+    "KI": "Kiribati",
+    "KW": "Kuwait",
+    "KG": "Kyrgyzstan",
+    "LA": "Laos",
+    "LV": "Latvia",
+    "LB": "Lebanon",
+    "LS": "Lesotho",
+    "LR": "Liberia",
+    "LY": "Libya",
+    "LI": "Liechtenstein",
+    "LT": "Lithuania",
+    "LU": "Luxembourg",
+    "MG": "Madagascar",
+    "MW": "Malawi",
+    "MY": "Malaysia",
+    "MV": "Maldives",
+    "ML": "Mali",
+    "MT": "Malta",
+    "MH": "Marshall Islands",
+    "MR": "Mauritania",
+    "MU": "Mauritius",
+    "MX": "Mexico",
+    "FM": "Micronesia",
+    "MD": "Moldova",
+    "MC": "Monaco",
+    "MN": "Mongolia",
+    "ME": "Montenegro",
+    "MA": "Morocco",
+    "MZ": "Mozambique",
+    "MM": "Myanmar (Burma)",
+    "NA": "Namibia",
+    "NR": "Nauru",
+    "NP": "Nepal",
+    "NL": "Netherlands",
+    "NZ": "New Zealand",
+    "NI": "Nicaragua",
+    "NE": "Niger",
+    "NG": "Nigeria",
+    "KP": "North Korea",
+    "MK": "North Macedonia",
+    "NO": "Norway",
+    "OM": "Oman",
+    "PK": "Pakistan",
+    "PW": "Palau",
+    "PS": "Palestinian Territories",
+    "PA": "Panama",
+    "PG": "Papua New Guinea",
+    "PY": "Paraguay",
+    "PE": "Peru",
+    "PH": "Philippines",
+    "PL": "Poland",
+    "PT": "Portugal",
+    "QA": "Qatar",
+    "RO": "Romania",
+    "RU": "Russia",
+    "RW": "Rwanda",
+    "KN": "St. Kitts & Nevis",
+    "LC": "St. Lucia",
+    "VC": "St. Vincent & Grenadines",
+    "WS": "Samoa",
+    "SM": "San Marino",
+    "ST": "São Tomé & Príncipe",
+    "SA": "Saudi Arabia",
+    "SN": "Senegal",
+    "RS": "Serbia",
+    "SC": "Seychelles",
+    "SL": "Sierra Leone",
+    "SG": "Singapore",
+    "SK": "Slovakia",
+    "SI": "Slovenia",
+    "SB": "Solomon Islands",
+    "SO": "Somalia",
+    "ZA": "South Africa",
+    "KR": "South Korea",
+    "SS": "South Sudan",
+    "ES": "Spain",
+    "LK": "Sri Lanka",
+    "SD": "Sudan",
+    "SR": "Suriname",
+    "SE": "Sweden",
+    "CH": "Switzerland",
+    "SY": "Syria",
+    "TJ": "Tajikistan",
+    "TZ": "Tanzania",
+    "TH": "Thailand",
+    "TL": "Timor-Leste",
+    "TG": "Togo",
+    "TO": "Tonga",
+    "TT": "Trinidad & Tobago",
+    "TN": "Tunisia",
+    "TR": "Turkey",
+    "TM": "Turkmenistan",
+    "TV": "Tuvalu",
+    "UG": "Uganda",
+    "UA": "Ukraine",
+    "AE": "United Arab Emirates",
+    "GB": "United Kingdom",
+    "US": "United States",
+    "UY": "Uruguay",
+    "UZ": "Uzbekistan",
+    "VU": "Vanuatu",
+    "VA": "Vatican City",
+    "VE": "Venezuela",
+    "VN": "Vietnam",
+    "YE": "Yemen",
+    "ZM": "Zambia",
+    "ZW": "Zimbabwe"
+  }
+}
