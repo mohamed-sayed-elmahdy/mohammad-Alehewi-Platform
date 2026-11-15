@@ -1,6 +1,27 @@
-import type { ReviewItem } from "@/types/website";
+import type { LocalizedText, ReviewItem } from "@/types/website";
 
-export const reviews: ReviewItem[] = [
+type ReviewSource = Omit<
+  ReviewItem,
+  "title" | "excerpt" | "reviewText" | "city" | "country" | "badge"
+> & {
+  title: string;
+  excerpt: string;
+  reviewText?: string;
+  city: string;
+  country: string;
+  categoryLabel: string;
+  locationLabel: string;
+  dateLabel: string;
+  badge?: string;
+};
+
+type ReviewEnglishContent = {
+  title: string;
+  excerpt: string;
+  reviewText: string;
+};
+
+const reviewSources: ReviewSource[] = [
   // 1
   {
     id: "village-mall",
@@ -964,3 +985,293 @@ images: [
   href: "/reviews/chan",
 },
 ];
+
+const cityNames: Record<string, LocalizedText> = {
+  جدة: { ar: "جدة", en: "Jeddah" },
+  عنيزة: { ar: "عنيزة", en: "Unaizah" },
+  الرياض: { ar: "الرياض", en: "Riyadh" },
+  الطائف: { ar: "الطائف", en: "Taif" },
+  مكة: { ar: "مكة", en: "Makkah" },
+  تبوك: { ar: "تبوك", en: "Tabuk" },
+  بريدة: { ar: "بريدة", en: "Buraidah" },
+  أبها: { ar: "أبها", en: "Abha" },
+  الخبر: { ar: "الخبر", en: "Al Khobar" },
+};
+
+const englishReviewContent: Record<string, ReviewEnglishContent> = {
+  "village-mall": {
+    title: "Village Mall",
+    excerpt:
+      "A contemporary shopping mall in north Jeddah, with a welcoming experience for families and children.",
+    reviewText:
+      "A modern, three-storey mall on Al-Haramain Road in north Jeddah, with international brands, cafés, open-air spaces, children's activities, seating areas, fountains, parking, lifts, escalators and clear signs. It also has a supermarket, bookshop, restaurants, food court, pharmacy, play area, prayer rooms, screens and clean, modern restrooms. Despite the number of visitors, the corridors felt calm and well insulated. Overall, a pleasant mall for families and children.",
+  },
+  "red-sea-mall": {
+    title: "Red Sea Mall",
+    excerpt:
+      "One of Jeddah's best-known shopping and visitor attractions, in a prime location beside the waterfront.",
+    reviewText:
+      "One of Jeddah's leading shopping and visitor destinations, spread across three levels. Parking is available above ground, underground and at the front. The mall features VOX Cinemas, Danube Hypermarket, an amusement area, bowling, international brands and cafés, and a range of restaurants. Strollers are available for children and older visitors. A hotel, telecom providers and two insurance companies are also on site. Its location near King Road, the waterfront and the airport is convenient, and ongoing improvements are a welcome addition.",
+  },
+  "the-california-burger": {
+    title: "The California Burger",
+    excerpt:
+      "A satisfactory visit overall; the fries could improve, and drinks should arrive with the meal.",
+    reviewText:
+      "On this visit we ordered a double beef burger in a soft bun. The patty was cooked well, with a pleasant flavor and reasonable size; the sauce, lettuce, tomato, cheese and caramelized onions made for a satisfying burger. It was served hot and presented nicely. The cheese fries did not work for us: the potato type, frying and cheese flavor all need improvement. The venue has indoor seating on two levels, though its layout and service flow could be reconsidered. Service was quick, the staff were cooperative, and the preparation area was visible. Prices were moderate. Overall, a satisfactory experience, with a recommendation to improve the fries and serve drinks alongside the order.",
+  },
+  "coconut-bar": {
+    title: "Coconut Bar",
+    excerpt: "A decent visit overall.",
+    reviewText:
+      "A new visit to a somewhat small venue with limited seating, serving coffee and a modest selection of desserts and cookies. The Costa Rican pour-over was reasonably extracted and suited those who prefer a lighter cup. The pecan cheesecake was well prepared, balanced in sweetness and toppings, and presented in the venue's style. Service was satisfactory and the staff were friendly; prices were fair for the experience. We recommend making the preparation area more visible, displaying the menu, and improving the seating details. Overall, a decent visit.",
+  },
+  "marpik-cafe": {
+    title: "Marpik Cafe",
+    excerpt:
+      "A pleasant experience worth repeating to try more items.",
+    reviewText:
+      "A return visit to a café with well-arranged indoor and outdoor seating and a wide selection of cakes, coffee and baked goods. The Madrid Choco cheesecake was well prepared and nicely sized, and the kunafa-filled Bastalova dessert was also well made. The Ethiopian pour-over was average, while the Brazilian hot coffee of the day was balanced and acceptable. Drinks were served in keeping with the café's identity. Service was satisfactory, the team was helpful, prices were moderate, and the preparation area was visible and tidy. Overall, a pleasant experience worth repeating to try other items.",
+  },
+  "tikka-masala": {
+    title: "Tikka Masala",
+    excerpt:
+      "An enjoyable visit, with food that outshines the restaurant's modest exterior.",
+    reviewText:
+      "A new restaurant serving Indian cuisine. The chicken biryani was excellent in preparation, flavor and portion size; the lamb biryani had well-cooked rice and fresh lamb. Chicken 65 stood out for its marinade, tenderness and presentation. The mixed grill had authentic Indian flavor and good variety, and arrived hot. Butter chicken and chicken masala were well prepared, as were the fries and butter-garlic paratha. The vegetable soup was ordinary and could be thicker; the lemon mojito was well made. The staff were welcoming, with special mention to Qader and Mohammed, and prices were within the usual range. There is indoor seating across two floors, private rear parking, and complimentary hummus, mint yogurt, chili and crackers for tables. We suggest adding more visual elements that reflect the Indian cuisine. Overall, a successful visit, despite the restaurant's understated exterior.",
+  },
+  "nojom-alrafahiya-chalets": {
+    title: "Nojom Al Rafahia Chalets",
+    excerpt:
+      "A distinctive, comfortable stay well suited to small and medium-sized families.",
+    reviewText:
+      "The modern chalet is thoughtfully finished and fully equipped, with a living room, two bedrooms, a kitchenette, dining table, swimming pool, clean bathrooms and a jacuzzi. The furniture was clean, the air conditioning and lighting were comfortable, and the views were open. There is outdoor seating and a barbecue area. Service was good, and the owner offered warm hospitality; booking was quick and flexible. The location is convenient and close to services, and the price was reasonable for the accommodation and facilities. We recommend adding a paved entrance and path for people with disabilities and older guests. Visitors should help keep the property clean and in good condition. Overall, a distinctive and comfortable stay for small and medium-sized families.",
+  },
+  "best-western": {
+    title: "Best Western",
+    excerpt: "A good stay overall.",
+    reviewText:
+      "The hotel is well organized and strategically located near the airport, restaurants and cafés. Facilities include a spacious lobby, café, two restaurants, gym, pool, event and meeting room, private parking and lifts. Room 603 on the sixth floor was quiet, spacious and reasonably soundproofed, with a pleasant view and excellent amenities. The bed and pillows were comfortable; the carpet and bathroom were clean, and the room had Bluetooth, central air conditioning and a tea-and-coffee corner. The refrigerator had no snacks. Reception was good, and the price was acceptable for the comfort, with breakfast available as an add-on. Special thanks to Mr. Sanani from security for his courtesy, diligence and follow-up. Overall, a good stay.",
+  },
+  "level-nine-hotel": {
+    title: "Level Nine Hotel",
+    excerpt:
+      "A fair stay overall, with a few areas that could be improved.",
+    reviewText:
+      "We stayed in room 307 on the hotel's third floor. The hotel is in a good, quiet location, clean and close to services. It has very limited basement parking, few outdoor spaces, two lifts, a coffee shop and a modest breakfast buffet that could be improved. The room was spacious, with a wide window and good sound insulation. Basic amenities, central air conditioning, clean bedding and bathroom, and comfortable pillows made for a restful stay. Considering the location, timing, alternatives and services, the price was acceptable. The service team was friendly and reception staff were helpful, though we recommend more professionalism when dealing with different situations. Overall, a fair stay with room for improvement.",
+  },
+  "meez-restaurant": {
+    title: "Meez Restaurant",
+    excerpt: "A satisfying dining experience overall.",
+    reviewText:
+      "On this visit, the musakhan was well prepared, with good sauces, flavor, filling and presentation. The koshari bowl was tasty, as was the eggplant fattah and its toppings, though the ingredients could be better balanced. The tidy venue has seating across two floors, and a menu of creative dishes, appetizers and baked items. Service was quick. Prices were above average for the portion sizes and experience, and tables often need to be booked. Food preparation is not visible, and special celebration packages are available. Overall, a satisfying experience.",
+  },
+  "tateeba-justina": {
+    title: "Tateeba Justina",
+    excerpt: "A satisfying experience overall.",
+    reviewText:
+      "This venue serves traditional Hijazi sweets, cheese, fava beans, mutabbaq, pickles and bread. The spicy maasoub was average, and its ingredients and preparation could improve. The olive-oil fava beans were excellent, with good flavor and toppings. The bread was well made, though the tamees could be better. The seven-piece falafel plate was hot and well fried, with excellent tahini, pickle and daqqous, but the pieces were small and few for the price. The venue has a neat Hijazi character and varied seating. Service was acceptable, but prices were high for the portions, and preparation was not visible. We suggest offering a small traditional breakfast welcome. Overall, a satisfying experience.",
+  },
+  "obhur-new-waterfront": {
+    title: "New Obhur Waterfront",
+    excerpt:
+      "A pleasant, well-organized waterfront with clear signs and varied services.",
+    reviewText:
+      "A beautiful, well-organized and modern area with clear directional signs and a variety of services, including restaurants, cafés, swimming areas and paid restrooms. Visitors should help keep it clean and well maintained.",
+  },
+  "almahazim-beach": {
+    title: "Al Mahazim Beach",
+    excerpt:
+      "An open sandy beach for swimming and children's play, with families keeping watch.",
+    reviewText:
+      "A pleasant, open stretch of sandy beach for swimming and for children to play in the sand under their families' supervision. Parking is limited, but lifeguards are present. The area also has play activities, horse riding, quad bikes and paid restrooms. We encourage both the authorities and visitors to take better care of cleanliness.",
+  },
+  "green-side": {
+    title: "Green Side",
+    excerpt: "A successful visit overall.",
+    reviewText:
+      "On a morning visit, the carrot cake was excellent in preparation, toppings, portion, flavor and presentation. The Colombian coffee of the day was well extracted, balanced in acidity and aromatic, served in the café's style. The spacious venue has comfortable, thoughtfully designed indoor and outdoor seating and a varied menu of coffee, desserts and baked goods. The preparation area was tidy, service was quick and self-service, and the staff were helpful. We recommend adding more payment options. Overall, a successful visit.",
+  },
+  "bridge-cafe": {
+    title: "Bridge Café",
+    excerpt:
+      "A successful visit worth repeating to try more items.",
+    reviewText:
+      "This café serves coffee and hot and cold desserts in a well-arranged indoor setting, with a visible preparation area. The Colombian coffee of the day was expertly extracted and balanced in acidity. The Belgian pecan French toast, with kiri filling, was soft, light and well prepared, with good toppings and presentation that reflected the café's style. We recommend a more generous portion and clearer pecan toppings. Staff were helpful and prices were within the usual range. Overall, a successful visit worth repeating to try other items.",
+  },
+  "process-cafe": {
+    title: "Process Café & Roastery",
+    excerpt: "An acceptable visit overall.",
+    reviewText:
+      "The café offers hot and cold specialty coffee, chilled desserts and ice cream. The Dolce cheesecake, made with biscuits, caramel and cream, was well prepared and presented in the venue's style, though its sweetness could be better balanced. The hot Ethiopian coffee of the day had balanced acidity and was served in matching cups. Service was quick and self-service, the staff followed mask guidance, prices were reasonable, and the preparation area was tidy. There is pleasant indoor seating with open views of the main road, as well as outdoor seating and roastery products for sale. We suggest expanding the dessert selection. Overall, an acceptable visit.",
+  },
+  panozzo: {
+    title: "Panozzo",
+    excerpt:
+      "A good experience worth repeating to try more items.",
+    reviewText:
+      "This restaurant has limited indoor seating and serves Italian dishes, including pizza, pasta, sandwiches, fries and salads. The chicken pesto had excellent dough, baking, toppings and flavor; the chicken ranch was also very good in its dough, preparation, toppings and filling. Presentation reflected the restaurant's style. Service was good, though greater readiness and speed would help. Prices were moderate. We recommend making the preparation area more visible and offering more payment options. Overall, a good experience worth repeating to try other items.",
+  },
+  "medical-cupping-center": {
+    title: "Medical Cupping Therapy Center",
+    excerpt: "A good choice for cupping therapy.",
+    reviewText:
+      "The center was clean and organized, and reception was welcoming. Booking in advance through WhatsApp was quick. The women's section provided a successful cupping session with specialist Maram; specialist Majed Al-Sayed, Mr. Mohammed Nafeth and Abdullah Al-Shamrani also provided skilled sessions. The procedure was professional, calm and hygienic, with guidance, aftercare advice and healthy drinks offered. Prices were reasonable for the experience. Overall, a good choice for cupping therapy.",
+  },
+  "yana-bakery": {
+    title: "Yana Bakery",
+    excerpt: "The experience fell short of expectations overall.",
+    reviewText:
+      "This venue has indoor seating and serves baked goods, desserts, coffee, some dishes and sandwiches. The club sandwich was prepared well but had too few ingredients; the fries were nicely cooked. The chicken pesto on multigrain bread was well prepared and toasted, while the mushroom quiche was unfortunately salty and poorly made. The passion mojito was refreshing and presented in the venue's style, and the custard dessert was well prepared. The preparation area was visible and service was satisfactory, though it could improve. Prices were somewhat reasonable for the experience. Overall, the visit fell short of expectations.",
+  },
+  "sesam-bakery": {
+    title: "Sesam Bakery",
+    excerpt: "A satisfactory experience overall.",
+    reviewText:
+      "A small venue with limited indoor seating, offering savory and sweet baked goods and coffee. The caprese was well prepared with a good filling, as was the spinach pain suisse. The custard-and-berry bow pastry was crisp with a pleasant filling, and the Turkish croissant was well made and flaky. Items were presented in the bakery's style. Service was quick, the team was friendly, and the display area was tidy. Prices were above average for the portions. Overall, a satisfactory experience.",
+  },
+  "bakery-m": {
+    title: "Bakery M",
+    excerpt: "A satisfying morning visit.",
+    reviewText:
+      "A pleasant morning visit to a bakery with thoughtful details, indoor and outdoor seating, and a wide selection of creative desserts and baked goods. The cinnamon babka was well prepared and flavorful, though more toppings would help. The banana cake with peanuts had good preparation and toppings, with room to develop its flavor. The hot Ethiopian coffee of the day was well extracted and balanced. Service was acceptable, the preparation area was visible, and prices were moderate for the portions and experience. The staff were helpful, with special mention to Mr. Osama. We suggest improving presentation to reflect the bakery's identity and adding appealing menu offers. Overall, a satisfying visit.",
+  },
+  "renar-cafe": {
+    title: "Renar Café",
+    excerpt:
+      "A renewed visit to a pleasant, spacious café spread across two floors.",
+    reviewText:
+      "The spacious two-floor café has a refreshed look. The ganache cheesecake had good flavor and balanced sweetness. The date-and-pecan cake was excellent in preparation, toppings and flavor; the cookie cake was soft, layered and balanced. Hot Colombian coffee was excellent, balanced and fruity, while the cold Ethiopian coffee was well extracted and served nicely. The mango hibiscus was well made and refreshing. The honey cake was acceptable but could be less sweet, and the cookies were good. Service is self-service; the menu includes varied desserts and hot and cold coffee. The preparation area was tidy and prices moderate. Staff need better reception training. We also recommend improving the melted-chocolate presentation, clarifying the upstairs seating policy, training the cashier, improving the ice machine and paying more attention to restrooms. Overall, the visit was not as good as before and needs technical improvements.",
+  },
+  "jeddah-yacht-club": {
+    title: "Jeddah Yacht Club",
+    excerpt: "A beautiful place well worth visiting.",
+    reviewText:
+      "A quick visit to a beautiful, well-organized public space on the Red Sea coast, with cafés, restaurants, a hotel and a marina for luxury and tourist boats. It also connects to Jeddah transport and the water-taxi stop. The atmosphere is calm, with multiple entrances, paid outdoor and private parking, and free parking for visitors with disabilities. Restrooms were clean, security was visible, and visitor guidance was available. Overall, a beautiful place well worth visiting.",
+  },
+  "hediyet-alalia-bakery": {
+    title: "Hediyet Alalia Bakery",
+    excerpt:
+      "A generally satisfactory visit, with a few issues that need attention.",
+    reviewText:
+      "A traditional bakery with a broad selection, especially after its recent renovation. It stands out for millet rusks, olive-oil and diet rusks, basbousa, savory pastries, petit fours and cakes. Staff were pleasant and prices reasonable. We tried olive-oil and black-seed rusks (excellent, crisp and a good portion), light ghorayeba, sweet rusks, classic Egyptian and chocolate biscuits, Egyptian basbousa (soft and flavorful, though a little less sugar would help), and excellent samoli bread. We recommend keeping flies away from the baked goods and preventing customers from touching them. Overall, a satisfactory experience with some issues to address.",
+  },
+  "century-burger": {
+    title: "Century Burger",
+    excerpt: "An acceptable experience overall.",
+    reviewText:
+      "A spacious venue with fried and grilled dishes, desserts, burgers and drinks. The truffle burger was soft, topped with black sesame, and had a reasonably sized, flavorful patty with good toppings and presentation; it should be served hotter. The Original was well prepared, though the meat seasoning could improve. The spicy Cajun fries arrived hot but need better toppings, while the fresh classic fries were excellent in their frying, cut and taste. Service was acceptable, prices were above average for the portions and experience, and the preparation area was visible. Overall, an acceptable experience.",
+  },
+  "khaleej-salman": {
+    title: "Salman Gulf",
+    excerpt:
+      "A sandy beach that needs more care and services; swimmers are monitored by border patrols.",
+    reviewText:
+      "This sandy beach needs more care and services. Swimming is monitored by Border Guard patrols, and visitors should make sure to clean up after themselves.",
+  },
+  "jeddah-waterfront": {
+    title: "Jeddah Waterfront",
+    excerpt: "A beautiful area with many services and activity around the clock.",
+    reviewText:
+      "A beautiful waterfront area with a wide range of services and activity at all hours.",
+  },
+  "u-walk-jeddah": {
+    title: "U Walk Jeddah",
+    excerpt: "An excellent visit overall.",
+    reviewText:
+      "A modern shopping and entertainment destination for families, with a mall and open-air areas. It offers various skill and movement games, free children's activities, musical fountains, tree planters, green spaces, seating and clear signs, alongside cafés, restaurants, spacious parking and prayer rooms. The mall includes fashion and home brands and a cinema, with an upper floor under preparation and automatic entrance gates. The organizers were helpful. Overall, an excellent visit.",
+  },
+  "four-seasons-juices": {
+    title: "Four Seasons Juices",
+    excerpt: "A good option overall.",
+    reviewText:
+      "On a recent visit, we found cocktails, mojitos, ice cream and a limited dessert selection. The toppings were well balanced. We enjoyed the pomegranate and pomegranate-pineapple drinks, as well as the Four Seasons Power Juice. Packaging was excellent, service satisfactory and prices reasonable for the experience. Overall, a good option.",
+  },
+  "dablyo-n-shaheer-alwehda": {
+    title: "Dablyo N Shaheer Alwehda",
+    excerpt: "A satisfying experience overall.",
+    reviewText:
+      "A new visit to a quiet, small venue with limited quick-service seating. It offers barley drinks in plain, sweetened, ginger, apple and berry flavors, with the option of sugar and ice. The ginger drink was ordinary and very light. Presentation matched the venue's style, the preparation area was tidy, service was quick, and the staff were helpful. Prices were moderate. Overall, a satisfying experience.",
+  },
+  "house-express-tabuk": {
+    title: "House Express",
+    excerpt: "A decent stay worth repeating.",
+    reviewText:
+      "We stayed in room 402 on the fourth floor. The newly built hotel had an elegant, comfortable and clean room, with fresh-smelling bathroom, bedding and pillows, and good sound insulation. Reception was organized, booking was flexible and the staff were helpful. The price was reasonable for the stay and amenities. Essential services are nearby, and there is a dedicated entrance for guests with disabilities. Overall, a decent stay worth repeating.",
+  },
+  "morento-riyadh": {
+    title: "Morento",
+    excerpt:
+      "A good experience worth repeating; we recommend reviewing the prices.",
+    reviewText:
+      "A new visit to a shop offering imported premium chocolates in many flavors and dark-chocolate percentages, dragees, Arabic sweets and elegant trays. We tried an assortment of caramel, cupcakes, cheesecake, crepes, biscuits, rose-shaped sweets, cornflakes, pistachio, almond, flow chocolate and salted caramel. The fillings and portions were excellent, with crisp textures and balanced sweetness. The chocolate was well made and presented in the shop's style. Service was good, with special mention to Mr. Ibrahim, and the display area was tidy. Prices were above average. Overall, a good experience worth repeating to try more of the menu, though we recommend reviewing the prices.",
+  },
+  "rols-chocolate-jeddah": {
+    title: "Rols Chocolate",
+    excerpt: "An ordinary experience overall.",
+    reviewText:
+      "On a quick visit, we tried a selection of cheesecake, biscuit and pecan brownie. The fillings were acceptable, though we recommend paying attention to sweetness and improving the quality of the chocolate used in the venue's branded packaging. Custom trays for occasions and maamoul are available. Service was acceptable, but prices were somewhat high for the experience. Overall, an ordinary visit.",
+  },
+  "patchi-jeddah": {
+    title: "Patchi",
+    excerpt: "A successful visit overall.",
+    reviewText:
+      "The shop was well organized, with an attractive display of products and gift boxes. The chocolate selection was excellent, with classic and distinctive flavors in elegant packaging. The employee provided friendly service. Prices were above average but reasonably matched the experience and competing options. Overall, a successful visit.",
+  },
+  "aseirati-eshq": {
+    title: "Aseirati Eshq",
+    excerpt:
+      "A successful visit to a very clean, well-organized place that we recommend.",
+    reviewText:
+      "A new and successful visit to a very clean, well-organized juice shop. It offers fresh juices, cocktails, picnic boxes for seaside outings and cookies. The pomegranate juice was excellent, as were the avocado-mango cocktail and lemon-mint drink. Preparation, flavor and presentation were all outstanding. Service was friendly and prices were within the usual range. Overall, a successful visit that we recommend.",
+  },
+  chan: {
+    title: "Chan",
+    excerpt:
+      "A lively restaurant with a wide range of Asian dishes; an average experience overall.",
+    reviewText:
+      "This lively, well-arranged restaurant serves Chinese, Korean, Thai and Singaporean cuisine. The Thai salad was well prepared, with good ingredients and flavor, and the vegetable rice was nicely cooked with sesame oil. The chow chow was excellent. The dynamite-crunch sushi did not suit our taste, the chicken noodles were below expectations and lacked flavor, and the Szechuan beef was tough and needs improvement. The sweet-and-sour chicken was tender with pineapple and vegetables, though it had few chicken pieces. The steamed beef bao was very ordinary, while the spicy house kimchi was acceptable. There is indoor and outdoor seating, stroller access and an electronic games area. The kitchen is not visible, service was pleasant, and prices were above average for the portions and experience. Overall, an average experience.",
+  },
+};
+
+const countryNames: Record<string, LocalizedText> = {
+  السعودية: { ar: "السعودية", en: "Saudi Arabia" },
+  مصر: { ar: "مصر", en: "Egypt" },
+  تركيا: { ar: "تركيا", en: "Türkiye" },
+  جورجيا: { ar: "جورجيا", en: "Georgia" },
+};
+
+export function localizePlaceName(name: string, locale: "ar" | "en") {
+  return cityNames[name]?.[locale] ?? countryNames[name]?.[locale] ?? name;
+}
+
+export const reviews: ReviewItem[] = reviewSources.map((review) => {
+  const english = englishReviewContent[review.id];
+  const city = cityNames[review.city];
+  const country = countryNames[review.country];
+
+  if (!english || !city || !country) {
+    throw new Error(`Missing localized review content for "${review.id}".`);
+  }
+
+  return {
+    id: review.id,
+    title: { ar: review.title, en: english.title },
+    excerpt: { ar: review.excerpt, en: english.excerpt },
+    reviewText: review.reviewText
+      ? { ar: review.reviewText, en: english.reviewText }
+      : undefined,
+    rating: review.rating,
+    categoryId: review.categoryId,
+    city,
+    country,
+    dateISO: review.dateISO,
+    images: review.images,
+    googleMapsUrl: review.googleMapsUrl,
+    href: review.href,
+    badge: review.badge
+      ? { ar: review.badge, en: "Featured experience" }
+      : undefined,
+    featured: review.featured,
+  };
+});

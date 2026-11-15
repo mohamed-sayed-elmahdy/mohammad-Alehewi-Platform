@@ -1,15 +1,33 @@
 import type { LucideIcon } from "lucide-react";
 
+export type CategoryId =
+  | "restaurants"
+  | "cafes"
+  | "juices-drinks"
+  | "sweets-bakeries"
+  | "chocolate"
+  | "beaches"
+  | "hotels"
+  | "health-care"
+  | "tourist-attractions"
+  | "parks"
+  | "malls"
+  | "international-destinations";
+
+export type LocalizedText = Record<"ar" | "en", string>;
+
 export type Category = {
-    id: string;
-    title: string;
-    description: string;
+    id: CategoryId;
+    title: LocalizedText;
+    description: LocalizedText;
     count: number;
     img: string;
     href: string;
     icon: LucideIcon;
-    featured: boolean;
-    featuredCard: boolean;
+    showInFooter: boolean;
+    showInHero: boolean;
+    showInHomeCategories: boolean;
+    showInHomeCards: boolean;
     featuredCardImage?: string;
 };
 
@@ -26,21 +44,18 @@ export interface Review {
 
 export type ReviewItem = {
   id: string;
-  title: string;
-  excerpt: string;
-  reviewText?: string;
+  title: LocalizedText;
+  excerpt: LocalizedText;
+  reviewText?: LocalizedText;
   rating: number;
-  categoryId: string;
-  categoryLabel: string;
-  city: string;
-  country: string;
-  locationLabel: string;
-  dateLabel: string;
+  categoryId: CategoryId;
+  city: LocalizedText;
+  country: LocalizedText;
   dateISO: string;
   images: [string, ...string[]];
   googleMapsUrl?: string;
   href: string;
-  badge?: string;
+  badge?: LocalizedText;
   featured?: boolean;
 };
 
@@ -49,37 +64,37 @@ export type ReviewCategoryFilter = "all" | string;
 export type ReviewSort = "newest" | "oldest" | "top-rated" | "lowest-rated";
 export interface Story {
   id: string;
-  title: string;
-  excerpt: string;
+  title: LocalizedText;
+  excerpt: LocalizedText;
   image: string;
-  location: string;
-  date: string;
+  location: LocalizedText;
+  date: LocalizedText;
   href?: string;
 }
 export interface Article {
   id: string;
-  title: string;
-  excerpt: string;
-  category: string;
-  date: string;
+  title: LocalizedText;
+  excerpt: LocalizedText;
+  category: LocalizedText;
+  date: LocalizedText;
   href?: string;
 }
 export interface Journey {
   id: string;
-  title: string;
-  description: string;
+  title: LocalizedText;
+  description: LocalizedText;
   image: string;
   href: string;
   scope: "saudi" | "international";
-  country: string;
-  city?: string;
-  dateLabel: string;
+  country: LocalizedText;
+  city?: LocalizedText;
+  dateLabel: LocalizedText;
   placesCount: number;
   featured?: boolean;
   /** Retained for the journey map shown on the home page. */
   year: string;
   /** Retained for the journey map shown on the home page. */
-  route: string;
+  route: LocalizedText;
 }
 export type JourneyScopeFilter = "saudi" | "international";
 
@@ -195,9 +210,9 @@ export type VisitorFeedbackSubmissionResult =
   | { success: false; reason: "not-configured" | "request-failed" | "rejected" };
 
 export type VisitorTestimonial = {
-  id: string;
-  name: string;
-  quote: string;
+  id: "jeddah-visit" | "connected-content" | "discover-places";
+  name: LocalizedText;
+  quote: LocalizedText;
 };
 
 export type VisitorFeedbackCategory =

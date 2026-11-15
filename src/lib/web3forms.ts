@@ -26,7 +26,8 @@ function isSuccessfulResponse(
 
 export async function submitVisitRequest(
   values: VisitRequestFormValues,
-  botcheck: string
+  botcheck: string,
+  locale: "ar" | "en"
 ): Promise<VisitRequestSubmissionResult> {
   const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
 
@@ -36,17 +37,26 @@ export async function submitVisitRequest(
 
   const payload: Web3FormsVisitRequestPayload = {
     access_key: accessKey,
-    subject: `طلب زيارة جديد: ${values.name.trim()}`,
-    from_name: "منصة محمد الإحيوي - طلب زيارة",
+    subject:
+      locale === "en"
+        ? `New visit request: ${values.name.trim()}`
+        : `طلب زيارة جديد: ${values.name.trim()}`,
+    from_name:
+      locale === "en"
+        ? "Mohammad Alehewi Platform - Visit Request"
+        : "منصة محمد الإحيوي - طلب زيارة",
     replyto: values.email.trim(),
     name: values.name.trim(),
     email: values.email.trim(),
-    category: "طلب زيارة",
+    category: locale === "en" ? "Visit request" : "طلب زيارة",
     phone: `${values.phoneCode} ${values.phoneNumber.trim()}`,
     country: values.country,
     city: values.city.trim(),
     visit_details: values.details.trim(),
-    visit_terms: "تمت الموافقة على ضوابط الزيارة",
+    visit_terms:
+      locale === "en"
+        ? "Visit terms and conditions accepted"
+        : "تمت الموافقة على ضوابط الزيارة",
     botcheck,
   };
 
@@ -132,7 +142,8 @@ export async function submitServiceRequest(
 export async function submitVisitorFeedback(
   values: VisitorFeedbackFormValues,
   categoryLabel: string,
-  botcheck: string
+  botcheck: string,
+  locale: "ar" | "en"
 ): Promise<VisitorFeedbackSubmissionResult> {
   const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
 
@@ -142,8 +153,14 @@ export async function submitVisitorFeedback(
 
   const payload: Web3FormsVisitorFeedbackPayload = {
     access_key: accessKey,
-    subject: `مشاركة رأي جديدة: ${categoryLabel}`,
-    from_name: "منصة محمد الإحيوي - مشاركة رأي",
+    subject:
+      locale === "en"
+        ? `New feedback: ${categoryLabel}`
+        : `مشاركة رأي جديدة: ${categoryLabel}`,
+    from_name:
+      locale === "en"
+        ? "Mohammad Alehewi Platform - Feedback"
+        : "منصة محمد الإحيوي - مشاركة رأي",
     replyto: values.email.trim(),
     name: values.name.trim(),
     email: values.email.trim(),

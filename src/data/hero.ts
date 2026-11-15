@@ -1,8 +1,8 @@
 export const heroStats = [
-	{ id: 1, value: '+13K', label: 'مساهمة ' },
-	{ id: 2, value: '+70M', label: "مشاهدة" },
+	{ id: 1, value: '+13K', labelKey: 'contributions' },
+	{ id: 2, value: '+70M', labelKey: 'views' },
 	// { id: 3, value: '5+', label: 'دول حول العالم' },
-];
+] as const;
 
 
 
@@ -13,4 +13,3 @@ export const heroFeatures = [
 	{ id: 4, title: 'تحسين مستمر', desc: "" },
 
 ];
-

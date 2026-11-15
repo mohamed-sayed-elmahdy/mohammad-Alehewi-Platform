@@ -1,9 +1,4 @@
-import type { Journey } from "@/types/website";
-
-export const journeyScopeFilters = [
-  { value: "saudi", label: "داخل المملكة" },
-  { value: "international", label: "عالمية" },
-] as const;
+import type { Journey, LocalizedText } from "@/types/website";
 
 export const saudiJourneyCities = [
   "الرياض",
@@ -17,40 +12,239 @@ export const saudiJourneyCities = [
   "الخبر",
 ] as const;
 
+export const journeySaudiCities = [
+  "الرياض",
+  "جدة",
+  "مكة",
+  "الدمام",
+  "الطائف",
+  "القصيم",
+] as const;
+
 export const internationalJourneyCountries = ["مصر", "تركيا", "جورجيا"] as const;
+
+const placeNames: Record<string, LocalizedText> = {
+  الرياض: { ar: "الرياض", en: "Riyadh" },
+  جدة: { ar: "جدة", en: "Jeddah" },
+  مكة: { ar: "مكة", en: "Makkah" },
+  الدمام: { ar: "الدمام", en: "Dammam" },
+  الطائف: { ar: "الطائف", en: "Taif" },
+  القصيم: { ar: "القصيم", en: "Al Qassim" },
+  القاهرة: { ar: "القاهرة", en: "Cairo" },
+  إسطنبول: { ar: "إسطنبول", en: "Istanbul" },
+  طرابزون: { ar: "طرابزون", en: "Trabzon" },
+  تبليسي: { ar: "تبليسي", en: "Tbilisi" },
+  باتومي: { ar: "باتومي", en: "Batumi" },
+  السعودية: { ar: "السعودية", en: "Saudi Arabia" },
+  مصر: { ar: "مصر", en: "Egypt" },
+  تركيا: { ar: "تركيا", en: "Türkiye" },
+  جورجيا: { ar: "جورجيا", en: "Georgia" },
+};
+
+export function localizeJourneyPlace(name: string, locale: "ar" | "en") {
+  return placeNames[name]?.[locale] ?? name;
+}
 
 export const journeys: Journey[] = [
   {
-    id: "riyadh-winter", title: "شتاء الرياض بين الذوق والتجربة", description: "جولة موثقة بين وجهات الضيافة والتجارب الموسمية التي منحت العاصمة إيقاعًا مختلفًا.", image: "/hero-slider-images/restaurants.jpg", href: "/journeys/riyadh-winter", scope: "saudi", country: "السعودية", city: "الرياض", dateLabel: "يناير ٢٠٢٥", placesCount: 14, featured: true, year: "2025", route: "الرياض",
+    id: "riyadh-winter",
+    title: {
+      ar: "شتاء الرياض بين الذوق والتجربة",
+      en: "Riyadh Winter: Taste and Discovery",
+    },
+    description: {
+      ar: "جولة موثقة بين وجهات الضيافة والتجارب الموسمية التي منحت العاصمة إيقاعًا مختلفًا.",
+      en: "A documented tour of hospitality destinations and seasonal experiences that gave the capital a different rhythm.",
+    },
+    image: "/hero-slider-images/restaurants.jpg",
+    href: "/journeys/riyadh-winter",
+    scope: "saudi",
+    country: placeNames["السعودية"],
+    city: placeNames["الرياض"],
+    dateLabel: { ar: "يناير ٢٠٢٥", en: "January 2025" },
+    placesCount: 14,
+    featured: true,
+    year: "2025",
+    route: placeNames["الرياض"],
   },
   {
-    id: "jeddah-coast", title: "على كورنيش جدة", description: "محطات تجمع بين البحر والمطاعم والمقاهي التي تصنع من الواجهة البحرية تجربة متكاملة.", image: "/featuredCards/jeddah-beaches.jpg", href: "/journeys/jeddah-coast", scope: "saudi", country: "السعودية", city: "جدة", dateLabel: "ديسمبر ٢٠٢٤", placesCount: 11, year: "2024", route: "جدة",
+    id: "jeddah-coast",
+    title: { ar: "على كورنيش جدة", en: "Along the Jeddah Corniche" },
+    description: {
+      ar: "محطات تجمع بين البحر والمطاعم والمقاهي التي تصنع من الواجهة البحرية تجربة متكاملة.",
+      en: "Stops that bring together the sea, restaurants, and cafés for a complete waterfront experience.",
+    },
+    image: "/featuredCards/jeddah-beaches.jpg",
+    href: "/journeys/jeddah-coast",
+    scope: "saudi",
+    country: placeNames["السعودية"],
+    city: placeNames["جدة"],
+    dateLabel: { ar: "ديسمبر ٢٠٢٤", en: "December 2024" },
+    placesCount: 11,
+    year: "2024",
+    route: placeNames["جدة"],
   },
   {
-    id: "makkah-heritage", title: "مكة بذاكرة المكان", description: "تجربة تتتبع التفاصيل الهادئة في الضيافة والأماكن القريبة من قلب مكة.", image: "/hero-slider-images/tourist-attractions.jpg", href: "/journeys/makkah-heritage", scope: "saudi", country: "السعودية", city: "مكة", dateLabel: "نوفمبر ٢٠٢٤", placesCount: 8, year: "2024", route: "مكة",
+    id: "makkah-heritage",
+    title: { ar: "مكة بذاكرة المكان", en: "Makkah Through Its Sense of Place" },
+    description: {
+      ar: "تجربة تتتبع التفاصيل الهادئة في الضيافة والأماكن القريبة من قلب مكة.",
+      en: "A journey through the quieter details of hospitality and places close to the heart of Makkah.",
+    },
+    image: "/hero-slider-images/tourist-attractions.jpg",
+    href: "/journeys/makkah-heritage",
+    scope: "saudi",
+    country: placeNames["السعودية"],
+    city: placeNames["مكة"],
+    dateLabel: { ar: "نوفمبر ٢٠٢٤", en: "November 2024" },
+    placesCount: 8,
+    year: "2024",
+    route: placeNames["مكة"],
   },
   {
-    id: "dammam-sea", title: "إيقاع البحر في الدمام", description: "يوم موثق بين الجلسات البحرية وتجارب الطعام التي تعكس طاقة المنطقة الشرقية.", image: "/hero-slider-images/seafood.jpg", href: "/journeys/dammam-sea", scope: "saudi", country: "السعودية", city: "الدمام", dateLabel: "أكتوبر ٢٠٢٤", placesCount: 9, year: "2024", route: "الدمام",
+    id: "dammam-sea",
+    title: { ar: "إيقاع البحر في الدمام", en: "Dammam in the Rhythm of the Sea" },
+    description: {
+      ar: "يوم موثق بين الجلسات البحرية وتجارب الطعام التي تعكس طاقة المنطقة الشرقية.",
+      en: "A documented day of seaside gatherings and dining experiences reflecting the energy of the Eastern Province.",
+    },
+    image: "/hero-slider-images/seafood.jpg",
+    href: "/journeys/dammam-sea",
+    scope: "saudi",
+    country: placeNames["السعودية"],
+    city: placeNames["الدمام"],
+    dateLabel: { ar: "أكتوبر ٢٠٢٤", en: "October 2024" },
+    placesCount: 9,
+    year: "2024",
+    route: placeNames["الدمام"],
   },
   {
-    id: "taif-summer", title: "صيف الطائف", description: "من المرتفعات إلى المقاهي المحلية، جولة ترصد روح الطائف في موسمها الأجمل.", image: "/hero-slider-images/parks.jpg", href: "/journeys/taif-summer", scope: "saudi", country: "السعودية", city: "الطائف", dateLabel: "أغسطس ٢٠٢٤", placesCount: 10, featured: true, year: "2024", route: "الطائف",
+    id: "taif-summer",
+    title: { ar: "صيف الطائف", en: "Summer in Taif" },
+    description: {
+      ar: "من المرتفعات إلى المقاهي المحلية، جولة ترصد روح الطائف في موسمها الأجمل.",
+      en: "From the highlands to local cafés, a tour capturing Taif at its most beautiful time of year.",
+    },
+    image: "/hero-slider-images/parks.jpg",
+    href: "/journeys/taif-summer",
+    scope: "saudi",
+    country: placeNames["السعودية"],
+    city: placeNames["الطائف"],
+    dateLabel: { ar: "أغسطس ٢٠٢٤", en: "August 2024" },
+    placesCount: 10,
+    featured: true,
+    year: "2024",
+    route: placeNames["الطائف"],
   },
   {
-    id: "qassim-taste", title: "القصيم بطعم مختلف", description: "وجهات محلية تعكس كرم القصيم وتنوّعها، من المخبوزات إلى الجلسات العائلية.", image: "/hero-slider-images/sweets-bakeries.jpg", href: "/journeys/qassim-taste", scope: "saudi", country: "السعودية", city: "القصيم", dateLabel: "يونيو ٢٠٢٤", placesCount: 7, year: "2024", route: "القصيم",
+    id: "qassim-taste",
+    title: { ar: "القصيم بطعم مختلف", en: "A Different Taste of Al Qassim" },
+    description: {
+      ar: "وجهات محلية تعكس كرم القصيم وتنوّعها، من المخبوزات إلى الجلسات العائلية.",
+      en: "Local destinations reflecting Al Qassim's generosity and variety, from baked goods to family gatherings.",
+    },
+    image: "/hero-slider-images/sweets-bakeries.jpg",
+    href: "/journeys/qassim-taste",
+    scope: "saudi",
+    country: placeNames["السعودية"],
+    city: placeNames["القصيم"],
+    dateLabel: { ar: "يونيو ٢٠٢٤", en: "June 2024" },
+    placesCount: 7,
+    year: "2024",
+    route: placeNames["القصيم"],
   },
   {
-    id: "cairo-heritage", title: "القاهرة بين الأصالة والنبض", description: "رحلة تلتقط طاقة القاهرة في مطاعمها وشوارعها وتفاصيل ضيافتها الثرية.", image: "/Gemini_Generated_Image_a8dvvea8dvvea8dv.jfif", href: "/journeys/cairo-heritage", scope: "international", country: "مصر", city: "القاهرة", dateLabel: "مايو ٢٠٢٤", placesCount: 12, year: "2024", route: "القاهرة",
+    id: "cairo-heritage",
+    title: { ar: "القاهرة بين الأصالة والنبض", en: "Cairo: Heritage and Heartbeat" },
+    description: {
+      ar: "رحلة تلتقط طاقة القاهرة في مطاعمها وشوارعها وتفاصيل ضيافتها الثرية.",
+      en: "A journey capturing Cairo's energy through its restaurants, streets, and rich hospitality.",
+    },
+    image: "/Gemini_Generated_Image_a8dvvea8dvvea8dv.jfif",
+    href: "/journeys/cairo-heritage",
+    scope: "international",
+    country: placeNames["مصر"],
+    city: placeNames["القاهرة"],
+    dateLabel: { ar: "مايو ٢٠٢٤", en: "May 2024" },
+    placesCount: 12,
+    year: "2024",
+    route: placeNames["القاهرة"],
   },
   {
-    id: "istanbul-streets", title: "إسطنبول من الشارع إلى المائدة", description: "رحلة تجمع نكهات المدينة القديمة مع التجارب العصرية التي تستحق التوثيق.", image: "/hero-slider-images/international-destinations3.jpg", href: "/journeys/istanbul-streets", scope: "international", country: "تركيا", city: "إسطنبول", dateLabel: "أكتوبر ٢٠٢٣", placesCount: 15, year: "2023", route: "إسطنبول",
+    id: "istanbul-streets",
+    title: { ar: "إسطنبول من الشارع إلى المائدة", en: "Istanbul: From the Streets to the Table" },
+    description: {
+      ar: "رحلة تجمع نكهات المدينة القديمة مع التجارب العصرية التي تستحق التوثيق.",
+      en: "A journey combining the flavors of the old city with contemporary experiences worth documenting.",
+    },
+    image: "/hero-slider-images/international-destinations3.jpg",
+    href: "/journeys/istanbul-streets",
+    scope: "international",
+    country: placeNames["تركيا"],
+    city: placeNames["إسطنبول"],
+    dateLabel: { ar: "أكتوبر ٢٠٢٣", en: "October 2023" },
+    placesCount: 15,
+    year: "2023",
+    route: placeNames["إسطنبول"],
   },
   {
-    id: "trabzon-nature", title: "طرابزون والطبيعة القريبة", description: "مسار هادئ بين الطبيعة والضيافة المحلية في واحدة من أجمل مدن شمال تركيا.", image: "/hero-slider-images/international-destinations5.jpg", href: "/journeys/trabzon-nature", scope: "international", country: "تركيا", city: "طرابزون", dateLabel: "سبتمبر ٢٠٢٣", placesCount: 8, year: "2023", route: "طرابزون",
+    id: "trabzon-nature",
+    title: { ar: "طرابزون والطبيعة القريبة", en: "Trabzon and Its Nearby Nature" },
+    description: {
+      ar: "مسار هادئ بين الطبيعة والضيافة المحلية في واحدة من أجمل مدن شمال تركيا.",
+      en: "A peaceful route through nature and local hospitality in one of northern Türkiye's most beautiful cities.",
+    },
+    image: "/hero-slider-images/international-destinations5.jpg",
+    href: "/journeys/trabzon-nature",
+    scope: "international",
+    country: placeNames["تركيا"],
+    city: placeNames["طرابزون"],
+    dateLabel: { ar: "سبتمبر ٢٠٢٣", en: "September 2023" },
+    placesCount: 8,
+    year: "2023",
+    route: placeNames["طرابزون"],
   },
   {
-    id: "tbilisi-calm", title: "تبليسي الهادئة", description: "جولة بين المقاهي الصغيرة والأحياء ذات الطابع الخاص في قلب جورجيا.", image: "/hero-slider-images/international-destinations6.jpg", href: "/journeys/tbilisi-calm", scope: "international", country: "جورجيا", city: "تبليسي", dateLabel: "يوليو ٢٠٢٣", placesCount: 9, year: "2023", route: "تبليسي",
+    id: "tbilisi-calm",
+    title: { ar: "تبليسي الهادئة", en: "The Quiet Side of Tbilisi" },
+    description: {
+      ar: "جولة بين المقاهي الصغيرة والأحياء ذات الطابع الخاص في قلب جورجيا.",
+      en: "A tour of small cafés and distinctive neighborhoods in the heart of Georgia.",
+    },
+    image: "/hero-slider-images/international-destinations6.jpg",
+    href: "/journeys/tbilisi-calm",
+    scope: "international",
+    country: placeNames["جورجيا"],
+    city: placeNames["تبليسي"],
+    dateLabel: { ar: "يوليو ٢٠٢٣", en: "July 2023" },
+    placesCount: 9,
+    year: "2023",
+    route: placeNames["تبليسي"],
   },
   {
-    id: "batumi-shore", title: "باتومي على مهل", description: "تفاصيل بحرية ومطاعم محلية جعلت من باتومي محطة صيفية خفيفة ولا تُنسى", image: "/hero-slider-images/beaches-corniche.jpg", href: "/journeys/batumi-shore", scope: "international", country: "جورجيا", city: "باتومي", dateLabel: "يونيو ٢٠٢٣", placesCount: 6, year: "2023", route: "باتومي",
+    id: "batumi-shore",
+    title: { ar: "باتومي على مهل", en: "Batumi at an Unhurried Pace" },
+    description: {
+      ar: "تفاصيل بحرية ومطاعم محلية جعلت من باتومي محطة صيفية خفيفة ولا تُنسى",
+      en: "Seaside details and local restaurants made Batumi a relaxed and memorable summer stop.",
+    },
+    image: "/hero-slider-images/beaches-corniche.jpg",
+    href: "/journeys/batumi-shore",
+    scope: "international",
+    country: placeNames["جورجيا"],
+    city: placeNames["باتومي"],
+    dateLabel: { ar: "يونيو ٢٠٢٣", en: "June 2023" },
+    placesCount: 6,
+    year: "2023",
+    route: placeNames["باتومي"],
   },
 ];
+
+export function getJourneyLocationLabel(
+  journey: Pick<Journey, "city" | "country">,
+  locale: "ar" | "en",
+) {
+  return journey.city
+    ? `${journey.city[locale]} · ${journey.country[locale]}`
+    : journey.country[locale];
+}
