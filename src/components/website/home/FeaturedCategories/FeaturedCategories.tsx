@@ -3,30 +3,35 @@ import CategoryCard from "@/components/website/home/FeaturedCategories/CategoryC
 import FeaturedCategoriesItems from "@/components/website/home/FeaturedCategories/FeaturedCategoriesItems";
 import { categories } from "@/data/categories";
 import GoldActionLink from "@/components/shared/GoldActionLink";
+import { useLocale, useTranslations } from "next-intl";
 
-const featuredCardCategories = categories.filter((category) => category.featuredCard);
+const featuredCardCategories = categories.filter((category) => category.showInHomeCards);
 const [primaryCategory, topLeftCategory, topRightCategory, lowerLeftCategory, ...bottomCategories] = featuredCardCategories;
 
 export default function FeaturedCategories() {
+  const locale = useLocale();
+  const t = useTranslations("Home.featuredCategories");
+
   return (
-    <section className="overflow-hidden  bg-linear-to-b from-black via-[#050d16] to-[#08111f] pb-16 pt-10 text-[var(--color-text)] sm:pb-24">
+    <section dir={locale} className="overflow-hidden bg-linear-to-b from-black via-[#050d16] to-[#08111f] pb-16 pt-10 text-(--color-text) sm:pb-24">
       <div className="mx-auto max-w-360 px-5 sm:px-8">
         <div className="grid items-center gap-12 xl:grid-cols-[.9fr_1.4fr]">
-          <div className="text-right xl:pr-6">
+          <div className="text-start xl:pe-6">
             <h2 className="font-alexandria text-4xl font-semibold leading-[1.35] sm:text-5xl">
-              استكشف التجارب<br />
-              <span className="text-(--color-accent)">حسب الفئة</span>
+              {t("title")}
+              <br />
+              <span className="text-(--color-accent)">{t("titleByCategory")}</span>
             </h2>
             <p className="mt-5 max-w-xl text-base leading-8 text-(--color-secondary-text)">
-              كل تجربة تروي قصة مختلفة، وكل فئة تمنحك زاوية جديدة لاستكشاف العالم بأسلوب محمد الإحيوي. اختر ما يهمك اليوم وابدأ رحلة جديدة
+              {t("description")}
             </p>
 
             <GoldActionLink
               href="/reviews"
-              aria-label="استعرض جميع الفئات"
+              ariaLabel={t("browseAll")}
               className="mt-4"
             >
-              استعرض جميع الفئات
+              {t("browseAll")}
             </GoldActionLink>
           </div>
 
@@ -57,7 +62,7 @@ export default function FeaturedCategories() {
 
         <p className="mt-10 text-center text-base text-slate-400">
           <span className="me-4 inline-block h-px w-7 [450px]:w-12 align-middle bg-[#b87820]" />
-          اختر فئتك المفضلة وابدأ رحلتك القادمة
+          {t("closingPrompt")}
           <span className="ms-4 inline-block h-px w-7 [450px]:w-12 align-middle bg-[#b87820]" />
         </p>
       </div>

@@ -2,6 +2,8 @@
 
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useRef, useState, type PointerEvent, type ReactNode } from "react";
+import { useLocale, useTranslations } from "next-intl";
+import { localizePlaceName } from "@/data/reviews";
 import type { Category, ReviewCategoryFilter } from "@/types/website";
 
 type ReviewsFiltersProps = {
@@ -105,13 +107,16 @@ export default function ReviewsFilters({
   selectedCategory,
   onCategoryChange,
 }: ReviewsFiltersProps) {
+  const locale = useLocale() === "en" ? "en" : "ar";
+  const t = useTranslations("Reviews.filters");
+  const common = useTranslations("Common");
   const shouldReduceMotion = useReducedMotion();
 
   return (
     <div className="space-y-2">
       <div className="">
-        <h2 className="text-sm font-semibold text-(--color-text)">الدولة</h2>
-        <FilterRail ariaLabel="فلترة التقييمات حسب الدولة" title="اسحب لعرض جميع الدول">
+        <h2 className="text-sm font-semibold text-(--color-text)">{t("country")}</h2>
+        <FilterRail ariaLabel={t("byCountry")} title={t("dragCountries")}>
           <div className="flex min-w-full w-max justify-center gap-2">
             <button
               type="button"
@@ -119,7 +124,7 @@ export default function ReviewsFilters({
               onClick={() => onCountryChange("all")}
               className={chipClass(selectedCountry === "all")}
             >
-              الكل
+              {common("all")}
             </button>
             {countries.map((country) => (
               <button
@@ -129,7 +134,7 @@ export default function ReviewsFilters({
                 onClick={() => onCountryChange(country)}
                 className={chipClass(selectedCountry === country)}
               >
-                {country}
+                {localizePlaceName(country, locale)}
               </button>
             ))}
           </div>
@@ -150,8 +155,8 @@ export default function ReviewsFilters({
             className="overflow-hidden"
           >
             <div className="space-y-2">
-              <h2 className="text-sm font-semibold text-(--color-text)">المدينة</h2>
-              <FilterRail ariaLabel="فلترة التقييمات حسب المدينة" title="اسحب لعرض جميع المدن">
+              <h2 className="text-sm font-semibold text-(--color-text)">{t("city")}</h2>
+              <FilterRail ariaLabel={t("byCity")} title={t("dragCities")}>
                 <div className="flex min-w-full w-max justify-center gap-2">
                   <button
                     type="button"
@@ -159,7 +164,7 @@ export default function ReviewsFilters({
                     onClick={() => onCityChange("all")}
                     className={chipClass(selectedCity === "all")}
                   >
-                    الكل
+                    {common("all")}
                   </button>
                   {cities.filter(Boolean).map((city) => (
                     <button
@@ -169,7 +174,7 @@ export default function ReviewsFilters({
                       onClick={() => onCityChange(city)}
                       className={chipClass(selectedCity === city)}
                     >
-                      {city}
+                      {localizePlaceName(city, locale)}
                     </button>
                   ))}
                 </div>
@@ -180,8 +185,8 @@ export default function ReviewsFilters({
       </AnimatePresence>
 
       <div className="space-y-2">
-        <h2 className="text-sm font-semibold text-(--color-text)">الفئة</h2>
-        <FilterRail ariaLabel="فلترة التقييمات حسب الفئة" title="اسحب لعرض جميع الفئات">
+        <h2 className="text-sm font-semibold text-(--color-text)">{t("category")}</h2>
+        <FilterRail ariaLabel={t("byCategory")} title={t("dragCategories")}>
           <div className="flex min-w-full w-max justify-start gap-2">
             <button
               type="button"
@@ -189,7 +194,7 @@ export default function ReviewsFilters({
               onClick={() => onCategoryChange("all")}
               className={chipClass(selectedCategory === "all")}
             >
-              الكل
+              {common("all")}
             </button>
             {categories.filter((category) => category.id !== "international-destinations").map((category) => (
               <button
@@ -199,7 +204,7 @@ export default function ReviewsFilters({
                 onClick={() => onCategoryChange(category.id)}
                 className={chipClass(selectedCategory === category.id)}
               >
-                {category.title}
+                {category.title[locale]}
               </button>
             ))}
           </div>

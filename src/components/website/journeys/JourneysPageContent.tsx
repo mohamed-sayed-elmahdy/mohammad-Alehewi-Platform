@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
 import { journeys } from "@/data/journeys";
 import type { JourneyCityFilter, JourneyScopeFilter } from "@/types/website";
 import JourneysFilters from "./JourneysFilters";
@@ -8,6 +9,8 @@ import JourneysGrid from "./JourneysGrid";
 import JourneysMetaRow from "./JourneysMetaRow";
 
 export default function JourneysPageContent() {
+  const locale = useLocale() === "en" ? "en" : "ar";
+  const t = useTranslations("Journeys");
   const [scope, setScope] = useState<JourneyScopeFilter>("saudi");
   const [location, setLocation] = useState<JourneyCityFilter>("all");
 
@@ -18,8 +21,8 @@ export default function JourneysPageContent() {
         if (location === "all") return true;
 
         return scope === "saudi"
-          ? journey.city === location
-          : journey.country === location;
+          ? journey.city?.ar === location
+          : journey.country.ar === location;
       }),
     [location, scope],
   );
@@ -30,7 +33,10 @@ export default function JourneysPageContent() {
   };
 
   return (
-    <section className="bg-(--color-background) py-8 pb-16 sm:py-10 sm:pb-24 lg:py-12">
+    <section
+      className="bg-(--color-background) py-8 pb-16 sm:py-10 sm:pb-24 lg:py-12"
+      dir={locale === "ar" ? "rtl" : "ltr"}
+    >
       <div className="mx-auto max-w-[1600px] px-4 sm:px-8 lg:px-10">
         <JourneysFilters
           scope={scope}
@@ -51,10 +57,10 @@ export default function JourneysPageContent() {
           ) : (
             <div className="rounded-[24px] border border-dashed border-(--color-accent)/30 bg-(--color-surface)/35 px-6 py-16 text-center">
               <h2 className="font-alexandria text-xl font-bold text-(--color-text)">
-                لا توجد جولات مطابقة
+                {t("empty.title")}
               </h2>
               <p className="mt-3 text-sm leading-7 text-(--color-secondary-text)">
-                جرّب اختيار مدينة أو دولة أخرى.
+                {t("empty.description")}
               </p>
             </div>
           )}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
 import { useMemo, useState } from "react";
 import { categories } from "@/data/categories";
 import { reviews } from "@/data/reviews";
@@ -29,10 +29,13 @@ export default function ReviewsPageContent({
 
   const filteredReviews = useMemo(() => {
     const locationAndCategoryReviews = reviews.filter((review) => {
-      if (selectedCountry !== "all" && review.country !== selectedCountry) {
+      if (
+        selectedCountry !== "all" &&
+        review.country.ar !== selectedCountry
+      ) {
         return false;
       }
-      if (selectedCity !== "all" && review.city !== selectedCity) return false;
+      if (selectedCity !== "all" && review.city.ar !== selectedCity) return false;
       if (selectedCategory !== "all" && review.categoryId !== selectedCategory) {
         return false;
       }
@@ -56,16 +59,6 @@ export default function ReviewsPageContent({
       }
     });
   }, [selectedCategory, selectedCity, selectedCountry, sort]);
-
-  const categoryLabel =
-    categories.find((category) => category.id === selectedCategory)?.title ??
-    "الكل";
-  const locationLabel =
-    selectedCity !== "all"
-      ? `${selectedCity} · ${selectedCountry}`
-      : selectedCountry !== "all"
-        ? selectedCountry
-        : null;
 
   const handleCountryChange = (country: string) => {
     setSelectedCountry(country);
@@ -108,9 +101,6 @@ export default function ReviewsPageContent({
         />
         <div className="mt-6 sm:mt-4">
           <ReviewsMetaRow
-            count={filteredReviews.length}
-            locationLabel={locationLabel}
-            categoryLabel={categoryLabel}
             sort={sort}
             onSortChange={setSort}
           />

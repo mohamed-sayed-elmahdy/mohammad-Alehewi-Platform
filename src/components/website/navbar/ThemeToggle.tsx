@@ -1,11 +1,15 @@
-import { FaMoon } from "react-icons/fa";
+"use client";
+
 import { PiSunDimFill } from "react-icons/pi";
+import { useTranslations } from "next-intl";
 
 export default function ThemeToggle() {
+  const t = useTranslations("Navigation");
+
   return (
     <button
       type="button"
-      aria-label="التبديل إلى الوضع الفاتح"
+      aria-label={t("switchToLightMode")}
       className="
       flex h-7 w-7 
       cursor-pointer 

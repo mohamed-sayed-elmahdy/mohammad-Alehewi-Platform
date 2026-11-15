@@ -1,10 +1,16 @@
+import { useLocale, useTranslations } from "next-intl";
+
 export default function HeroBadge() {
+  const locale = useLocale();
+  const t = useTranslations("Home.hero");
+
   return (
-    <div className="flex items-center justify-center gap-4">
+    <div dir="rtl" className="flex items-center justify-center gap-4">
       {/* Right Line */}
       <div className="flex items-center">
 
         <span
+          dir={locale}
           className="
             h-px
             w-20
@@ -26,7 +32,7 @@ export default function HeroBadge() {
           text-(--color-accent)
         "
       >
-        الإعلام رسالة
+        {t("badge")}
       </span>
 
       {/* Left Line */}

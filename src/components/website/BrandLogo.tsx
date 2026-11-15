@@ -1,7 +1,6 @@
 import Image from "next/image";
 
 const brandLogoSrc = "/newlogo.png";
-const brandLogoAlt = "شعار محمد الإحيوي";
 
 type BrandLogoProps = {
   width: number;
@@ -19,7 +18,7 @@ export default function BrandLogo({
   return (
     <Image
       src={brandLogoSrc}
-      alt={brandLogoAlt}
+      alt=""
       width={width}
       height={height}
       priority={priority}

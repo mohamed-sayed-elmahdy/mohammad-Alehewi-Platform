@@ -1,21 +1,33 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import { categories } from "@/data/categories";
 import ReviewsHero from "@/components/website/reviews/ReviewsHero";
 import ReviewsPageContent from "@/components/website/reviews/ReviewsPageContent";
 import { createPageMetadata } from "@/lib/seo";
 
 type ReviewsPageProps = {
+  params: Promise<{ locale: string }>;
   searchParams: Promise<{ category?: string | string[] }>;
 };
 
-export const metadata: Metadata = createPageMetadata({
-  title: "التقييمات",
-  description:
-    "اقرأ تقييمات وتجارب موثقة للمطاعم والمقاهي والفنادق والوجهات في السعودية وحول العالم.",
-  path: "/reviews",
-});
+export async function generateMetadata({
+  params,
+}: Pick<ReviewsPageProps, "params">): Promise<Metadata> {
+  const { locale } = await params;
+  const language = locale === "en" ? "en" : "ar";
+  const t = await getTranslations({ locale: language, namespace: "Reviews" });
 
-export default async function ReviewsPage({ searchParams }: ReviewsPageProps) {
+  return createPageMetadata({
+    title: t("title"),
+    description: t("description"),
+    path: "/reviews",
+    locale: language,
+  });
+}
+
+export default async function ReviewsPage({
+  searchParams,
+}: Pick<ReviewsPageProps, "searchParams">) {
   const { category } = await searchParams;
   const initialCategory =
     typeof category === "string" &&

@@ -1,38 +1,26 @@
-import type { CTA } from "@/types/website";
 import GoldActionLink from "@/components/shared/GoldActionLink";
-
-const cta: CTA = {
-  title: "دعوة لزيارة بعين محمد الإحيوي",
-  description: "دعوة راقية للعلامات التجارية لاستضافة تجربة مدعومة بسردية وهوية مرئية فريدة",
-  primaryLabel: "اطلب زيارة",
-  primaryHref: "/request-visit",
-  secondaryLabel: "تعرّف على التجربة",
-  secondaryHref: "/",
-};
+import { useLocale, useTranslations } from "next-intl";
 
 export default function HomeCTA() {
+  const locale = useLocale();
+  const t = useTranslations("Home.cta");
+
   return (
-    <section className="border-t border-white/10 bg-[#08111f] py-20">
+    <section dir={locale} className="border-t border-white/10 bg-[#08111f] py-20">
       <div className="mx-auto max-w-[900px] px-6 text-center">
-        <p className="text-sm uppercase tracking-[0.3em] text-[#f3c15c]">ابدأ رحلتك</p>
+        <p className="text-sm uppercase tracking-[0.3em] text-[#f3c15c]">{t("eyebrow")}</p>
         <h2 className="mt-4 text-4xl font-semibold leading-tight text-white sm:text-5xl">
-          {cta.title}
+          {t("title")}
         </h2>
         <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-slate-300">
-          {cta.description}
+          {t("description")}
         </p>
         <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <GoldActionLink
-            href={cta.primaryHref}
+            href="/request-visit"
           >
-            {cta.primaryLabel}
+            {t("requestVisit")}
           </GoldActionLink>
-          <a
-            href={cta.secondaryHref}
-            className="inline-flex rounded-full border border-white/10 px-8 py-3 text-sm font-medium text-white transition hover:border-[#f3c15c] hover:text-[#f3c15c]"
-          >
-            {cta.secondaryLabel}
-          </a>
         </div>
       </div>
     </section>

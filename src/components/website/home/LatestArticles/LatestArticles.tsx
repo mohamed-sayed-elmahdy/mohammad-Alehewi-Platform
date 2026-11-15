@@ -1,16 +1,20 @@
+import { useLocale, useTranslations } from "next-intl";
 import SectionHeader from "../SectionHeader";
 import { articles } from "@/data/articles";
 import ArticleCard from "./ArticleCard";
 
 export default function LatestArticles() {
+  const locale = useLocale() === "en" ? "en" : "ar";
+  const t = useTranslations("Home.latestArticles");
+
   return (
-    <section className="border-t border-white/10 py-16">
+    <section className="border-t border-white/10 py-16" dir={locale === "ar" ? "rtl" : "ltr"}>
       <div className="mx-auto max-w-[1200px] px-6">
         <SectionHeader
-          eyebrow="رؤية صحفية"
-          title="أحدث المقالات المكتوبة بعناية"
-          description="مقالات قصيرة ومترابطة تفتح نافذة على عالم التجربة والثقافة والضيافة بعين محمد الإحيوي."
-          actionLabel="عرض كل المقالات"
+          eyebrow={t("eyebrow")}
+          title={t("title")}
+          description={t("description")}
+          actionLabel={t("viewAll")}
           actionHref="/articles"
         />
 

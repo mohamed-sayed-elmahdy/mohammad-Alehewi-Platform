@@ -1,14 +1,18 @@
 import { visitorTestimonials } from "@/data/visitor-testimonials";
 import GoldActionLink from "@/components/shared/GoldActionLink";
 import TestimonialCard from "./TestimonialCard";
+import { useLocale, useTranslations } from "next-intl";
 
 export default function TestimonialsSection() {
+  const locale = useLocale();
+  const t = useTranslations("Home.testimonials");
+
   return (
-    <section className="border-y border-white/10 bg-[#0a1422] py-16 text-(--color-text) sm:py-24">
+    <section dir={locale} className="border-y border-white/10 bg-[#0a1422] py-16 text-(--color-text) sm:py-24">
       <div className="mx-auto max-w-360 px-5 sm:px-8">
         <header className="border-b border-white/10 pb-7 text-center sm:pb-9">
           <h2 className="font-alexandria text-3xl font-semibold leading-tight sm:text-4xl lg:text-5xl">
-            آراء الزوار
+            {t("title")}
           </h2>
         </header>
 
@@ -21,9 +25,9 @@ export default function TestimonialsSection() {
         <div className="mt-7 flex justify-center sm:mt-9">
           <GoldActionLink
             href="/share-feedback"
-            aria-label="شاركنا رأيك"
+            ariaLabel={t("shareFeedback")}
           >
-            شاركنا رأيك
+            {t("shareFeedback")}
           </GoldActionLink>
         </div>
       </div>

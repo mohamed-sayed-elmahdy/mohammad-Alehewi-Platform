@@ -2,10 +2,11 @@
 
 import { type Easing, motion, type Transition, useReducedMotion } from "motion/react";
 import { Fragment, useEffect, useMemo, useRef, useState } from "react";
-import styles from "@/components/website/home/Hero/HeroTop/HeroHeading.module.css";
 import ShimmeringText from "@/components/ui/shimmering-text";
 interface BlurTextProps {
   text?: string;
+  dir?: "ltr" | "rtl";
+  highlightWords?: string[];
   delay?: number;
   className?: string;
   animateBy?: "words" | "letters";
@@ -38,6 +39,8 @@ const buildKeyframes = (
 
 function BlurText({
   text = "أول منصة رقمية لإعلامي ومرشد ســعــودي على خرائط قوقل ماب\nلتوثيق وتقييم التجارب والجولات داخل المملكة وخارجها",
+  dir = "rtl",
+  highlightWords = ["أول", "ســعــودي"],
   delay = 100,
   className = "",
   animateBy = "words",
@@ -105,9 +108,18 @@ function BlurText({
     stepCount === 1 ? 0 : index / (stepCount - 1),
   );
   const finalSnapshot = toSnapshots[toSnapshots.length - 1];
+  const wordsToHighlight = new Set(highlightWords);
+  const highlightedIndices = new Set<number>();
+  elements.forEach((segment, index) => {
+    const word = segment.trim();
+    if (wordsToHighlight.has(word)) {
+      highlightedIndices.add(index);
+      wordsToHighlight.delete(word);
+    }
+  });
 
   return (
-    <p className={`blur-text ${className}`} dir="rtl" ref={ref}>
+    <p className={`blur-text ${className}`} dir={dir} ref={ref}>
       {elements.map((segment, index) => {
         const spanTransition: Transition = {
           duration: totalDuration,
@@ -129,9 +141,8 @@ function BlurText({
           );
         }
 
-
         const word = segment.trim();
-        const isGold = word === "أول" || word === "ســعــودي";
+        const isGold = highlightedIndices.has(index);
 
         return (
           <motion.span

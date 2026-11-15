@@ -1,8 +1,9 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { ArrowRight, MessageSquareText } from "lucide-react";
 import { useRef, useState, type FormEvent } from "react";
+import { useLocale, useTranslations } from "next-intl";
 import { submitVisitorFeedback } from "@/lib/web3forms";
 import type {
   VisitorFeedbackCategory,
@@ -11,19 +12,21 @@ import type {
 
 const feedbackCategories: {
   value: VisitorFeedbackCategory;
-  label: string;
+  messageKey: VisitorFeedbackCategory;
 }[] = [
-  { value: "experience", label: "انطباع عن تجربة" },
-  { value: "platform", label: "رأيي في المنصة" },
-  { value: "suggestion", label: "اقتراح تطوير" },
-  { value: "correction", label: "تصحيح معلومة" },
-  { value: "question", label: "استفسار" },
+  { value: "experience", messageKey: "experience" },
+  { value: "platform", messageKey: "platform" },
+  { value: "suggestion", messageKey: "suggestion" },
+  { value: "correction", messageKey: "correction" },
+  { value: "question", messageKey: "question" },
 ];
 
 const inputClassName =
   "w-full rounded-lg border border-white/15 bg-(--color-background)/70 px-4 py-3 text-(--color-text) outline-none transition placeholder:text-(--color-secondary-text)/60 focus:border-(--color-accent) focus:ring-2 focus:ring-(--color-accent)/20";
 
 export default function FeedbackForm() {
+  const locale = useLocale();
+  const t = useTranslations("Feedback.form");
   const formRef = useRef<HTMLFormElement>(null);
   const botcheckRef = useRef<HTMLInputElement>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -47,7 +50,7 @@ export default function FeedbackForm() {
       typeof email !== "string" ||
       typeof message !== "string"
     ) {
-      setSubmissionError("تعذر قراءة بيانات النموذج، يرجى المحاولة مرة أخرى.");
+      setSubmissionError(t("readError"));
       return;
     }
 
@@ -55,7 +58,7 @@ export default function FeedbackForm() {
       (option) => option.value === category
     );
     if (!selectedCategory) {
-      setSubmissionError("يرجى اختيار نوع المشاركة.");
+      setSubmissionError(t("categoryRequired"));
       return;
     }
 
@@ -70,15 +73,16 @@ export default function FeedbackForm() {
     try {
       const result = await submitVisitorFeedback(
         values,
-        selectedCategory.label,
-        botcheckRef.current?.value ?? ""
+        t(`categories.${selectedCategory.messageKey}`),
+        botcheckRef.current?.value ?? "",
+        locale === "en" ? "en" : "ar"
       );
 
       if (!result.success) {
         setSubmissionError(
           result.reason === "not-configured"
-            ? "نموذج مشاركة الرأي غير متاح حاليًا، يرجى المحاولة لاحقًا."
-            : "تعذر إرسال رأيك الآن، يرجى المحاولة مرة أخرى."
+            ? t("unavailable")
+            : t("submitError")
         );
         return;
       }
@@ -92,6 +96,8 @@ export default function FeedbackForm() {
 
   return (
     <section
+      dir={locale}
+      lang={locale}
       aria-labelledby="feedback-form-title"
       className="mx-auto w-full max-w-3xl overflow-hidden rounded-lg border border-(--color-accent)/25 bg-(--color-surface)/70 shadow-[0_20px_60px_rgba(0,0,0,0.3)]"
     >
@@ -102,10 +108,10 @@ export default function FeedbackForm() {
           </span>
           <div>
             <h2 id="feedback-form-title" className="font-alexandria text-lg font-bold sm:text-xl">
-              نموذج مشاركة الرأي
+              {t("title")}
             </h2>
             <p className="mt-1 text-sm text-(--color-secondary-text)">
-              الحقول المشار إليها مطلوبة
+              {t("requiredFields")}
             </p>
           </div>
         </div>
@@ -127,7 +133,7 @@ export default function FeedbackForm() {
         />
         <div>
           <label htmlFor="feedback-category" className="mb-2 block text-sm font-medium text-(--color-secondary-text)">
-            نوع المشاركة <span aria-hidden="true" className="text-(--color-accent)">*</span>
+            {t("category")} <span aria-hidden="true" className="text-(--color-accent)">*</span>
           </label>
           <select
             id="feedback-category"
@@ -137,11 +143,11 @@ export default function FeedbackForm() {
             className={`${inputClassName} cursor-pointer`}
           >
             <option value="" disabled>
-              اختر نوع المشاركة
+              {t("chooseCategory")}
             </option>
             {feedbackCategories.map((category) => (
               <option key={category.value} value={category.value}>
-                {category.label}
+                {t(`categories.${category.messageKey}`)}
               </option>
             ))}
           </select>
@@ -150,7 +156,7 @@ export default function FeedbackForm() {
         <div className="grid gap-5 sm:grid-cols-2">
           <div>
             <label htmlFor="feedback-name" className="mb-2 block text-sm font-medium text-(--color-secondary-text)">
-              الاسم <span aria-hidden="true" className="text-(--color-accent)">*</span>
+              {t("name")} <span aria-hidden="true" className="text-(--color-accent)">*</span>
             </label>
             <input
               id="feedback-name"
@@ -159,14 +165,14 @@ export default function FeedbackForm() {
               required
               autoComplete="name"
               maxLength={100}
-              placeholder="اكتب اسمك"
+              placeholder={t("namePlaceholder")}
               className={inputClassName}
             />
           </div>
 
           <div>
             <label htmlFor="feedback-email" className="mb-2 block text-sm font-medium text-(--color-secondary-text)">
-              البريد الإلكتروني <span aria-hidden="true" className="text-(--color-accent)">*</span>
+              {t("email")} <span aria-hidden="true" className="text-(--color-accent)">*</span>
             </label>
             <input
               id="feedback-email"
@@ -175,7 +181,7 @@ export default function FeedbackForm() {
               required
               dir="ltr"
               autoComplete="email"
-              placeholder="example@email.com"
+              placeholder={t("emailPlaceholder")}
               className={`${inputClassName} text-left`}
             />
           </div>
@@ -183,7 +189,7 @@ export default function FeedbackForm() {
 
         <div>
           <label htmlFor="feedback-message" className="mb-2 block text-sm font-medium text-(--color-secondary-text)">
-            رأيك أو رسالتك <span aria-hidden="true" className="text-(--color-accent)">*</span>
+            {t("message")} <span aria-hidden="true" className="text-(--color-accent)">*</span>
           </label>
           <textarea
             id="feedback-message"
@@ -192,7 +198,7 @@ export default function FeedbackForm() {
             minLength={10}
             maxLength={2000}
             rows={6}
-            placeholder="اكتب رأيك أو اقتراحك أو استفسارك"
+            placeholder={t("messagePlaceholder")}
             className={`${inputClassName} min-h-36 resize-y leading-7`}
           />
         </div>
@@ -203,14 +209,14 @@ export default function FeedbackForm() {
             disabled={isSubmitting}
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-(--color-accent)/40 bg-(--color-accent)/10 px-5 py-3 text-sm font-semibold text-(--color-accent) transition hover:bg-(--color-accent)/20 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--color-accent) disabled:cursor-wait disabled:opacity-60 sm:min-w-44"
           >
-            {isSubmitting ? "جارٍ الإرسال..." : "إرسال الرأي"}
+            {isSubmitting ? t("submitting") : t("submit")}
           </button>
           <Link
             href="/"
             className="inline-flex items-center gap-2 text-sm font-semibold text-(--color-secondary-text) transition hover:text-(--color-accent)"
           >
-            <ArrowRight aria-hidden="true" className="size-4" />
-            العودة إلى الرئيسية
+            <ArrowRight aria-hidden="true" className="size-4 ltr:rotate-180" />
+            {t("backHome")}
           </Link>
         </div>
         {submissionError && (
@@ -220,7 +226,7 @@ export default function FeedbackForm() {
         )}
         {showSuccess && (
           <p role="status" className="text-sm leading-6 text-green-400">
-            شكرًا لمشاركتنا رأيك، تم إرساله بنجاح.
+            {t("success")}
           </p>
         )}
       </form>

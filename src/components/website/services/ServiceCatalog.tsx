@@ -1,6 +1,7 @@
 "use client";
 
 import GoldActionLink from "@/components/shared/GoldActionLink";
+import { useLocale, useTranslations } from "next-intl";
 import {
   ArrowLeft,
   Monitor,
@@ -31,6 +32,8 @@ const serviceIcons: Record<string, LucideIcon> = {
 };
 
 export default function ServiceCatalog() {
+  const locale = useLocale() === "en" ? "en" : "ar";
+  const t = useTranslations("Services.catalog");
   const [selectedIds, setSelectedIds] = useState<Set<ServiceId>>(new Set());
   const selectedServices = serviceGroups.flatMap((group) =>
     group.services.filter((service) => selectedIds.has(service.id))
@@ -66,16 +69,13 @@ export default function ServiceCatalog() {
             <div className="max-w-2xl">
               <p className="inline-flex items-center gap-3 text-sm font-semibold text-(--color-accent)">
                 <span className="h-px w-8 bg-(--color-accent)" />
-                خدمات المنشآت
+                {t("sectionTitle")}
               </p>
               <h2 className="font-alexandria mt-4 text-2xl font-bold leading-relaxed sm:text-3xl lg:text-4xl">
-                كل ما يحتاجه ملف منشأتك علي Google Map في مكان واحد
+                {t("heading")}
               </h2>
               <p className="mt-3 max-w-xl leading-8 text-(--color-secondary-text)">
-                من التأسيس والتحقق، إلى الإدارة والتصوير؛ اختر خدمة واحدة أو
-                أضف أكثر من خدمة إلى طلبك
-                         من خدمات تأسيس حساب وإكمال الملف التجاري والتصوير وتصميم الشعار والموقع
-             الإلكتروني 
+                {t("description")}
               </p>
             </div>
             <div className="flex w-fit items-center gap-3 rounded-lg border border-(--color-accent)/25 bg-(--color-accent)/5 px-4 py-2">
@@ -86,7 +86,7 @@ export default function ServiceCatalog() {
                 )}
               </span>
               <span className="text-sm text-(--color-secondary-text)">
-                خدمات متخصصة
+                {t("countLabel")}
               </span>
             </div>
           </div>
@@ -100,8 +100,8 @@ export default function ServiceCatalog() {
 
               return (
                 <section
-                  key={group.number}
-                  aria-labelledby={`service-group-${group.number}`}
+                  key={group.id}
+                  aria-labelledby={`service-group-${group.id}`}
                   className="grid gap-5 border-b border-white/10 py-8 last:border-b-0 sm:py-10 lg:grid-cols-[minmax(220px,0.72fr)_minmax(0,1.8fr)] lg:gap-12 lg:py-12"
                 >
                   <div className="flex flex-col items-start gap-4">
@@ -113,10 +113,10 @@ export default function ServiceCatalog() {
                         {group.number}
                       </span>
                       <h3
-                        id={`service-group-${group.number}`}
+                        id={`service-group-${group.id}`}
                         className="font-alexandria text-lg font-bold leading-relaxed sm:text-xl"
                       >
-                        {group.title}
+                        {group.title[locale]}
                       </h3>
                     </div>
                     {group.services.length > 1 && (
@@ -125,7 +125,7 @@ export default function ServiceCatalog() {
                         onClick={() => addGroup(groupServiceIds)}
                         className="inline-flex min-h-10 items-center gap-2 rounded-md border border-(--color-accent)/35 px-3 py-2 text-sm font-semibold text-(--color-accent) transition-colors hover:bg-(--color-accent)/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--color-accent)"
                       >
-                        أضف خدمات المجموعة
+                        {t("addGroup")}
                         <span className="text-xs">
                           ({group.services.length})
                         </span>
@@ -155,10 +155,10 @@ export default function ServiceCatalog() {
                           </span>
                           <div>
                             <h4 className="font-alexandria text-base font-semibold leading-7 sm:text-lg">
-                              {service.title}
+                              {service.title[locale]}
                             </h4>
                             <p className="mt-1 text-sm leading-7 text-(--color-secondary-text)">
-                              {service.description}
+                              {service.description[locale]}
                             </p>
                           </div>
                           <button
@@ -166,23 +166,27 @@ export default function ServiceCatalog() {
                             aria-pressed={isSelected}
                             aria-label={
                               isSelected
-                                ? `إزالة خدمة ${service.title} من الطلب`
-                                : `إضافة خدمة ${service.title} إلى الطلب`
+                                ? t("removeServiceLabel", {
+                                    service: service.title[locale],
+                                  })
+                                : t("addServiceLabel", {
+                                    service: service.title[locale],
+                                  })
                             }
                             onClick={() => toggleService(service.id)}
                             className="col-span-2 inline-flex min-h-10 w-full items-center justify-between rounded-md border-t border-white/10 pt-3 text-sm font-bold text-(--color-accent) transition-colors hover:text-[#e8c76a] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--color-accent) sm:col-span-1 sm:w-fit sm:justify-self-end sm:border-0 sm:py-1"
                           >
                             {isSelected ? (
                               <div className="flex items-center gap-1 cursor-pointer">
-                                إزالة الخدمة
+                                {t("removeService")}
                                 <Trash2 aria-hidden="true" className="size-4" />
                               </div>
                             ) : (
                               <div className="flex items-center gap-1 cursor-pointer">
-                                أضف إلى الطلب
+                                {t("addService")}
                                 <ArrowLeft
                                   aria-hidden="true"
-                                  className="size-4 transition-transform group-hover:-translate-x-1"
+                                  className="size-4 transition-transform ltr:rotate-180 rtl:group-hover:-translate-x-1 ltr:group-hover:translate-x-1"
                                 />
                               </div>
                             )}
@@ -200,33 +204,34 @@ export default function ServiceCatalog() {
 
       {selectedServices.length > 0 && (
         <aside
-          aria-label="الخدمات المختارة"
+          aria-label={t("selectedServices")}
           aria-live="polite"
           className="fixed inset-x-0 bottom-3 z-40 px-3"
         >
           <div className="mx-auto flex max-w-5xl flex-col gap-3 rounded-xl border border-(--color-accent)/30 bg-(--color-background)/95 p-4 shadow-2xl backdrop-blur sm:flex-row sm:items-center sm:justify-between">
             <div className="min-w-0">
               <p className="font-semibold">
-                اخترت {selectedServices.length}{" "}
-                {selectedServices.length === 1 ? "خدمة" : "خدمات"}
+                {t("selectedCount", { count: selectedServices.length })}
               </p>
               <p className="mt-1 truncate text-sm text-(--color-secondary-text)">
-                {selectedServices.map((service) => service.title).join("، ")}
+                {selectedServices
+                  .map((service) => service.title[locale])
+                  .join(t("listSeparator"))}
               </p>
             </div>
             <div className="flex shrink-0 items-center gap-3">
               <button
                 type="button"
                 onClick={() => setSelectedIds(new Set())}
-                className="text-sm font-semibold text-(--color-secondary-text) transition hover:text-(--color-text)"
+                className="cursor-pointer text-sm font-semibold text-(--color-secondary-text) transition hover:text-(--color-text)"
               >
-                مسح الاختيار
+                {t("clearSelection")}
               </button>
               <GoldActionLink
                 href={requestHref}
                 className="min-h-11 w-auto px-4 py-2 text-sm font-bold"
               >
-                متابعة الطلب
+                {t("continueRequest")}
               </GoldActionLink>
             </div>
           </div>

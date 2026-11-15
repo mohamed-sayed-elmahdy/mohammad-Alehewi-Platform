@@ -2,47 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import HeroTimelineNode from "@/components/website/home/Hero/HeroTop/HeroTimelineNode";
+import { useTranslations } from "next-intl";
 
 
-const timelineItems = [
-  {
-    type: "sa",
-    title: "السعودية",
-    subtitle: "الرياض - جدة - القصيم",
-    description: "وأكثر من 20 مدينة",
-    flag: "/flags/sa.svg",
-    scale: true,
-  },
-  {
-    type: "world",
-    title: "جولاتي العالمية",
-   
-  },
-  {
-    type: "eg",
-    title: "مصر",
-    flag: "/flags/eg2.png",
-      scale: true,
-  },
-  {
-      type: "tr",
-    title: "تركيا",
-    flag: "/flags/tr.png",
-      scale: true,
-  }
-,
-  {
-    type: "ge",
-    title: "جورجيا",
-    flag: "/flags/ge.png",
-      scale: true,
-  },
-  {
-    type: "plane",
-    title: "والعديد من\nالوجهات القادمة...",
-
-  },
-];
 const timelineStops = [
   0.00, // السعودية
   0.196, // وجهات عالمية
@@ -52,9 +14,25 @@ const timelineStops = [
   0.98, // الطائرة
 ];
 export default function HeroTimeline() {
+  const t = useTranslations("Home.hero.timeline");
   const pathRef = useRef<SVGPathElement>(null);
 
   const [points, setPoints] = useState<DOMPoint[]>([]);
+  const timelineItems = [
+    {
+      type: "sa",
+      title: t("saudi.title"),
+      subtitle: t("saudi.subtitle"),
+      description: t("saudi.description"),
+      flag: "/flags/sa.svg",
+      scale: true,
+    },
+    { type: "world", title: t("world.title") },
+    { type: "eg", title: t("egypt.title"), flag: "/flags/eg2.png", scale: true },
+    { type: "tr", title: t("turkey.title"), flag: "/flags/tr.png", scale: true },
+    { type: "ge", title: t("georgia.title"), flag: "/flags/ge.png", scale: true },
+    { type: "plane", title: t("upcoming.title") },
+  ];
 
   useEffect(() => {
     if (!pathRef.current) return;

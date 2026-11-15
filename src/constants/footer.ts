@@ -9,7 +9,6 @@ import { categories as categoryData } from "@/data/categories";
 
 import {
   HiBuildingOffice2,
-  HiCamera,
   HiGlobeAlt,
   HiSparkles,
 } from "react-icons/hi2";
@@ -20,100 +19,83 @@ import {
   HiFlag,
   HiMap,
   HiStar,
-  HiBookOpen,
-  HiDocumentText,
   HiEnvelope,
 } from "react-icons/hi2";
 
 export const navigation = [
   {
-    label: "الرئيسية",
     href: "/",
     icon: HiHome,
+    messageKey: "home",
   },
   {
-    label: "نبذة عنا",
     href: "/about",
     icon: HiUser,
+    messageKey: "about",
   },
   {
-    label: "الرسالة",
     href: "/mission",
     icon: HiFlag,
+    messageKey: "mission",
   },
   {
-    label: "الجولات",
     href: "/journeys",
     icon: HiMap,
+    messageKey: "journeys",
   },
   {
-    label: "التقييمات",
     href: "/reviews",
     icon: HiStar,
+    messageKey: "reviews",
   },
   {
-    label: "الخدمات ",
     href: "/services",
     icon: HiBuildingOffice2,
+    messageKey: "services",
   },
-  // {
-  //   label: "القصص",
-  //   href: "/stories",
-  //   icon: HiBookOpen,
-  // },
-  // {
-  //   label: "المقالات",
-  //   href: "/articles",
-  //   icon: HiDocumentText,
-  // },
   {
-    label: "طلب زيارة",
     href: "/request-visit",
     icon: HiEnvelope,
+    messageKey: "requestVisit",
   },
 ] as const;
 
 export const categories = categoryData
-  .filter((category) => category.featuredCard)
-  .map(({ title, href, icon }) => ({
-    label: title,
-    href,
-    icon,
-  }));
+  .filter((category) => category.showInFooter);
 
 export const officialLinks = [
   {
-    label: "وزارة الإعلام",
+    messageKey: "mediaMinistry",
     href: "https://www.media.gov.sa",
     icon: GiPalmTree,
     external: true,
   },
   {
-    label: "وزارة الثقافة",
+    messageKey: "cultureMinistry",
     href: "https://www.moc.gov.sa/",
     icon: HiBuildingOffice2,
     external: true,
   },
   {
-    label: "رؤية السعودية 2030",
+    messageKey: "saudiVision",
     href: "https://www.vision2030.gov.sa/ar/",
     icon: HiFlag,
     external: true,
   },
   {
-    label: "الهيئة العامة للسياحة",
+    messageKey: "tourismAuthority",
     href: "https://www.sta.gov.sa",
     icon: HiGlobeAlt,
     external: true,
   },
   {
-    label: "الهيئة العامة للترفيه",
+    messageKey: "entertainmentAuthority",
     href: "https://www.gea.gov.sa",
     icon: HiSparkles,
     external: true,
   },
   {
-    label: "منصة روح السعودية",
+    messageKey: "visitSaudiPlatform",
     href: "https://www.visitsaudi.com",
     icon: HiMap,
     external: true,
@@ -145,7 +127,7 @@ export const socialLinks = [
     icon: PiSnapchatLogoLight,
     external: true,
   },
-  
+
   {
     label: "X",
     href: "https://x.com/Alaqari2006",

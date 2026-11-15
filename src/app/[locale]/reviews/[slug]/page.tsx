@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import ReviewDetailPage from "@/components/website/reviews/ReviewDetailPage";
 import { reviews } from "@/data/reviews";
 import { createPageMetadata } from "@/lib/seo";
 
 type ReviewPageProps = {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 };
 
 export function generateStaticParams() {
@@ -13,22 +14,27 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: ReviewPageProps): Promise<Metadata> {
-  const { slug } = await params;
+  const { locale, slug } = await params;
+  const language = locale === "en" ? "en" : "ar";
+  const t = await getTranslations({ locale: language, namespace: "Reviews" });
   const review = reviews.find((item) => item.id === slug);
 
   if (!review) {
     return {
-      title: "التقييم غير موجود",
+      title: t("detail.notFoundTitle"),
       robots: { index: false, follow: false },
     };
   }
 
+  const title = review.title[language];
+
   return createPageMetadata({
-    title: review.title,
-    description: review.excerpt,
+    title,
+    description: review.excerpt[language],
     path: `/reviews/${review.id}`,
+    locale: language,
     image: review.images[0],
-    imageAlt: `صورة من تجربة ${review.title}`,
+    imageAlt: t("card.imageAlt", { title }),
     openGraphType: "article",
   });
 }

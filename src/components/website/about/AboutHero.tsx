@@ -3,87 +3,71 @@ import {
   ChartNoAxesCombined,
   MapPin,
   Star,
-  Users,
   UtensilsCrossed,
 } from "lucide-react";
+import { useLocale, useTranslations } from "next-intl";
 
 const methods = [
-  { label: "نزور", icon: MapPin },
-  { label: "نجرب", icon: UtensilsCrossed },
-  { label: "نقيم", icon: Star },
-  { label: "نحسن", icon: ChartNoAxesCombined },
-];
+  { key: "visit", icon: MapPin },
+  { key: "experience", icon: UtensilsCrossed },
+  { key: "review", icon: Star },
+  { key: "improve", icon: ChartNoAxesCombined },
+] as const;
 
 export function AboutHero() {
+  const isEnglish = useLocale() === "en";
+  const t = useTranslations("About.hero");
+
   return (
     <section className="mb-3 bg-[url('/hero7.png')] bg-position-[700px_-420px] 
      bg-no-repeat relative isolate min-h-[clamp(330px,33vw,630px)] overflow-hidden">
       <div className="relative z-10 mx-auto grid min-h-[inherit] max-w-[1780px] grid-cols-1 md:grid-cols-[40%_60%]">
-
         <div className="relative min-h-92.5  md:min-h-0 ">
           <Image
             src="/mohamedwhite1.png"
-            alt="الإعلامي محمد الإحيوي"
+            alt={t("alt")}
             fill
             priority
+            sizes="(max-width: 767px) 100vw, 40vw"
             className="z-20 object-contain object-bottom"
-
           />
         </div>
 
-        <div  className=" rounded-br-full border-r-4 border-(--color-accent)/85 rounded-tr-full bg-(--color-background) z-20 flex min-h-92.5 flex-col items-center justify-center px-5 pb-8 pt-12 md:pt-16 text-center sm:px-10 md:py-12 lg:px-14">
+        <div className="z-20 flex min-h-92.5 flex-col items-center justify-center rounded-s-full border-s-4 border-(--color-accent)/85 bg-(--color-background) px-5 pb-8 pt-12 text-center md:py-12 md:pt-16 sm:px-10 lg:px-14">
           <p className="text-lg font-bold text-(--color-accent) sm:text-3xl lg:text-5xl">
-            من هو
+            {t("eyebrow")}
           </p>
-          <h1 className="mt-3 text-xl font-bold leading-[1.4] tracking-tight text-(--color-text) sm:mt-4 sm:text-3xl md:whitespace-nowrap lg:text-[clamp(2.7rem,4.35vw,4.7rem)]">
-            الإعلامي محمد الإحيوي
+          <h1
+            className={`mt-3 text-balance font-bold leading-[1.4] tracking-tight text-(--color-text) sm:mt-4 ${
+              isEnglish
+                ? "text-xl sm:text-2xl lg:text-[clamp(2rem,3.5vw,4rem)]"
+                : "text-xl sm:text-3xl lg:text-[clamp(2.2rem,4vw,4.5rem)]"
+            }`}
+          >
+            {t("title")}
           </h1>
           <p className="mt-3 text-sm leading-7 text-(--color-secondary-text) sm:mt-4 sm:text-lg sm:leading-8 lg:text-2xl lg:leading-10">
-            إعلامي يوثق التجارب وينقل الواقع ويسعى للتحسين
+            {t("description")}
           </p>
-          <div className="mt-6 flex w-fit divide-x divide-x-reverse divide-(--color-accent)/50 overflow-hidden rounded-[18px] border border-(--color-accent)/75 sm:mt-7">
-            {methods.map(({ label, icon: Icon }) => (
-              <div key={label} className="flex items-center gap-1.5 px-2 py-2 text-sm font-semibold text-(--color-text) sm:gap-2 sm:px-4 sm:py-3 sm:text-sm md:px-6 md:text-base lg:text-xl">
-                <Icon className="size-4 text-(--color-accent) sm:size-5 lg:size-6" />
-                {label}
+          <div className="mt-6 grid w-full max-w-[500px] grid-cols-2 overflow-hidden rounded-[18px] border border-(--color-accent)/75 sm:mt-7 sm:flex sm:w-fit sm:flex-wrap md:max-w-none md:flex-nowrap">
+            {methods.map(({ key, icon: Icon }, index) => (
+              <div
+                key={key}
+                className={`flex items-center justify-center gap-1.5 px-2 py-2 text-sm font-semibold text-(--color-text) sm:gap-2 sm:px-4 sm:py-3 md:px-4 ${
+                  isEnglish ? "md:text-sm lg:text-base" : "md:text-base lg:text-xl"
+                } ${
+                  index > 0
+                    ? "border-s border-(--color-accent)/50"
+                    : ""
+                } ${index > 1 ? "border-t border-(--color-accent)/50 sm:border-t-0" : ""}`}
+              >
+                <Icon aria-hidden="true" className="size-4 shrink-0 text-(--color-accent) sm:size-5 lg:size-6" />
+                {t(key)}
               </div>
             ))}
           </div>
         </div>
       </div>
     </section>
-  );
-}
-
-
-
-
-
-export default function AboutSectionTitle() {
-  return (
-    <div className="relative inline-block">
-      {/* Bottom Border Extension */}
-      <div className="absolute left-0 right-12 top-full h-px bg-[#9C6A17]" />
-
-      <div
-        className="
-          flex items-center gap-3
-          px-8 py-4
-          rounded-[24px]
-          border border-[#9C6A17]
-          bg-[#010C24]
-        "
-      >
-        <Users
-          size={22}
-          strokeWidth={1.8}
-          className="text-[#9C6A17]"
-        />
-
-        <span className="text-white text-[22px] font-semibold">
-          نبذة عنا
-        </span>
-      </div>
-    </div>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, type FormEvent, type ChangeEvent } from "react";
+import { useLocale, useMessages, useTranslations } from "next-intl";
 import { countries } from "@/constants/countries";
 import { countryDialCodes } from "@/constants/countryDialCodes";
 import { submitVisitRequest } from "@/lib/web3forms";
@@ -44,6 +45,14 @@ const initialForm: VisitRequestFormValues = {
 };
 
 export default function RequestVisitPage() {
+  const locale = useLocale();
+  const formLocale = locale === "en" ? "en" : "ar";
+  const messages = useMessages();
+  const t = useTranslations("VisitRequest");
+  const tForm = useTranslations("VisitRequest.form");
+  const tValidation = useTranslations("VisitRequest.validation");
+  const tSubmission = useTranslations("VisitRequest.submission");
+  const localizedCountries = Object.values(messages.Countries);
   const [form, setForm] = useState<VisitRequestFormValues>(initialForm);
   const [errors, setErrors] = useState<VisitRequestFieldErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -76,21 +85,21 @@ export default function RequestVisitPage() {
   const validate = () => {
     const next: VisitRequestFieldErrors = {};
 
-    if (!form.name.trim()) next.name = "الاسم مطلوب";
-    if (!form.phoneCode.trim()) next.phoneCode = "مفتاح الدولة مطلوب";
-    if (!form.phoneNumber.trim()) next.phoneNumber = "رقم الجوال مطلوب";
+    if (!form.name.trim()) next.name = tValidation("nameRequired");
+    if (!form.phoneCode.trim()) next.phoneCode = tValidation("phoneCodeRequired");
+    if (!form.phoneNumber.trim()) next.phoneNumber = tValidation("phoneRequired");
     else if (!/^[\d\s()-]{6,20}$/.test(form.phoneNumber.trim()))
-      next.phoneNumber = "رقم الجوال غير صحيح";
+      next.phoneNumber = tValidation("phoneInvalid");
 
-    if (!form.email.trim()) next.email = "البريد الإلكتروني مطلوب";
+    if (!form.email.trim()) next.email = tValidation("emailRequired");
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim()))
-      next.email = "البريد الإلكتروني غير صحيح";
+      next.email = tValidation("emailInvalid");
 
-    if (!form.country.trim()) next.country = "الدولة مطلوبة";
-    if (!form.city.trim()) next.city = "المدينة مطلوبة";
-    if (!form.details.trim()) next.details = "تفاصيل الزيارة مطلوبة";
+    if (!form.country.trim()) next.country = tValidation("countryRequired");
+    if (!form.city.trim()) next.city = tValidation("cityRequired");
+    if (!form.details.trim()) next.details = tValidation("detailsRequired");
     else if (form.details.trim().length < 15)
-      next.details = "يرجى كتابة تفاصيل أوضح عن الزيارة";
+      next.details = tValidation("detailsTooShort");
 
     setErrors(next);
     return Object.keys(next).length === 0;
@@ -101,7 +110,7 @@ export default function RequestVisitPage() {
     const isFormValid = validate();
 
     if (!acceptedVisitTerms) {
-      setVisitTermsError("يجب الموافقة على ضوابط وأحكام الزيارة");
+      setVisitTermsError(tValidation("termsRequired"));
     } else {
       setVisitTermsError("");
     }
@@ -114,14 +123,15 @@ export default function RequestVisitPage() {
     try {
       const result = await submitVisitRequest(
         form,
-        botcheckRef.current?.value ?? ""
+        botcheckRef.current?.value ?? "",
+        formLocale
       );
 
       if (!result.success) {
         setSubmissionError(
           result.reason === "not-configured"
-            ? "نموذج طلب الزيارة غير متاح حاليًا، يرجى التواصل معنا عبر البريد الإلكتروني"
-            : "تعذر إرسال الطلب الآن، يرجى المحاولة مرة أخرى أو التواصل معنا عبر البريد الإلكتروني"
+            ? tSubmission("unavailable")
+            : tSubmission("error")
         );
         return;
       }
@@ -144,36 +154,39 @@ export default function RequestVisitPage() {
     "mb-2 block text-sm font-medium text-(--color-secondary-text)";
 
   return (
-    <div className=" relative min-h-[70vh] overflow-hidden bg-(--color-background) text-(--color-text)">
+    <div
+      dir={locale}
+      lang={locale}
+      className="relative min-h-[70vh] overflow-hidden bg-(--color-background) text-(--color-text)"
+    >
       <div className="pointer-events-none absolute inset-x-0 top-0 h-72 bg-[radial-gradient(ellipse_at_top,rgba(212,175,55,0.12),transparent_65%)]" />
 
       <section className="relative mx-auto max-w-[1280px] py-12  lg:py-16">
         {/* Desktop: 2 columns | Mobile: 1 column */}
         <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-14 xl:gap-16">
           {/* Intro column */}
-          <div className="text-center lg:sticky lg:top-28 lg:text-right">
+          <div className="text-center lg:sticky lg:top-28 lg:text-start">
             <p className="text-sm font-medium tracking-[0.25em] text-(--color-accent) sm:text-base">
-              طلب زيارة
+              {t("eyebrow")}
             </p>
             <h1 className="font-alexandria mt-4 text-3xl font-bold leading-relaxed sm:text-4xl lg:text-[2.75rem] xl:text-5xl">
-              ادعُ محمد الإحيوي لتجربة منشأتك
+              {t("title")}
             </h1>
             <p className="mx-auto mt-5 max-w-xl text-base leading-8 text-(--color-secondary-text) sm:text-lg lg:mx-0">
-              املأ النموذج التالي ببيانات المنشأة وتفاصيل الدعوة، وسنراجع الطلب
-              ونتواصل معك في أقرب وقت
+              {t("description")}
             </p>
-            <ul className="mx-auto mt-8 hidden max-w-md space-y-4 text-right text-(--color-secondary-text) lg:mx-0 lg:block">
+            <ul className="mx-auto mt-8 hidden max-w-md space-y-4 text-start text-(--color-secondary-text) lg:mx-0 lg:block">
               <li className="flex items-start gap-3">
                 <span className="mt-1 size-2 shrink-0 rounded-full bg-(--color-accent)" />
-                <span>تقييم مهني مبني على تجربة حقيقية</span>
+                <span>{t("benefits.authenticReview")}</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="mt-1 size-2 shrink-0 rounded-full bg-(--color-accent)" />
-                <span>ملاحظات تطويرية تساعد على تحسين الخدمة</span>
+                <span>{t("benefits.improvement")}</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="mt-1 size-2 shrink-0 rounded-full bg-(--color-accent)" />
-                <span>تواصل سريع بعد استلام الطلب</span>
+                <span>{t("benefits.quickResponse")}</span>
               </li>
             </ul>
           </div>
@@ -187,10 +200,10 @@ export default function RequestVisitPage() {
                 </span>
                 <div>
                   <h2 className="font-alexandria text-xl font-bold text-(--color-accent)">
-                    نموذج طلب الزيارة
+                    {tForm("title")}
                   </h2>
                   <p className="mt-1 text-sm text-(--color-secondary-text)">
-                    جميع الحقول مطلوبة
+                    {tForm("requiredFields")}
                   </p>
                 </div>
               </div>
@@ -212,7 +225,7 @@ export default function RequestVisitPage() {
                   <label htmlFor="name" className={labelClass}>
                     <span className="inline-flex items-center gap-2">
                       <User className="size-4 text-(--color-accent)" />
-                      الاسم
+                      {tForm("name")}
                     </span>
                   </label>
                   <input
@@ -221,7 +234,7 @@ export default function RequestVisitPage() {
                     type="text"
                     value={form.name}
                     onChange={handleChange}
-                    placeholder="الاسم الكامل / اسم المسؤول"
+                    placeholder={tForm("namePlaceholder")}
                     className={fieldClass}
                     autoComplete="name"
                   />
@@ -234,7 +247,7 @@ export default function RequestVisitPage() {
                   <label htmlFor="phoneNumber" className={labelClass}>
                     <span className="inline-flex items-center gap-2">
                       <PhoneCall className="size-4 text-(--color-accent)" />
-                      رقم الجوال
+                      {tForm("phone")}
                     </span>
                   </label>
                   <div className="flex gap-2 relative" dir="ltr">
@@ -243,9 +256,10 @@ export default function RequestVisitPage() {
                       name="phoneCode"
                       value={form.phoneCode}
                       onChange={handleChange}
+                      aria-label={tForm("phoneCode")}
                       className={`${fieldClass} max-w-24 focus:border-none! focus:outline-none! focus:ring-0! focus-visible:outline-none bg-none! ps-1! pe-0! py-2! top-1 ms-1 border-0  absolute shrink-0 cursor-pointer  text-left`}
                     >
-                      <option value="">الكود</option>
+                      <option value="">{tForm("phoneCode")}</option>
                       {countryDialCodes.map(({ country, code }) => (
                         <option key={`${country}-${code}`} value={code}>
                           {getCountryFlag(country)} {code}
@@ -280,7 +294,7 @@ export default function RequestVisitPage() {
                 <label htmlFor="email" className={labelClass}>
                   <span className="inline-flex items-center gap-2">
                     <Mail className="size-4 text-(--color-accent)" />
-                    البريد الإلكتروني
+                    {tForm("email")}
                   </span>
                 </label>
                 <input
@@ -290,7 +304,7 @@ export default function RequestVisitPage() {
                   dir="ltr"
                   value={form.email}
                   onChange={handleChange}
-                  placeholder="example@email.com"
+                  placeholder={tForm("emailPlaceholder")}
                   className={`${fieldClass} text-left`}
                   autoComplete="email"
                 />
@@ -304,7 +318,7 @@ export default function RequestVisitPage() {
                   <label htmlFor="country" className={labelClass}>
                     <span className="inline-flex items-center gap-2">
                       <Building2 className="size-4 text-(--color-accent)" />
-                      الدولة
+                      {tForm("country")}
                     </span>
                   </label>
                   <select
@@ -314,10 +328,10 @@ export default function RequestVisitPage() {
                     onChange={handleChange}
                     className={`${fieldClass} cursor-pointer`}
                   >
-                    <option value="">اختر الدولة</option>
-                    {countries.map((c) => (
+                    <option value="">{tForm("chooseCountry")}</option>
+                    {countries.map((c, index) => (
                       <option key={c} value={c}>
-                        {c}
+                        {localizedCountries[index] ?? c}
                       </option>
                     ))}
                   </select>
@@ -330,7 +344,7 @@ export default function RequestVisitPage() {
                   <label htmlFor="city" className={labelClass}>
                     <span className="inline-flex items-center gap-2">
                       <MapPin className="size-4 text-(--color-accent)" />
-                      المدينة
+                      {tForm("city")}
                     </span>
                   </label>
                   <input
@@ -339,7 +353,7 @@ export default function RequestVisitPage() {
                     type="text"
                     value={form.city}
                     onChange={handleChange}
-                    placeholder="مثال: الرياض"
+                    placeholder={tForm("cityPlaceholder")}
                     className={fieldClass}
                     autoComplete="address-level2"
                   />
@@ -351,7 +365,7 @@ export default function RequestVisitPage() {
 
               <div>
                 <label htmlFor="details" className={labelClass}>
-                  تفاصيل الزيارة
+                  {tForm("details")}
                 </label>
                 <textarea
                   id="details"
@@ -359,7 +373,7 @@ export default function RequestVisitPage() {
                   rows={5}
                   value={form.details}
                   onChange={handleChange}
-                  placeholder="اكتب نبذة عن المنشأة، نوع النشاط، والهدف من الدعوة..."
+                  placeholder={tForm("detailsPlaceholder")}
                   className={`${fieldClass} min-h-[140px] resize-y`}
                 />
                 {errors.details && (
@@ -375,30 +389,26 @@ export default function RequestVisitPage() {
                   id="visit-terms-title"
                   className="font-alexandria text-base font-bold text-(--color-accent)"
                 >
-                  ضوابط وأحكام الزيارة
+                  {tForm("termsTitle")}
                 </h3>
 
                 <ul className="mt-3 space-y-2 text-sm leading-7 text-(--color-secondary-text)">
                   <li className="flex items-start gap-2.5">
                     <span className="mt-3 size-1.5 shrink-0 rounded-full bg-(--color-accent)" />
                     <span>
-                      مبادرة مستقلة تطوعية يقدمها المرشد المحلي (مستوى 9)
-                      الإعلامي محمد الإحيوي ولا تمثل شركة Google أو خرائط Google
-                      بشكل رسمي.
+                      {tForm("terms.independent")}
                     </span>
                   </li>
                   <li className="flex items-start gap-2.5">
                     <span className="mt-3 size-1.5 shrink-0 rounded-full bg-(--color-accent)" />
                     <span>
-                      تهدف لتقديم الاستشارات الفنية والتقييم المهني لمساعدتكم في
-                      تحسين وتطوير أداء المنشأة وخدماتها.
+                      {tForm("terms.consultation")}
                     </span>
                   </li>
                   <li className="flex items-start gap-2.5">
                     <span className="mt-3 size-1.5 shrink-0 rounded-full bg-(--color-accent)" />
                     <span>
-                      الزيارة مجانية بالكامل (غير مدفوعة)، حيث تنقل التجربة
-                      الفعلية والصادقة دون أي وعود مسبقة بتقييمات مصطنعة.
+                      {tForm("terms.freeVisit")}
                     </span>
                   </li>
                 </ul>
@@ -424,7 +434,7 @@ export default function RequestVisitPage() {
                       }
                       className="mt-1 size-4 shrink-0 cursor-pointer accent-(--color-accent)"
                     />
-                    <span>قرأت وأوافق على ضوابط وأحكام الزيارة</span>
+                    <span>{tForm("acceptTerms")}</span>
                   </label>
                   {visitTermsError ? (
                     <p
@@ -472,10 +482,10 @@ export default function RequestVisitPage() {
 
                   <span className="relative z-20 flex items-center justify-center gap-2 px-5 py-2 text-base font-bold text-(--color-text) drop-shadow-[0_0_6px_rgba(255,199,94,.35)] transition-all duration-300">
                     {isSubmitting ? (
-                      <span>جاري الإرسال...</span>
+                      <span>{tForm("submitting")}</span>
                     ) : (
                       <>
-                        <span>إرسال الطلب</span>
+                        <span>{tForm("submit")}</span>
                         <Send className="size-5 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-[-2px]" />
                       </>
                     )}
@@ -502,8 +512,8 @@ export default function RequestVisitPage() {
             <button
               type="button"
               onClick={closeSuccess}
-              aria-label="إغلاق"
-              className="absolute left-4 top-4 rounded-full border border-white/10 p-2 text-(--color-secondary-text) transition hover:border-(--color-accent)/40 hover:text-(--color-accent)"
+              aria-label={t("form.successClose")}
+              className="absolute start-4 top-4 rounded-full border border-white/10 p-2 text-(--color-secondary-text) transition hover:border-(--color-accent)/40 hover:text-(--color-accent)"
             >
               <X className="size-5" />
             </button>
@@ -516,10 +526,10 @@ export default function RequestVisitPage() {
               id="success-title"
               className="font-alexandria mt-6 text-2xl font-bold text-(--color-accent)"
             >
-              تم استلام طلبكم
+              {tForm("successTitle")}
             </h3>
             <p className="mt-4 text-base leading-8 text-(--color-secondary-text)">
-              تم استلام طلبكم وسيتم التواصل معكم قريبا
+              {tForm("successMessage")}
             </p>
 
             <button
@@ -527,7 +537,7 @@ export default function RequestVisitPage() {
               onClick={closeSuccess}
               className="mt-8 inline-flex rounded-2xl border border-(--color-accent)/50 bg-(--color-accent)/15 px-6 py-3 text-sm font-semibold text-(--color-accent) transition hover:bg-(--color-accent)/25"
             >
-              حسنا
+              {tForm("successClose")}
             </button>
           </div>
         </div>

@@ -4,6 +4,7 @@ import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
 import { ArrowLeft, ArrowRight, MapPin } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
 
 type ReviewImageGalleryProps = {
   images: string[];
@@ -18,8 +19,10 @@ export default function ReviewImageGallery({
   locationLabel,
   badge,
 }: ReviewImageGalleryProps) {
+  const locale = useLocale() === "en" ? "en" : "ar";
+  const t = useTranslations("Reviews.gallery");
   const [viewportRef, emblaApi] = useEmblaCarousel({
-    direction: "rtl",
+    direction: locale === "ar" ? "rtl" : "ltr",
     loop: images.length > 1,
   });
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -48,7 +51,7 @@ export default function ReviewImageGallery({
           ref={viewportRef}
           role="region"
           aria-roledescription="carousel"
-          aria-label={`صور تجربة ${reviewTitle}`}
+          aria-label={t("label", { title: reviewTitle })}
           className="absolute inset-0 overflow-hidden"
         >
           <div className="flex h-full touch-pan-y">
@@ -57,12 +60,18 @@ export default function ReviewImageGallery({
                 key={`${image}-${index}`}
                 role="group"
                 aria-roledescription="slide"
-                aria-label={`${index + 1} من ${images.length}`}
+                aria-label={t("slide", {
+                  current: index + 1,
+                  total: images.length,
+                })}
                 className="relative h-full min-w-0 flex-[0_0_100%]"
               >
                 <Image
                   src={image}
-                  alt={`صورة ${index + 1} من تجربة ${reviewTitle}`}
+                  alt={t("imageAlt", {
+                    number: index + 1,
+                    title: reviewTitle,
+                  })}
                   fill
                   priority={index === 0}
                   sizes="(min-width: 1024px) 50vw, 100vw"
@@ -98,19 +107,27 @@ export default function ReviewImageGallery({
             </div>
             <button
               type="button"
-              aria-label="الصورة السابقة"
+              aria-label={t("previousImage")}
               onClick={() => emblaApi?.scrollPrev()}
-              className="absolute right-3 top-1/2 z-10 grid size-10 -translate-y-1/2 place-items-center rounded-full border border-white/25 bg-black/55 text-white backdrop-blur-sm transition hover:bg-black/75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent)"
+              className="absolute right-3 top-1/2 z-10 grid size-10 -translate-y-1/2 place-items-center rounded-full border border-white/25 bg-black/55 text-white backdrop-blur-sm transition hover:bg-black/75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent) ltr:right-auto ltr:left-3"
             >
-              <ArrowRight className="size-5" aria-hidden="true" />
+              {locale === "ar" ? (
+                <ArrowRight className="size-5" aria-hidden="true" />
+              ) : (
+                <ArrowLeft className="size-5" aria-hidden="true" />
+              )}
             </button>
             <button
               type="button"
-              aria-label="الصورة التالية"
+              aria-label={t("nextImage")}
               onClick={() => emblaApi?.scrollNext()}
-              className="absolute left-3 top-1/2 z-10 grid size-10 -translate-y-1/2 place-items-center rounded-full border border-white/25 bg-black/55 text-white backdrop-blur-sm transition hover:bg-black/75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent)"
+              className="absolute left-3 top-1/2 z-10 grid size-10 -translate-y-1/2 place-items-center rounded-full border border-white/25 bg-black/55 text-white backdrop-blur-sm transition hover:bg-black/75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent) ltr:left-auto ltr:right-3"
             >
-              <ArrowLeft className="size-5" aria-hidden="true" />
+              {locale === "ar" ? (
+                <ArrowLeft className="size-5" aria-hidden="true" />
+              ) : (
+                <ArrowRight className="size-5" aria-hidden="true" />
+              )}
             </button>
           </>
         ) : null}
@@ -120,13 +137,13 @@ export default function ReviewImageGallery({
         <div
           className="mt-3 flex gap-2 overflow-x-auto pb-1"
           role="group"
-          aria-label="اختيار صورة من المعرض"
+          aria-label={t("chooseImage")}
         >
           {images.map((image, index) => (
             <button
               key={`${image}-thumbnail-${index}`}
               type="button"
-              aria-label={`عرض الصورة ${index + 1}`}
+              aria-label={t("viewImage", { number: index + 1 })}
               aria-pressed={selectedIndex === index}
               onClick={() => emblaApi?.scrollTo(index)}
               className={`relative h-16 w-20 shrink-0 overflow-hidden rounded-md border transition-[border-color,box-shadow,opacity] duration-300 ease-out sm:h-20 sm:w-28 ${

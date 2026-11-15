@@ -29,7 +29,7 @@ export default function ServicesFaq({ items }: ServicesFaqProps) {
                 aria-expanded={isOpen}
                 aria-controls={answerId}
                 onClick={() => setOpenIndex(isOpen ? null : index)}
-                className="flex min-h-14 w-full items-center justify-between gap-5 py-4 text-right font-semibold leading-7 transition-colors hover:text-(--color-accent) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent)"
+                className="flex min-h-14 w-full items-center justify-between gap-5 py-4 text-start font-semibold leading-7 transition-colors hover:text-(--color-accent) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent)"
               >
                 <span>{item.question}</span>
                 <ChevronDown

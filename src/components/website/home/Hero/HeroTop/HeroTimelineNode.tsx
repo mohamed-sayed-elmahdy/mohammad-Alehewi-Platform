@@ -1,6 +1,7 @@
 
  import { AiOutlineGlobal } from "react-icons/ai";
  import Image from "next/image";
+ import { useLocale } from "next-intl";
 
 type TimelineItem = {
   type: string;
@@ -20,6 +21,11 @@ export default function HeroTimelineNode({
   item,
   point,
 }: HeroTimelineNodeProps) {
+  const locale = useLocale();
+  const labelPosition =
+    locale === "en"
+      ? "right-[calc(100%+18px)] text-end"
+      : "left-[calc(100%+18px)] text-start";
   const isSaudi = item.type === "sa";
   const isWorld = item.type === "world";
   const isPlane = item.type === "plane";
@@ -80,16 +86,10 @@ export default function HeroTimelineNode({
 
   {!isPlane && (
     <div
-      className="
-        absolute
-        left-[calc(100%+18px)]
-        top-1/2
-        -translate-y-1/2
-        text-right
-        whitespace-nowrap
-      "
+      className={`absolute ${labelPosition} top-1/2 -translate-y-1/2 whitespace-nowrap`}
+      dir={locale}
     >
-      <h3 className="text-white font-bold text-xl">
+      <h3 className={`${locale === "en" ? "text-lg" : "text-xl"} text-white font-bold`}>
         {item.title}
       </h3>
 

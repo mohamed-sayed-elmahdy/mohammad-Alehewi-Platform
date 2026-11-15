@@ -1,16 +1,21 @@
 import Image from "next/image";
-import Link from "next/link";
+import { useLocale, useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { CalendarDays, MapPin, MapPinned } from "lucide-react";
 import type { Journey } from "@/types/website";
+import { getJourneyLocationLabel } from "@/data/journeys";
 
 type JourneyCardProps = {
   journey: Journey;
 };
 
 export default function JourneyCard({ journey }: JourneyCardProps) {
-  const location = journey.city
-    ? `${journey.city}، ${journey.country}`
-    : journey.country;
+  const locale = useLocale() === "en" ? "en" : "ar";
+  const t = useTranslations("Journeys");
+  const location = getJourneyLocationLabel(journey, locale);
+  const title = journey.title[locale];
+  const city = journey.city?.[locale] ?? journey.country[locale];
+  const placesCount = t("placesCount", { count: journey.placesCount });
 
   return (
     <article
@@ -22,12 +27,12 @@ export default function JourneyCard({ journey }: JourneyCardProps) {
     >
       <Link
         href={journey.href}
-        aria-label={`عرض جولة ${journey.title}`}
+        aria-label={t("card.viewJourney", { title })}
         className="relative isolate block h-full overflow-hidden focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--color-accent)"
       >
         <Image
           src={journey.image}
-          alt={`صورة من جولة ${journey.title}`}
+          alt={t("card.imageAlt", { title })}
           fill
           sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
           className="-z-20 object-cover transition duration-500 group-hover:scale-105"
@@ -35,11 +40,11 @@ export default function JourneyCard({ journey }: JourneyCardProps) {
         <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(4,10,18,0.05)_4%,rgba(4,10,18,0.14)_30%,rgba(4,10,18,0.96)_100%)]" />
 
         <span className="absolute left-3 top-3 rounded-full border border-white/20 bg-[#08111f]/70 px-3 py-1 text-xs font-medium text-(--color-text) backdrop-blur-sm">
-          {journey.city ?? journey.country}
+          {city}
         </span>
         {journey.featured ? (
           <span className="absolute right-3 top-3 rounded-full border border-(--color-accent)/50 bg-[#08111f]/75 px-3 py-1 text-xs font-semibold text-(--color-accent) backdrop-blur-sm">
-            جولة مميزة
+            {t("featured")}
           </span>
         ) : null}
 
@@ -49,19 +54,19 @@ export default function JourneyCard({ journey }: JourneyCardProps) {
             {location}
           </span>
           <h2 className="font-alexandria text-lg font-bold leading-7 text-(--color-text) sm:text-xl sm:leading-8">
-            {journey.title}
+            {title}
           </h2>
           <p className="mt-1 line-clamp-2 text-xs leading-5 text-(--color-secondary-text) sm:text-sm sm:leading-6">
-            {journey.description}
+            {journey.description[locale]}
           </p>
           <div className="mt-3 flex items-center justify-between gap-3 border-t border-white/15 pt-3 text-xs text-(--color-secondary-text)">
             <span className="inline-flex items-center gap-1.5">
               <CalendarDays className="size-4 text-(--color-accent)" aria-hidden="true" />
-              {journey.dateLabel}
+              {journey.dateLabel[locale]}
             </span>
             <span className="inline-flex items-center gap-1.5">
               <MapPinned className="size-4 text-(--color-accent)" aria-hidden="true" />
-              {new Intl.NumberFormat("ar-SA").format(journey.placesCount)} مكانًا
+              {placesCount}
             </span>
           </div>
         </div>

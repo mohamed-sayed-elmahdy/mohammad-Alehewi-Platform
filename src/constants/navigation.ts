@@ -1,31 +1,30 @@
 export const navLinks  = [
   {
-    title: "الرئيسية",
+    title: "home",
     href: "/",
   },
   {
-      title: "نبذة عنا",
+    title: "about",
     href: "/about",
   },
   {
-      title: "الرسالة",
+    title: "mission",
     href: "/mission",
   },
   {
-    title: "الجولات",
+    title: "journeys",
     href: "/journeys",
   },
   {
-    title: "التقييمات",
+    title: "reviews",
     href: "/reviews",
   },
   {
-    title: "الخدمات ",
+    title: "services",
     href: "/services",
   },
   // {
   //   title: "القصص",
   //   href: "/stories",
   // },
-];
-
+] as const;

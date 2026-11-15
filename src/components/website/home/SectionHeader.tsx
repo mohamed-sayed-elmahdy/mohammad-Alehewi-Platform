@@ -1,3 +1,5 @@
+import { Link } from "@/i18n/navigation";
+
 type SectionHeaderProps = {
   title: string;
   description: string;
@@ -18,9 +20,9 @@ export default function SectionHeader({
       <div className="flex flex-wrap items-center gap-3 text-sm text-[#f3c15c]">
         {eyebrow ? <span>{eyebrow}</span> : null}
         {actionLabel && actionHref ? (
-          <a href={actionHref} className="text-sm transition hover:text-white">
+          <Link href={actionHref} className="text-sm transition hover:text-white">
             {actionLabel}
-          </a>
+          </Link>
         ) : null}
       </div>
       <div className="space-y-3">

@@ -1,23 +1,56 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Menu, X, Plane } from "lucide-react";
 import NavLinks from "@/components/website/navbar/NavLinks";
-import ThemeToggle from "@/components/website/navbar/ThemeToggle";
-import LanguageSwitcher from "@/components/website/navbar/LanguageSwitcher";
 import PrimaryButton from "@/components/website/navbar/PrimaryButton";
+import { useTranslations } from "next-intl";
 
 export default function MobileMenu() {
   const [open, setOpen] = useState(false);
+  const t = useTranslations("Navigation");
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    if (open) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    if (!open) return;
+
+    const trigger = triggerRef.current;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    closeButtonRef.current?.focus();
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        setOpen(false);
+        return;
+      }
+
+      if (event.key !== "Tab" || !menuRef.current) return;
+
+      const focusableElements = menuRef.current.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      );
+      const firstElement = focusableElements.item(0);
+      const lastElement = focusableElements.item(focusableElements.length - 1);
+
+      if (event.shiftKey && document.activeElement === firstElement) {
+        event.preventDefault();
+        lastElement?.focus();
+      } else if (!event.shiftKey && document.activeElement === lastElement) {
+        event.preventDefault();
+        firstElement?.focus();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", handleKeyDown);
+      trigger?.focus();
     };
   }, [open]);
 
@@ -26,9 +59,11 @@ export default function MobileMenu() {
   return (
     <div className="lg:hidden">
       <button
+        ref={triggerRef}
         type="button"
-        aria-label={open ? "إغلاق القائمة" : "فتح القائمة"}
+        aria-label={open ? t("closeMenu") : t("openMenu")}
         aria-expanded={open}
+        aria-controls="mobile-navigation-menu"
         onClick={() => setOpen((v) => !v)}
         className="flex size-10 items-center justify-center rounded-full border border-white/25 text-(--color-text) transition hover:border-(--color-accent) hover:text-(--color-accent)"
       >
@@ -44,22 +79,26 @@ export default function MobileMenu() {
         aria-hidden={!open}
       />
 
-      {/* Drawer — من اليمين لأن الموقع RTL */}
       <aside
-        className={`fixed top-0 inset-s-0 z-50 flex h-full w-[min(86vw,320px)] flex-col border-l border-(--color-accent)/25 bg-(--color-background) shadow-2xl transition-transform duration-300 ease-out ${
-          open ? "translate-x-0" : "translate-x-full"
+        ref={menuRef}
+        id="mobile-navigation-menu"
+        className={`fixed top-0 inset-s-0 z-50 flex h-full w-[min(86vw,320px)] flex-col border-s border-(--color-accent)/25 bg-(--color-background) shadow-2xl transition-transform duration-300 ease-out ${
+          open ? "translate-x-0" : "ltr:-translate-x-full rtl:translate-x-full"
         }`}
         role="dialog"
         aria-modal="true"
-        aria-label="قائمة التنقل"
+        aria-label={t("menuLabel")}
+        aria-hidden={!open}
+        inert={!open}
       >
         <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
           <p className="font-alexandria text-lg font-bold text-(--color-accent)">
-            القائمة
+            {t("menu")}
           </p>
           <button
+            ref={closeButtonRef}
             type="button"
-            aria-label="إغلاق القائمة"
+            aria-label={t("closeMenu")}
             onClick={close}
             className="flex size-9 items-center justify-center rounded-full border border-white/20 text-(--color-text) transition hover:border-(--color-accent) hover:text-(--color-accent)"
           >
@@ -76,14 +115,9 @@ export default function MobileMenu() {
         </nav>
 
         <div className="space-y-4 border-t border-white/10 px-5 py-5">
-          {/* <div className="flex items-center justify-between">
-            <ThemeToggle />
-            <LanguageSwitcher />
-          </div> */}
-
           <PrimaryButton
             href="/request-visit"
-            ariaLabel="طلب زيارة"
+            ariaLabel={t("requestVisit")}
             className="w-full"
             animation="group-hover:animate-plane-fly"
             icon={
@@ -94,7 +128,7 @@ export default function MobileMenu() {
               />
             }
           >
-            <span>طلب زيارة</span>
+            <span>{t("requestVisit")}</span>
           </PrimaryButton>
         </div>
       </aside>

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import type { LucideIcon } from "lucide-react";
 import type { IconType } from "react-icons";
 import { HiArrowTopRightOnSquare } from "react-icons/hi2";
@@ -25,7 +25,7 @@ export default function FooterLinksCard({
   return (
     <section
       className={cn(
-        "group text-center xl:text-right",
+        "group text-center xl:text-start",
         className
       )}
     >
@@ -89,34 +89,25 @@ export default function FooterLinksCard({
             {title}
           </h3>
 
-          <div className="mt-7 divide-y divide-white/10">
+          <nav aria-label={title} className="mt-7 divide-y divide-white/10">
             {items.map((item) => {
               const Icon = item.icon;
-
-              return (
-                <Link
-                  key={item.label}
-                  href={item.href}
-                  target={item.external ? "_blank" : undefined}
-                  rel={
-                    item.external
-                      ? "noopener noreferrer"
-                      : undefined
-                  }
-                  className="
-                    group/item
-                    flex
-                    min-h-[58px]
-                    items-center
-                    gap-3
-                    text-[15px]
-                    text-slate-200
-                    transition-all
-                    duration-300
-                    hover:text-(--color-accent)
-                  "
-                >
+              const linkClassName = `
+                group/item
+                flex
+                min-h-[58px]
+                items-center
+                gap-3
+                text-[15px]
+                text-slate-200
+                transition-all
+                duration-300
+                hover:text-(--color-accent)
+              `;
+              const content = (
+                <>
                   <Icon
+                    aria-hidden="true"
                     className="
                       shrink-0
                       text-[24px]
@@ -133,6 +124,7 @@ export default function FooterLinksCard({
 
                   {item.external && (
                     <HiArrowTopRightOnSquare
+                      aria-hidden="true"
                       className="
                         text-lg
                         text-(--color-accent)
@@ -145,10 +137,30 @@ export default function FooterLinksCard({
                       "
                     />
                   )}
+                </>
+              );
+
+              return item.external ? (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={linkClassName}
+                >
+                  {content}
+                </a>
+              ) : (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className={linkClassName}
+                >
+                  {content}
                 </Link>
               );
             })}
-          </div>
+          </nav>
         </div>
       </div>
     </section>

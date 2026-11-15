@@ -1,10 +1,11 @@
 "use client";
 
 import { useRef, useState, type PointerEvent } from "react";
+import { useLocale, useTranslations } from "next-intl";
 import {
   internationalJourneyCountries,
-  journeyScopeFilters,
-  saudiJourneyCities,
+  journeySaudiCities,
+  localizeJourneyPlace,
 } from "@/data/journeys";
 import type { JourneyCityFilter, JourneyScopeFilter } from "@/types/website";
 
@@ -28,15 +29,19 @@ export default function JourneysFilters({
   onScopeChange,
   onLocationChange,
 }: JourneysFiltersProps) {
+  const locale = useLocale() === "en" ? "en" : "ar";
+  const t = useTranslations("Journeys.filters");
+  const common = useTranslations("Common");
   const secondaryFiltersRef = useRef<HTMLDivElement>(null);
   const dragStartRef = useRef({ x: 0, scrollLeft: 0 });
   const [isDragging, setIsDragging] = useState(false);
   const isSaudiScope = scope === "saudi";
-  const locations = isSaudiScope
-    ? saudiJourneyCities
-    : internationalJourneyCountries;
-  const locationLabel =
-    isSaudiScope ? "فلترة الجولات حسب المدينة" : "فلترة الجولات حسب الدولة";
+  const locations = isSaudiScope ? journeySaudiCities : internationalJourneyCountries;
+  const locationLabel = isSaudiScope ? t("byCity") : t("byCountry");
+  const scopeLabels = {
+    saudi: t("scopeOptions.saudi"),
+    international: t("scopeOptions.international"),
+  };
 
   const handlePointerDown = (event: PointerEvent<HTMLDivElement>) => {
     if (event.pointerType !== "mouse") return;
@@ -69,21 +74,21 @@ export default function JourneysFilters({
   };
 
   return (
-    <div className="space-y-4" dir="rtl">
+    <div className="space-y-4">
       <div
         className="flex flex-wrap justify-center gap-2"
         role="group"
-        aria-label="نوع الجولات"
+        aria-label={t("scope")}
       >
-        {journeyScopeFilters.map((filter) => (
+        {(["saudi", "international"] as const).map((filter) => (
           <button
-            key={filter.value}
+            key={filter}
             type="button"
-            aria-pressed={scope === filter.value}
-            onClick={() => onScopeChange(filter.value)}
-            className={chipClass(scope === filter.value)}
+            aria-pressed={scope === filter}
+            onClick={() => onScopeChange(filter)}
+            className={chipClass(scope === filter)}
           >
-            {filter.label}
+            {scopeLabels[filter]}
           </button>
         ))}
       </div>
@@ -99,7 +104,7 @@ export default function JourneysFilters({
             }`}
             role="group"
             aria-label={locationLabel}
-            title={isSaudiScope ? "اسحب لعرض المزيد من المدن" : undefined}
+            title={isSaudiScope ? t("dragCities") : undefined}
             onPointerDown={isSaudiScope ? handlePointerDown : undefined}
             onPointerMove={isSaudiScope ? handlePointerMove : undefined}
             onPointerUp={isSaudiScope ? stopDragging : undefined}
@@ -116,7 +121,7 @@ export default function JourneysFilters({
                 onClick={() => onLocationChange("all")}
                 className={chipClass(location === "all")}
               >
-                الكل
+                {common("all")}
               </button>
               {locations.map((item) => (
                 <button
@@ -126,7 +131,7 @@ export default function JourneysFilters({
                   onClick={() => onLocationChange(item)}
                   className={chipClass(location === item)}
                 >
-                  {item}
+                  {localizeJourneyPlace(item, locale)}
                 </button>
               ))}
             </div>

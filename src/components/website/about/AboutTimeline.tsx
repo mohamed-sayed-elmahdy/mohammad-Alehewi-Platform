@@ -1,43 +1,43 @@
 import { Building2, MapPin, Medal, Newspaper, PenTool } from "lucide-react";
+import { useLocale, useTranslations } from "next-intl";
 
+// Future API candidate: timeline events may be updated as new milestones are added.
 const events = [
   {
     year: "2012",
-    title: "بداية مسيرتي الإعلامية",
-    text: "بدأت عبر صحيفة نون الإلكترونية كمحرر",
+    key: "mediaCareer",
     icon: PenTool,
   },
 
   {
     year: "2015",
-    title: "تملكي صحيفة نون الإلكترونية",
-    text: "في أواخر عام 2015م، واصلت التغطيات الإعلامية الرسمية",
+    key: "newspaper",
     icon: Newspaper,
   },
 
   {
     year: "2017",
-    title: "أصبحت مرشداً محلياً على قوقل ماب",
-    text: "أنشأت حسابا كمرشد محلي أكتب فيه انطباعاتي عن جولاتي ",
+    key: "localGuide",
     icon: MapPin,
   },
 
   {
     year: "2018",
-    title: "العمل في إمارة منطقة مكة المكرمة - محافظة جدة",
-    text: "عملت في إدارة المراسم والعلاقات العامة",
+    key: "publicRelations",
     icon: Building2,
   },
 
   {
     year: "2025",
-    title: "المستوى التاسع (مستوى النخبة)",
-    text: "وصلت على قوقل ماب إلى المستوى التاسع، بمجموع أكثر من 75,000 نقطة",
+    key: "levelNine",
     icon: Medal,
   },
-];
+] as const;
 
 export function AboutTimeline() {
+  const locale = useLocale();
+  const t = useTranslations("About.timeline");
+
   return (
     <section className="mx-auto max-w-[1780px] px-4 py-13 sm:px-8 lg:px-10">
       <div
@@ -49,10 +49,9 @@ export function AboutTimeline() {
           sm:px-12
         "
       >
-        <div className="flex items-center justify-center gap-4">
+        <div dir="rtl" className="flex items-center justify-center gap-4">
           {/* Right Line */}
-          <div className="flex items-center mt-2">
-
+          <div aria-hidden="true" className="mt-2 flex items-center">
             <span
               className="
             h-px
@@ -64,16 +63,15 @@ export function AboutTimeline() {
           "
             />
             <span className="h-2 w-2 rounded-full bg-(--color-accent) shadow-[0_0_10px_var(--color-accent)]" />
-
           </div>
 
           {/* Text */}
-          <h2 className="font-alexandria text-center text-lg font-bold text-(--color-accent) sm:text-2xl lg:text-3xl">
-            رحلتي في الإعلام والتجارب
+          <h2 dir={locale} className="font-alexandria text-center text-lg font-bold text-(--color-accent) sm:text-2xl lg:text-3xl">
+            {t("title")}
           </h2>
 
           {/* Left Line */}
-          <div className="flex items-center mt-2">
+          <div aria-hidden="true" className="mt-2 flex items-center">
             <span className="h-2 w-2 rounded-full bg-(--color-accent) shadow-[0_0_10px_var(--color-accent)]" />
 
             <span
@@ -86,7 +84,6 @@ export function AboutTimeline() {
             to-transparent
           "
             />
-
           </div>
         </div>
 
@@ -100,7 +97,7 @@ export function AboutTimeline() {
             "
           />
 
-          {events.map(({ year, title, text, icon: Icon }) => (
+          {events.map(({ year, key, icon: Icon }) => (
             <article key={year} className="relative z-10 text-center">
               <p className="text-lg font-bold sm:text-xl" dir="ltr">
                 {year}
@@ -115,11 +112,11 @@ export function AboutTimeline() {
                   bg-(--color-background)
                 "
               >
-                <Icon className="size-10 text-(--color-text)" />
+                <Icon aria-hidden="true" className="size-10 text-(--color-text)" />
               </div>
 
               <h3 className="text-base font-bold sm:text-lg">
-                {title}
+                {t(`events.${key}.title`)}
               </h3>
 
               <p
@@ -128,7 +125,7 @@ export function AboutTimeline() {
                   text-(--color-secondary-text)
                 "
               >
-                {text}
+                {t(`events.${key}.description`)}
               </p>
             </article>
           ))}

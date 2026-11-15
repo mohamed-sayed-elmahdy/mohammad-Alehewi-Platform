@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { cn } from "@/lib/utils";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 
 interface PrimaryButtonProps {
   children: React.ReactNode;

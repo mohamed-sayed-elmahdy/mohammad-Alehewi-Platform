@@ -1,15 +1,18 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { categories } from "@/data/categories";
 import AccentBorder from "@/components/shared/AccentBorder";
-const getCardAt = (index: number) => {
-  return categories[(index + categories.length) % categories.length];
-};
+import { useLocale, useTranslations } from "next-intl";
+
+const heroCategories = categories.filter((category) => category.showInHero);
+
+const getCardAt = (index: number) =>
+  heroCategories[(index + heroCategories.length) % heroCategories.length];
 
 const carouselVariants = {
   enter: (slideDirection: number) => ({
@@ -26,25 +29,33 @@ const carouselVariants = {
 };
 
 export default function HeroCards() {
+  const locale = useLocale();
+  const t = useTranslations("Home");
   const [activeIndex, setActiveIndex] = useState(1);
   const [direction, setDirection] = useState(1);
   const visibleCards = [-1, 0, 1].map((offset) => getCardAt(activeIndex + offset));
 
   const moveCarousel = (direction: number) => {
     setDirection(direction);
-    setActiveIndex((current) => (current + direction + categories.length) % categories.length);
+    setActiveIndex(
+      (current) => (current + direction + heroCategories.length) % heroCategories.length,
+    );
   };
 
   return (
-    <section className="mt-4 w-full max-w-170" aria-label="استكشف التجارب" >
+    <section
+      dir={locale}
+      className="mt-4 w-full max-w-170"
+      aria-label={t("hero.exploreExperiencesLabel")}
+    >
       <div className="flex items-center gap-2 sm:gap-3" >
         <button
           type="button"
           onClick={() => moveCarousel(-1)}
-          aria-label="التجربة السابقة"
+          aria-label={t("hero.previousExperience")}
           className="grid size-9 shrink-0 place-items-center rounded-full border border-[#b7802f]/80 bg-[#07101b]/80 text-[#f3c15c] transition hover:bg-[#f3c15c] hover:text-[#08111f] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f3c15c]"
         >
-        <ChevronRight className="size-5" />
+        <ChevronRight aria-hidden="true" className="size-5 ltr:rotate-180" />
         </button>
 
         <div className="relative min-w-0 flex-1 overflow-visible">
@@ -69,7 +80,9 @@ export default function HeroCards() {
                   <Link
                     key={`${card.id}-${featured ? "featured" : "side"}`}
                     href={card.href}
-                    aria-label={`استكشف فئة ${card.title}`}
+                    aria-label={t("hero.exploreCategory", {
+                      category: card.title[locale === "en" ? "en" : "ar"],
+                    })}
                     className="block min-w-0 rounded-2xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--color-accent)"
                   >
                     <AccentBorder
@@ -82,7 +95,7 @@ export default function HeroCards() {
                     >
                       <Image
                         src={card.featuredCardImage || card.img}
-                        alt={card.title}
+                        alt={card.title[locale === "en" ? "en" : "ar"]}
                         fill
                         sizes="(min-width: 640px) 220px, 30vw"
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -90,7 +103,7 @@ export default function HeroCards() {
                       <div className="absolute inset-0 bg-linear-to-t from-[#07101b] via-[#07101b]/20 to-transparent" />
                       <div className="z-10 absolute inset-x-2 bottom-2 text-center sm:inset-x-3 sm:bottom-3">
                         <h3 className={`font-alexandria font-bold text-white drop-shadow-md ${featured ? "text-sm sm:text-lg" : "text-[11px] sm:text-sm"}`}>
-                          {card.title}
+                          {card.title[locale === "en" ? "en" : "ar"]}
                         </h3>
                       </div>
                     </AccentBorder>
@@ -103,11 +116,11 @@ export default function HeroCards() {
         <button
           type="button"
           onClick={() => moveCarousel(1)}
-          aria-label="التجربة التالية"
+          aria-label={t("hero.nextExperience")}
           className="grid size-9 shrink-0 place-items-center rounded-full border border-[#b7802f]/80 bg-[#07101b]/80 text-[#f3c15c] transition hover:bg-[#f3c15c] hover:text-[#08111f] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f3c15c]"
         >
          
-             <ChevronLeft className="size-5" />
+             <ChevronLeft aria-hidden="true" className="size-5 ltr:rotate-180" />
         </button>
       </div>
     </section>

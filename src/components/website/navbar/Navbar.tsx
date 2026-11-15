@@ -1,15 +1,16 @@
 "use client";
 import Logo from "@/components/website/navbar/Logo";
 import NavLinks from "@/components/website/navbar/NavLinks";
-import ThemeToggle from "@/components/website/navbar/ThemeToggle";
-import LanguageSwitcher from "@/components/website/navbar/LanguageSwitcher";
 import PrimaryButton from "@/components/website/navbar/PrimaryButton";
 import MobileMenu from "@/components/website/navbar/MobileMenu";
+import LanguageSwitcher from "@/components/website/navbar/LanguageSwitcher";
 import { Plane } from "lucide-react";
-import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { usePathname } from "@/i18n/navigation";
 
 export default function Navbar() {
   const pathname = usePathname();
+  const t = useTranslations("Navigation");
   const navbarAbsolute = pathname === "/";
 
   return (
@@ -25,26 +26,21 @@ export default function Navbar() {
           lg:grid-cols-[1fr_auto_1fr]
         `}
       >
-        {/* Right: Logo */}
         <Logo />
 
-        {/* Center: desktop links only */}
-        <div className="hidden justify-center lg:flex">
+        <nav
+          aria-label={t("primaryNavigation")}
+          className="hidden justify-center lg:flex"
+        >
           <NavLinks />
-        </div>
+        </nav>
 
-        {/* Left: actions */}
         <div className="flex items-center justify-end gap-2 sm:gap-3 lg:gap-4">
-          {/* <div className="hidden items-center gap-3 md:flex">
-            <ThemeToggle />
-            <span className="h-6 border-l border-white/30" />
-            <LanguageSwitcher />
-          </div> */}
+          <LanguageSwitcher />
 
-          {/* CTA: icon-only on very small screens, full on sm+ */}
           <PrimaryButton
             href="/request-visit"
-            ariaLabel="طلب زيارة"
+            ariaLabel={t("requestVisit")}
             animation="group-hover:animate-plane-fly"
             className="hidden sm:inline-flex"
             icon={
@@ -55,8 +51,7 @@ export default function Navbar() {
               />
             }
           >
-            <span className="hidden md:inline">طلب زيارة</span>
-            <span className="md:hidden">زيارة</span>
+            <span>{t("requestVisit")}</span>
           </PrimaryButton>
 
           <MobileMenu />

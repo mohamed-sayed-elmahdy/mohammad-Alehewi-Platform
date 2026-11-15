@@ -1,4 +1,5 @@
-import Link from "next/link";
+import { useLocale, useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import BrandLogo from "@/components/website/BrandLogo";
 import FooterAccreditations from "@/components/website/footer/FooterAccreditations";
 import FooterLinksCard from "@/components/website/footer/FooterLinksCard";
@@ -22,21 +23,6 @@ import {
   PhoneCall,
   Plane,
 } from "lucide-react";
-const footerColumns = [
-  {
-    title: "روابط تهمك",
-    items: officialLinks,
-  },
-  {
-    title: "أبرز الفئات",
-    items: categories,
-  },
-  {
-    title: "استكشف",
-    items: navigation,
-  },
-];
-
 function FooterTitle({ children }: { children: React.ReactNode }) {
   return (
     <h2 className="font-alexandria text-[21px] font-semibold text-(--color-accent)">
@@ -47,24 +33,49 @@ function FooterTitle({ children }: { children: React.ReactNode }) {
 }
 
 export default function Footer() {
+  const locale = useLocale();
+  const t = useTranslations("Footer");
+  const tNavigation = useTranslations("Navigation");
+  const translatedNavigation = navigation.map(({ messageKey, ...item }) => ({
+    ...item,
+    label: tNavigation(messageKey),
+  }));
+  const translatedCategories = categories.map(({ title, href, icon }) => ({
+    href,
+    icon,
+    label: title[locale === "en" ? "en" : "ar"],
+  }));
+  const translatedOfficialLinks = officialLinks.map(
+    ({ messageKey, ...item }) => ({
+      ...item,
+      label: t(messageKey),
+    })
+  );
+
+  const footerColumns = [
+    { title: t("usefulLinks"), items: translatedOfficialLinks },
+    { title: t("featuredCategories"), items: translatedCategories },
+    { title: t("explore"), items: translatedNavigation },
+  ];
+
   return (
     <footer className="mt-6 overflow-hidden border-t border-white/20 bg-[#07111e] text-(--color-text)">
       <div className="mx-auto px-6 pt-12 sm:px-10 lg:px-14 xl:px-[72px]">
-        <div className="grid gap-12 text-center md:grid-cols-2 md:text-right xl:grid-cols-[1.05fr_1.3fr_.92fr_.92fr_1.08fr] xl:items-start xl:gap-9">
+        <div className="grid gap-12 text-center md:grid-cols-2 md:text-start xl:grid-cols-[1.05fr_1.3fr_.92fr_.92fr_1.08fr] xl:items-start xl:gap-9">
           <section className="order-1">
             <FooterTitle>
               <span className="inline-flex items-center gap-2">
-                تواصل
+                {t("contact")}
                 <span className="inline-flex items-center gap-1.5 text-(--color-accent)">
             
-                  <PhoneCall className="size-5" />
+                  <PhoneCall aria-hidden="true" className="size-5" />
              
                 </span>
               </span>
             </FooterTitle>
 
             <p className="mt-6 text-[16px] leading-9 text-slate-200">
-              هل لديك تجربة تستحق النقل والتوثيق؟
+              {t("invitation")}
             </p>
 
             <address className="mt-4 space-y-6 not-italic text-[15px] text-slate-200">
@@ -72,7 +83,7 @@ export default function Footer() {
                 href="mailto:Alaqari2006@hotmail.com"
                 className="flex items-center justify-center gap-4 transition hover:text-(--color-accent) md:justify-start"
               >
-                <FaRegEnvelope className="shrink-0 text-xl text-(--color-accent)" />
+                <FaRegEnvelope aria-hidden="true" className="shrink-0 text-xl text-(--color-accent)" />
                 <span dir="ltr">Alaqari2006@hotmail.com</span>
               </a>
 
@@ -80,19 +91,19 @@ export default function Footer() {
                 href="tel:+00966551946666"
                 className="flex items-center justify-center gap-4 transition hover:text-(--color-accent) md:justify-start"
               >
-                <FaPhone className="shrink-0 text-xl text-(--color-accent)" />
+                <FaPhone aria-hidden="true" className="shrink-0 text-xl text-(--color-accent)" />
                 <span dir="ltr">00966 55 194 6666</span>
               </a>
 
               <p className="flex items-center justify-center gap-4 md:justify-start">
-                <FaLocationDot className="shrink-0 text-xl text-(--color-accent)" />
-                جدة، المملكة العربية السعودية
+                <FaLocationDot aria-hidden="true" className="shrink-0 text-xl text-(--color-accent)" />
+                {t("location")}
               </p>
             </address>
 
             <PrimaryButton
               href="/request-visit"
-              ariaLabel="طلب زيارة"
+              ariaLabel={t("requestVisit")}
               animation="group-hover:animate-plane-fly"
               className="mt-6 px-2 inline-flex items-center gap-2"
               icon={
@@ -103,7 +114,7 @@ export default function Footer() {
                 />
               }
             >
-              <span>طلب زيارة</span>
+              <span>{t("requestVisit")}</span>
             </PrimaryButton>
           </section>
 
@@ -119,7 +130,7 @@ export default function Footer() {
           <section className="order-5 text-center">
             <Link
               href="/"
-              aria-label="الصفحة الرئيسية"
+              aria-label={t("homeLabel")}
               className="inline-flex flex-col items-center"
             >
               <BrandLogo
@@ -129,11 +140,11 @@ export default function Footer() {
               />
 
               <span className="mt-1 text-[16px] text-slate-100">
-                الإعلامي
+                {t("brandRole")}
               </span>
 
               <strong className="font-alexandria mt-1 text-[25px] leading-none">
-                محمد الإحيوي
+                {t("brandName")}
               </strong>
 
               <span className="mt-7 flex items-center gap-2 text-(--color-accent)">
@@ -148,15 +159,17 @@ export default function Footer() {
             </Link>
 
             <p className="mx-auto mt-8 max-w-62.5 text-[15px] leading-8 text-slate-300">
-              منصة إعلامية توثق التجارب وتنقلها بمصداقية، بهدف دعم جودة
-              الخدمات وإلهام الآخرين لاكتشاف أفضل الوجهات
+              {t("description")}
             </p>
 
             <p className="mt-12 font-alexandria text-[16px] font-medium text-(--color-accent)">
-              تابعني على
+              {t("follow")}
             </p>
 
-            <div className="mt-7 flex justify-center gap-4">
+            <nav
+              aria-label={t("socialLinksLabel")}
+              className="mt-7 flex justify-center gap-4"
+            >
               {socialLinks.map((item) => {
                 const Icon = item.icon;
 
@@ -182,11 +195,11 @@ export default function Footer() {
                       hover:text-(--color-accent)
                     "
                   >
-                    <Icon />
+                    <Icon aria-hidden="true" />
                   </a>
                 );
               })}
-            </div>
+            </nav>
           </section>
         </div>
 

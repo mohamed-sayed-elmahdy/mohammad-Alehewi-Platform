@@ -1,14 +1,17 @@
 import Image from "next/image";
 import HeroSocial from "./HeroSocial";
 import HeroStats from "./HeroStats";
+import { useTranslations } from "next-intl";
 
 export default function HeroImage() {
+  const t = useTranslations("Home.hero");
+
   return (
     <div className="flex flex-col items-center gap-4 ps-0 lg:gap-6 ">
       <div className="relative z-10">
         <Image
           src="/mohamedwhite1.png"
-          alt="الإعلامي محمد الإحيوي"
+          alt={t("imageAlt")}
           width={290}
           height={320}
           priority
