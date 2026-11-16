@@ -8,6 +8,7 @@ import {
 } from "next/font/google";
 import "@/app/globals.css";
 import { Analytics } from "@vercel/analytics/next";
+import { DashboardShell } from "@/components/dashboard/shell/dashboard-shell";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,7 +36,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_ORIGIN),
   title: "لوحة التحكم | محمد الإحيوي",
   description:
-    "لوحة إدارة منصة محمد الإحيوي.",
+    "لوحة إدارة منصة محمد الإحيوي",
   robots: {
     index: false,
     follow: false,
@@ -63,8 +64,7 @@ export default function RootLayout({
     ${ibmPlexArabic.variable} dark antialiased`}
     >
       <body className="min-h-screen flex flex-col">
-     
-          {children}
+        <DashboardShell>{children}</DashboardShell>
         <Analytics />
       </body>
     </html>
