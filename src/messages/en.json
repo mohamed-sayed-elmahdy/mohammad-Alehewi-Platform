@@ -3,10 +3,10 @@
     "all": "All",
     "close": "Close",
     "home": "Home",
-    "loading": "Loading...",
+    "loading": "Loading",
     "requiredFields": "Fields marked are required",
     "submit": "Submit",
-    "tryAgain": "Please try again."
+    "tryAgain": "Please try again"
   },
   "Navigation": {
     "about": "About",
@@ -33,7 +33,7 @@
   },
   "Home": {
     "metaTitle": "Home",
-    "metaDescription": "Discover authentic experiences, reviews, and journeys across Saudi Arabia and beyond with Saudi media professional and Local Guide Mohammad Alehewi.",
+    "metaDescription": "Discover authentic experiences, reviews, and journeys across Saudi Arabia and beyond with Saudi media professional and Local Guide Mohammad Alehewi",
     "metaImageAlt": "Mohammad Alehewi's media platform",
     "hero": {
       "titleFirstLine": "Authentic Experiences",
@@ -50,7 +50,7 @@
       "countriesTitle": "My Journeys",
       "localJourneysTitle": "My Saudi Journeys",
       "globalJourneysTitle": "My International Journeys",
-      "upcomingDestinations": "And many more destinations to come...",
+      "upcomingDestinations": "And many more destinations to come",
       "featureTitles": {
         "guidance": "Expert Guidance",
         "trust": "Lasting Trust",
@@ -87,7 +87,7 @@
           "title": "Georgia"
         },
         "upcoming": {
-          "title": "More destinations to come..."
+          "title": "More destinations to come"
         }
       }
     },
@@ -98,14 +98,14 @@
     "featuredCategories": {
       "title": "Explore Experiences",
       "titleByCategory": "by Category",
-      "description": "Every experience tells a different story, and every category offers a new way to explore the world through Mohammad Alehewi's perspective. Choose what interests you and begin a new journey.",
+      "description": "Every experience tells a different story, and every category offers a new way to explore the world through Mohammad Alehewi's perspective. Choose what interests you and begin a new journey",
       "exploreExperiences": "Explore experiences",
       "browseAll": "Browse all categories",
       "closingPrompt": "Choose your favorite category and begin your next journey"
     },
     "featuredReviews": {
       "title": "Featured Experiences",
-      "description": "A selection of experiences recommended for their quality, value, and lasting impression.",
+      "description": "A selection of experiences recommended for their quality, value, and lasting impression",
       "browseAll": "Browse all experiences",
       "readExperience": "Read the experience",
       "readExperienceFor": "Read the experience at {title}",
@@ -123,7 +123,7 @@
     "featuredStories": {
       "eyebrow": "Behind every experience",
       "title": "Every Experience and Visit Has a Story",
-      "description": "Not every experience can be summed up in a review. Some hold moments, impressions, and details worth sharing.",
+      "description": "Not every experience can be summed up in a review. Some hold moments, impressions, and details worth sharing",
       "viewAll": "Browse all stories",
       "readStory": "Read story",
       "previousStory": "Previous story",
@@ -132,25 +132,25 @@
     "journeyMap": {
       "eyebrow": "The journey",
       "title": "A Story Map of Mohammad Alehewi's Experiences",
-      "description": "A narrative map tracing the stages of the journey and the countries that have shaped it from the beginning to today.",
+      "description": "A narrative map tracing the stages of the journey and the countries that have shaped it from the beginning to today",
       "narrativeApproach": "A narrative approach",
       "travelDetails": "Travel is more than a place; it is the details that unfold over time",
-      "journeyDescription": "This section traces a gradual journey between Saudi Arabia and the wider world, with meaningful stops and culturally rich experiences.",
+      "journeyDescription": "This section traces a gradual journey between Saudi Arabia and the wider world, with meaningful stops and culturally rich experiences",
       "highlightedStops": "Notable stops",
-      "stopsDescription": "Explore the stories within each journey through its places, years, and routes.",
+      "stopsDescription": "Explore the stories within each journey through its places, years, and routes",
       "viewMap": "View map"
     },
     "latestArticles": {
       "eyebrow": "A journalistic perspective",
       "title": "The Latest Articles, Thoughtfully Written",
-      "description": "Concise, connected articles offering a window into experiences, culture, and hospitality through Mohammad Alehewi's perspective.",
+      "description": "Concise, connected articles offering a window into experiences, culture, and hospitality through Mohammad Alehewi's perspective",
       "viewAll": "View all articles",
       "readArticle": "Read article"
     },
     "cta": {
       "eyebrow": "Begin your journey",
       "title": "Experience a Visit Through Mohammad Alehewi's Lens",
-      "description": "An invitation for brands to host a distinctive experience shaped by a compelling story and visual identity.",
+      "description": "An invitation for brands to host a distinctive experience shaped by a compelling story and visual identity",
       "requestVisit": "Request a visit"
     }
   },
@@ -183,9 +183,9 @@
     "experienceImpact": {
       "title": "The Impact of My Work",
       "business": "For businesses",
-      "businessDescription": "Constructive feedback that helps improve service quality, increase customer satisfaction, and build a more trusted digital reputation.",
+      "businessDescription": "Constructive feedback that helps improve service quality, increase customer satisfaction, and build a more trusted digital reputation",
       "visitor": "For visitors",
-      "visitorDescription": "Reliable, comprehensive information that helps visitors make informed decisions and enjoy a safer, clearer experience."
+      "visitorDescription": "Reliable, comprehensive information that helps visitors make informed decisions and enjoy a safer, clearer experience"
     },
     "timeline": {
       "title": "My Journey in Media and Experiences",
@@ -241,7 +241,7 @@
   },
   "Mission": {
     "metaTitle": "Our Mission",
-    "metaDescription": "Learn about Mohammad Alehewi's mission to share authentic experiences, serve visitors, and help improve services.",
+    "metaDescription": "Learn about Mohammad Alehewi's mission to share authentic experiences, serve visitors, and help improve services",
     "title": "Our Mission",
     "pillars": {
       "honesty": "Sharing experiences honestly",
@@ -252,7 +252,7 @@
   },
   "Reviews": {
     "title": "Reviews",
-    "description": "Explore real opinions and documented experiences at restaurants, cafés, hotels, and destinations.",
+    "description": "Explore real opinions and documented experiences at restaurants, cafés, hotels, and destinations",
     "filters": {
       "country": "Country",
       "city": "City",
@@ -274,7 +274,7 @@
     },
     "empty": {
       "title": "No reviews match the current filters",
-      "description": "Try another category or view all reviews.",
+      "description": "Try another category or view all reviews",
       "reset": "View all reviews"
     },
     "detail": {
@@ -311,7 +311,7 @@
   },
   "Journeys": {
     "title": "Journeys",
-    "description": "Discover documented journeys through Saudi cities and destinations around the world.",
+    "description": "Discover documented journeys through Saudi cities and destinations around the world",
     "filters": {
       "scope": "Journey type",
       "scopeOptions": {
@@ -326,7 +326,7 @@
     "placesCount": "{count, plural, zero {No places} one {One place} other {# places}}",
     "empty": {
       "title": "No matching journeys",
-      "description": "Try choosing another city or country."
+      "description": "Try choosing another city or country"
     },
     "latestFirst": "Newest first",
     "results": "{count} journeys{location}",
@@ -344,11 +344,11 @@
   },
   "Stories": {
     "title": "Stories",
-    "description": "Stories and experiences by Mohammad Alehewi."
+    "description": "Stories and experiences by Mohammad Alehewi"
   },
   "Articles": {
     "title": "Articles",
-    "description": "Articles by Mohammad Alehewi."
+    "description": "Articles by Mohammad Alehewi"
   },
   "Services": {
     "title": "Digital Services for Businesses",
@@ -365,7 +365,7 @@
     "catalog": {
       "sectionTitle": "Business services",
       "heading": "Everything your Google Maps business profile needs in one place",
-      "description": "From setup and verification to management and photography, choose one service or add several to your request.",
+      "description": "From setup and verification to management and photography, choose one service or add several to your request",
       "countLabel": "Specialized services",
       "addGroup": "Add the group of services",
       "removeService": "Remove service",
@@ -413,12 +413,12 @@
     "request": {
       "title": "Request Business Services",
       "description": "Share your details so we can contact you and review the scope and cost before work begins",
-      "loading": "Loading the request form...",
+      "loading": "Loading the request form",
       "selectedServices": "Selected services",
-      "noServiceSelected": "No services selected yet.",
+      "noServiceSelected": "No services selected yet",
       "backToServices": "Go back and choose services",
       "removeService": "Remove {service} from the request",
-      "success": "Your request was received. We will contact you to discuss the details.",
+      "success": "Your request was received. We will contact you to discuss the details",
       "name": "Name",
       "namePlaceholder": "Enter your name",
       "email": "Email",
@@ -435,20 +435,20 @@
       "googleBusinessUrlPlaceholder": "Enter the Google Business Profile URL here",
       "additionalDetails": "Additional details",
       "detailsPlaceholder": "Share any details that will help us understand your needs",
-      "submitting": "Submitting your request...",
+      "submitting": "Submitting your request",
       "submitted": "Request sent",
       "submit": "Submit service request",
       "backToServiceSelection": "Back to service selection",
-      "selectAtLeastOne": "Go back and choose at least one service.",
-      "unavailable": "The service request form is currently unavailable. Please contact us by email.",
-      "submitError": "We couldn't send your request. Please try again."
+      "selectAtLeastOne": "Go back and choose at least one service",
+      "unavailable": "The service request form is currently unavailable. Please contact us by email",
+      "submitError": "We couldn't send your request. Please try again"
     }
   },
   "Feedback": {
     "page": {
       "eyebrow": "Your voice matters",
       "title": "Share your feedback",
-      "description": "Tell us about your experience with the platform, or share a suggestion, comment, or question to help us improve.",
+      "description": "Tell us about your experience with the platform, or share a suggestion, comment, or question to help us improve",
       "metaImageAlt": "Share your feedback about the Mohammad Alehewi platform"
     },
     "form": {
@@ -462,14 +462,14 @@
       "emailPlaceholder": "example@email.com",
       "message": "Your feedback or message",
       "messagePlaceholder": "Write your feedback, suggestion, or question",
-      "submitting": "Sending...",
+      "submitting": "Sending",
       "submit": "Send feedback",
       "backHome": "Back to home",
-      "success": "Thank you for your feedback. It was sent successfully.",
-      "readError": "We couldn't read the form details. Please try again.",
-      "categoryRequired": "Please choose a feedback type.",
-      "unavailable": "The feedback form is currently unavailable. Please try again later.",
-      "submitError": "We couldn't send your feedback. Please try again.",
+      "success": "Thank you for your feedback. It was sent successfully",
+      "readError": "We couldn't read the form details. Please try again",
+      "categoryRequired": "Please choose a feedback type",
+      "unavailable": "The feedback form is currently unavailable. Please try again later",
+      "submitError": "We couldn't send your feedback. Please try again",
       "categories": {
         "experience": "Experience feedback",
         "platform": "Platform feedback",
@@ -481,10 +481,10 @@
   },
   "VisitRequest": {
     "metaTitle": "Request a Visit",
-    "metaDescription": "Invite media professional and Local Guide Mohammad Alehewi to visit your business and review the experience.",
+    "metaDescription": "Invite media professional and Local Guide Mohammad Alehewi to visit your business and review the experience",
     "eyebrow": "Request a visit",
     "title": "Invite Mohammad Alehewi to experience your business",
-    "description": "Complete the form with your business details and invitation. We will review your request and get back to you as soon as possible.",
+    "description": "Complete the form with your business details and invitation. We will review your request and get back to you as soon as possible",
     "benefits": {
       "authenticReview": "A professional review based on a real experience",
       "improvement": "Practical feedback to help improve your service",
@@ -504,18 +504,18 @@
       "city": "City",
       "cityPlaceholder": "For example: Riyadh",
       "details": "Visit details",
-      "detailsPlaceholder": "Describe your business, its type, and the purpose of the invitation...",
+      "detailsPlaceholder": "Describe your business, its type, and the purpose of the invitation",
       "termsTitle": "Visit terms and conditions",
       "terms": {
-        "independent": "This is an independent, voluntary initiative by media professional Mohammad Alehewi, a Level 9 Local Guide. It is not officially affiliated with Google or Google Maps.",
-        "consultation": "The initiative offers professional advice and reviews to help improve your business and its services.",
-        "freeVisit": "The visit is entirely free. It documents an honest, first-hand experience and does not promise predetermined or fabricated reviews."
+        "independent": "This is an independent, voluntary initiative by media professional Mohammad Alehewi, a Level 9 Local Guide. It is not officially affiliated with Google or Google Maps",
+        "consultation": "The initiative offers professional advice and reviews to help improve your business and its services",
+        "freeVisit": "The visit is entirely free. It documents an honest, first-hand experience and does not promise predetermined or fabricated reviews"
       },
       "acceptTerms": "I have read and agree to the visit terms and conditions",
-      "submitting": "Sending...",
+      "submitting": "Sending",
       "submit": "Submit request",
       "successTitle": "Request received",
-      "successMessage": "Your request has been received. We will be in touch soon.",
+      "successMessage": "Your request has been received. We will be in touch soon",
       "successClose": "OK"
     },
     "validation": {
@@ -532,8 +532,8 @@
       "termsRequired": "You must agree to the visit terms and conditions"
     },
     "submission": {
-      "unavailable": "The visit request form is currently unavailable. Please contact us by email.",
-      "error": "We couldn't send your request. Please try again or contact us by email."
+      "unavailable": "The visit request form is currently unavailable. Please contact us by email",
+      "error": "We couldn't send your request. Please try again or contact us by email"
     }
   },
   "Footer": {
@@ -544,7 +544,7 @@
     "homeLabel": "Home page",
     "brandRole": "Media professional",
     "brandName": "Mohammad Alehewi",
-    "description": "A media platform that documents and shares experiences with integrity, supporting better services and inspiring people to discover remarkable destinations.",
+    "description": "A media platform that documents and shares experiences with integrity, supporting better services and inspiring people to discover remarkable destinations",
     "follow": "Follow me",
     "usefulLinks": "Useful links",
     "featuredCategories": "Featured categories",

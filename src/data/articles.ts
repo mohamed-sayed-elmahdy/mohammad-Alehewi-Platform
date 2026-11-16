@@ -8,8 +8,8 @@ export const articles: Article[] = [
       en: "What Makes an Experience Worth Talking About?",
     },
     excerpt: {
-      ar: "تحليل فريد للمعايير الرفيعة في اختيار الأماكن والأجواء التي تستحق التوثيق.",
-      en: "A thoughtful look at the standards behind choosing places and atmospheres worth documenting.",
+      ar: "تحليل فريد للمعايير الرفيعة في اختيار الأماكن والأجواء التي تستحق التوثيق",
+      en: "A thoughtful look at the standards behind choosing places and atmospheres worth documenting",
     },
     category: { ar: "رؤية", en: "Perspective" },
     date: { ar: "18 مايو 2025", en: "May 18, 2025" },
@@ -22,8 +22,8 @@ export const articles: Article[] = [
       en: "How Do Details Shape Memorable Stories?",
     },
     excerpt: {
-      ar: "قراءة عميقة في تجربة الضيافة التي تتجاوز الخدمة إلى الانطباع الدائم.",
-      en: "A closer look at hospitality that goes beyond service to leave a lasting impression.",
+      ar: "قراءة عميقة في تجربة الضيافة التي تتجاوز الخدمة إلى الانطباع الدائم",
+      en: "A closer look at hospitality that goes beyond service to leave a lasting impression",
     },
     category: { ar: "ثقافة", en: "Culture" },
     date: { ar: "12 مايو 2025", en: "May 12, 2025" },
@@ -36,8 +36,8 @@ export const articles: Article[] = [
       en: "Different Expressions of Luxury in Saudi Destinations",
     },
     excerpt: {
-      ar: "نظرة على الأماكن التي تمنح الزوار تجربة استثنائية ومختلفة عن المعتاد.",
-      en: "A look at places offering visitors an exceptional experience beyond the ordinary.",
+      ar: "نظرة على الأماكن التي تمنح الزوار تجربة استثنائية ومختلفة عن المعتاد",
+      en: "A look at places offering visitors an exceptional experience beyond the ordinary",
     },
     category: { ar: "توجيه", en: "Guide" },
     date: { ar: "05 مايو 2025", en: "May 5, 2025" },

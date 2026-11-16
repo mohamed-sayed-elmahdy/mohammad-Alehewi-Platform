@@ -71,7 +71,7 @@ export const categories: Category[] = [
         id: 'sweets-bakeries',
         title: { ar: 'حلويات ومخابز', en: 'Sweets & bakeries' },
         description: {
-            ar: "حلويات طازجة ومخبوزات متنوعة لعشاق المذاق الحلو.",
+            ar: "حلويات طازجة ومخبوزات متنوعة لعشاق المذاق الحلو",
             en: "Fresh desserts and baked goods for those with a sweet tooth",
         },
         count: 58,
@@ -89,7 +89,7 @@ export const categories: Category[] = [
         id: 'chocolate',
         title: { ar: 'شوكولاته', en: 'Chocolate' },
         description: {
-            ar: "تجارب متنوعة لعشاق الشوكولاته والحلويات المصنوعة منها.",
+            ar: "تجارب متنوعة لعشاق الشوكولاته والحلويات المصنوعة منها",
             en: "A variety of experiences for chocolate and dessert lovers",
         },
         count: 0,
@@ -107,7 +107,7 @@ export const categories: Category[] = [
         id: 'juices-drinks',
         title: { ar: 'عصائر ومشروبات', en: 'Juices & drinks' },
         description: {
-            ar: "تجارب متنوعة من العصائر الطازجة والمشروبات الباردة والساخنة.",
+            ar: "تجارب متنوعة من العصائر الطازجة والمشروبات الباردة والساخنة",
             en: "Fresh juices and a variety of hot and cold drinks",
         },
         count: 0,
@@ -176,7 +176,7 @@ export const categories: Category[] = [
         id: 'tourist-attractions',
         title: { ar: 'معالم سياحية', en: 'Tourist attractions' },
         description: {
-            ar: "معالم بارزة ووجهات تستحق الزيارة والاستكشاف.",
+            ar: "معالم بارزة ووجهات تستحق الزيارة والاستكشاف",
             en: "Notable landmarks and destinations worth discovering",
         },
         count: 91,
@@ -193,7 +193,7 @@ export const categories: Category[] = [
         id: 'parks',
         title: { ar: 'حدائق ومتنزهات', en: 'Parks & gardens' },
         description: {
-            ar: "مساحات خضراء ومتنزهات مناسبة لقضاء وقت ممتع في الهواء الطلق.",
+            ar: "مساحات خضراء ومتنزهات مناسبة لقضاء وقت ممتع في الهواء الطلق",
             en: "Green spaces and parks for enjoying time outdoors",
         },
         count: 69,
@@ -210,7 +210,7 @@ export const categories: Category[] = [
         id: 'malls',
         title: { ar: 'مولات ومراكز تسوق', en: 'Malls & shopping centers' },
         description: {
-            ar: "مراكز تجمع التسوق والمطاعم وخيارات الترفيه في مكان واحد.",
+            ar: "مراكز تجمع التسوق والمطاعم وخيارات الترفيه في مكان واحد",
             en: "Places bringing shopping, dining, and entertainment together",
         },
         count: 52,
@@ -227,7 +227,7 @@ export const categories: Category[] = [
         id: 'international-destinations',
         title: { ar: 'وجهات عالمية', en: 'International destinations' },
         description: {
-            ar: "وجهات حول العالم تقدم تجارب جديدة وفرصًا للاستكشاف.",
+            ar: "وجهات حول العالم تقدم تجارب جديدة وفرصًا للاستكشاف",
             en: "Destinations around the world offering new experiences and opportunities to explore",
         },
         count: 83,

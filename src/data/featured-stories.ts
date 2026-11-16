@@ -14,7 +14,7 @@ const storyContent = {
   hospitality: {
     category: { ar: "قصة خاصة", en: "A personal story" },
     title: {
-      ar: "حين غيّر حديث عابر نظرتي لمفهوم الضيافة",
+      ar: "حين غير حديث عابر نظرتي لمفهوم الضيافة",
       en: "How a Passing Conversation Changed My View of Hospitality",
     },
     location: { ar: "الرياض", en: "Riyadh" },
@@ -50,7 +50,7 @@ const storyContent = {
   hotel: {
     category: { ar: "تجربة", en: "Experience" },
     title: {
-      ar: "ليلة لا تُنسى في قلب مدينة لا تنام",
+      ar: "ليلة لا تنسى في قلب مدينة لا تنام",
       en: "An Unforgettable Night in the Heart of a City That Never Sleeps",
     },
     location: { ar: "الرياض", en: "Riyadh" },
@@ -77,7 +77,7 @@ const storyContent = {
       ar: "المنتجع الذي فاجأني بكل شيء",
       en: "The Resort That Surprised Me in Every Way",
     },
-    location: { ar: "عُمان", en: "Oman" },
+    location: { ar: "عمان", en: "Oman" },
     readingTime: { ar: "٥ دقائق", en: "5 min read" },
     image:
       "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=900&q=85",

@@ -4,7 +4,7 @@ export const countries: Country[] = [
   {
     id: "saudi",
     name: "السعودية",
-    description: "محطات ضيافة وثقافة تمتد بين الرياض وجدة والعلا.",
+    description: "محطات ضيافة وثقافة تمتد بين الرياض وجدة والعلا",
     image:
       "https://images.unsplash.com/photo-1507408460682-0e22b6a4d011?auto=format&fit=crop&w=900&q=80",
     href: "/countries/saudi",
@@ -12,7 +12,7 @@ export const countries: Country[] = [
   {
     id: "georgia",
     name: "جورجيا",
-    description: "وجهة خارجية تجمع الجبال والطابع الأوروبي اللطيف.",
+    description: "وجهة خارجية تجمع الجبال والطابع الأوروبي اللطيف",
     image:
       "https://images.unsplash.com/photo-1488805990569-3c9e1d76d51c?auto=format&fit=crop&w=900&q=80",
     href: "/countries/georgia",

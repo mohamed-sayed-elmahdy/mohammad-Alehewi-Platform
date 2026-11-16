@@ -19,8 +19,8 @@ export default function StructuredData({ locale }: StructuredDataProps) {
         image: `${SITE_ORIGIN}/mohamed.png`,
         jobTitle: isEnglish ? "Saudi journalist and content creator" : "إعلامي وصانع محتوى سعودي",
         description: isEnglish
-          ? "Saudi media professional and Google Maps Local Guide documenting and reviewing restaurants, cafés, destinations, and journeys across Saudi Arabia and beyond."
-          : "إعلامي ومرشد محلي سعودي يوثق ويقيّم تجارب المطاعم والمقاهي والوجهات والجولات داخل المملكة وخارجها.",
+          ? "Saudi media professional and Google Maps Local Guide documenting and reviewing restaurants, cafés, destinations, and journeys across Saudi Arabia and beyond"
+          : "إعلامي ومرشد محلي سعودي يوثق ويقيم تجارب المطاعم والمقاهي والوجهات والجولات داخل المملكة وخارجها",
         sameAs: [
           "https://www.instagram.com/noon_jeddah_rest_cafe",
           "https://www.tiktok.com/@Alaqari2006",
