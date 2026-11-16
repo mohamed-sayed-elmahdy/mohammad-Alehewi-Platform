@@ -300,11 +300,11 @@ export function MockDataManager({
             <thead className="bg-muted/40 text-muted-foreground">
               <tr>
                 {config.columns.map((key) => (
-                  <th className="px-4 py-3 font-medium" key={key}>
+                  <th className="px-4 py-3 text-start font-medium" key={key}>
                     {config.fields.find((field) => field.key === key)?.label ?? key}
                   </th>
                 ))}
-                <th className="px-4 py-3 font-medium">الإجراءات</th>
+                <th className="px-4 py-3 text-start font-medium">الإجراءات</th>
               </tr>
             </thead>
             <tbody>
@@ -314,7 +314,7 @@ export function MockDataManager({
                     const field = config.fields.find((item) => item.key === key)
                     const value = record[key]
                     return (
-                      <td className="max-w-64 px-4 py-3" key={key}>
+                      <td className="max-w-64 px-4 py-3 text-start" key={key}>
                         {field?.type === "select" && key === config.statusField ? (
                           <span
                             className={`inline-flex rounded-full px-2.5 py-1 text-xs font-medium ${statusStyle(value ?? "")}`}
@@ -329,7 +329,7 @@ export function MockDataManager({
                       </td>
                     )
                   })}
-                  <td className="px-4 py-3">
+                  <td className="px-4 py-3 text-start">
                     <div className="flex items-center gap-1">
                       <Button
                         aria-label="عرض التفاصيل"
