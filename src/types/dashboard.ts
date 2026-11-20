@@ -47,6 +47,49 @@ export type DashboardVisitedCountry = {
   code: string
 }
 
+export type DashboardAnalyticsPeriod = "7days" | "30days" | "90days"
+
+export type DashboardVisitorTrendPoint = {
+  label: string
+  visitors: number
+}
+
+export type DashboardTrafficBreakdown = {
+  label: string
+  value: number
+}
+
+export type DashboardTopPage = DashboardTrafficBreakdown & {
+  path: string
+}
+
+export type DashboardVisitorSnapshot = {
+  visitors: number
+  previousVisitors: number
+  pageViews: number
+  previousPageViews: number
+  trend: DashboardVisitorTrendPoint[]
+  topPages: DashboardTopPage[]
+  sources: DashboardTrafficBreakdown[]
+}
+
+export type DashboardPlatformProgressMetric = {
+  label: string
+  value: number
+  previousValue: number
+  detail: string
+  href: string
+  icon: "reviews" | "journeys" | "articles"
+}
+
+export type DashboardRequestProgress = {
+  handled: number
+  received: number
+  previousHandled: number
+  previousReceived: number
+  href: string
+}
+
 export type DashboardManagementValue = string | number
 
 export type DashboardManagementRecord = {

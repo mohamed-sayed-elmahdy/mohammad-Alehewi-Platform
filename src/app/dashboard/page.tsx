@@ -10,12 +10,19 @@ import {
   dashboardRequests,
   dashboardVisitedCountries,
 } from "@/data/dashboard-overview"
+import {
+  dashboardPlatformProgress,
+  dashboardRequestProgress,
+  dashboardVisitorSnapshots,
+} from "@/data/dashboard-analytics"
 import { OverviewActivityList } from "@/components/dashboard/overview/overview-activity-list"
 import { OverviewBreakdown } from "@/components/dashboard/overview/overview-breakdown"
 import { OverviewContentList } from "@/components/dashboard/overview/overview-content-list"
 import { OverviewPanel } from "@/components/dashboard/overview/overview-panel"
+import { OverviewPlatformProgress } from "@/components/dashboard/overview/overview-platform-progress"
 import { OverviewRequestList } from "@/components/dashboard/overview/overview-request-list"
 import { OverviewStatCard } from "@/components/dashboard/overview/overview-stat-card"
+import { OverviewVisitors } from "@/components/dashboard/overview/overview-visitors"
 
 const numberFormatter = new Intl.NumberFormat("ar-SA")
 
@@ -48,6 +55,13 @@ export default function DashboardPage() {
           <OverviewStatCard key={metric.label} metric={metric} />
         ))}
       </div>
+
+      <OverviewVisitors snapshots={dashboardVisitorSnapshots} />
+
+      <OverviewPlatformProgress
+        metrics={dashboardPlatformProgress}
+        requests={dashboardRequestProgress}
+      />
 
       <div className="grid gap-4 xl:grid-cols-2">
         <OverviewPanel
